@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar color="orange"
+  <v-app-bar density="prominent" elevation="0"
     ><v-app-bar-title>this is app bar title</v-app-bar-title></v-app-bar
   >
 </template>

@@ -1,3 +1,6 @@
 <template>
-  <h1>home page</h1>
+  <article>
+    <h1>Lorem ipsum dolor sit amet</h1>
+    <TheCodeMap />
+  </article>
 </template>

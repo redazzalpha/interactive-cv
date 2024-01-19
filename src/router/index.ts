@@ -22,7 +22,7 @@ const routes: RouteRecordRaw[] = [
     ],
   },
 
-  // redirectss
+  // redirects
   {
     path: "/home",
     redirect: {name: "home"}

@@ -1,3 +1,3 @@
 <template>
-  <v-navigation-drawer></v-navigation-drawer>
+  <v-navigation-drawer color="red"></v-navigation-drawer>
 </template>

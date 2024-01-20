@@ -6,6 +6,7 @@ import TheCodeLines from '@/components/TheCodeLines.vue';
       <v-row>
         <v-col>
           <h1>Lorem ipsum dolor sit amet</h1>
+          <DrawerList v-show="$vuetify.display.mobile" />
         </v-col>
       </v-row>
 
@@ -18,4 +19,3 @@ import TheCodeLines from '@/components/TheCodeLines.vue';
     </v-container>
   </article>
 </template>
-5

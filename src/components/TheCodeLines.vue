@@ -148,8 +148,8 @@ const sheetBinding = ref({
   class: "pa-3 d-flex flex-row rounded-lg",
   style: "font-size: 18px; line-height: 130%",
   color: "#1f1f1f",
-  "max-width": 600,
-  "min-width": 270,
+  "max-width": 900,
+  "min-width": 300,
 });
 const lineNumbersContainerBinding = ref({
   class: "d-flex flex-row",

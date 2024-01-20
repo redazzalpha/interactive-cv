@@ -1,5 +1,5 @@
 <template>
-  <v-list class="mt-10">
+  <v-list class="mt-15">
     <!-- avatar item -->
     <v-list-item v-bind="listItemBindings">
       <v-avatar size="170" image="@/assets/wolf.jpg"></v-avatar>

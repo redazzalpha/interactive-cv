@@ -1,8 +1,15 @@
 import TheCodeLines from '@/components/TheCodeLines.vue';
 <template>
   <article>
-    <h1>Lorem ipsum dolor sit amet</h1>
     <v-container grid-list-xs>
+      <!-- title row -->
+      <v-row>
+        <v-col>
+          <h1>Lorem ipsum dolor sit amet</h1>
+        </v-col>
+      </v-row>
+
+      <!-- code lines row -->
       <v-row>
         <v-col cols="12" class="pa-0 d-flex justify-center">
           <TheCodeLines />
@@ -11,3 +18,4 @@ import TheCodeLines from '@/components/TheCodeLines.vue';
     </v-container>
   </article>
 </template>
+5

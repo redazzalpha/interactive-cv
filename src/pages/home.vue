@@ -7,7 +7,10 @@
           <h1 class="text-center text-lg-left">
             Concepteur développeur d'applications
           </h1>
-          <DrawerList v-show="$vuetify.display.mobile" />
+          <DrawerList
+            style="background-color: #121212; color: white"
+            v-show="$vuetify.display.mobile"
+          />
         </v-col>
       </v-row>
 

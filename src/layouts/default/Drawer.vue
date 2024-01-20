@@ -1,3 +1,5 @@
 <template>
-  <v-navigation-drawer></v-navigation-drawer>
+  <v-navigation-drawer>
+    <DrawerList />
+  </v-navigation-drawer>
 </template>

@@ -188,14 +188,5 @@ const ml11 = ref({
 const ml15 = ref({
   class: "ml-15",
 });
-const mr5 = ref({
-  class: "mr-5",
-});
 //#endregion
 </script>
-
-<style lang="scss" scoped>
-p {
-  color: white;
-}
-</style>

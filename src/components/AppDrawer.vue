@@ -18,7 +18,7 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   location: "left",
   disableResizer: false,
-  modelDrawer: true,
+  modelDrawer: false,
 });
 //#endregion
 </script>

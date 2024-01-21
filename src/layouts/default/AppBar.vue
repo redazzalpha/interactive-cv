@@ -17,11 +17,27 @@
         </v-col>
       </v-row>
     </v-container>
-    <v-app-bar-nav-icon v-show="$vuetify.display.mobile"></v-app-bar-nav-icon>
+    <v-app-bar-nav-icon
+      v-show="$vuetify.display.mobile"
+      @click="clickNavIcon"
+    ></v-app-bar-nav-icon>
   </v-app-bar>
 </template>
 
 <script lang="ts" setup>
+import { useAppStore } from "@/store/app";
+
+//#region variables
+const store = useAppStore();
+//#endregion
+
+//#region event handlers
+function clickNavIcon() {
+  store.setDrawer(true);
+}
+//#endregion
+
+//#region arrays
 const links: Links[] = [
   { label: "Home", href: "/" },
   { label: "Test", href: "/papi" },
@@ -29,4 +45,5 @@ const links: Links[] = [
   { label: "Test2", href: "" },
   { label: "Test3", href: "" },
 ];
+//#endregion
 </script>

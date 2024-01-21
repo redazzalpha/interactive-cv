@@ -1,15 +1,15 @@
 <template>
-  <DefaultDrawer />
-  <DefaultDrawerNav />
-  <DefaultAppBar />
-  <DefaultView />
-  <DefaultFooter />
+  <DrawerAvatar />
+  <DrawerNav />
+  <AppBar />
+  <AppView />
+  <AppFooter />
 </template>
 
 <script lang="ts" setup>
-import DefaultAppBar from "@/layouts/default/AppBar.vue";
-import DefaultView from "@/layouts/default/View.vue";
-import DefaultFooter from "@/layouts/default/Footer.vue";
-import DefaultDrawer from "@/layouts/default/Drawer.vue";
-import DefaultDrawerNav from "@/layouts/default/DrawerNav.vue";
+import DrawerAvatar from "@/layouts/default/DrawerAvatar.vue";
+import DrawerNav from "@/layouts/default/DrawerNav.vue";
+import AppBar from "@/layouts/default/AppBar.vue";
+import AppView from "@/layouts/default/View.vue";
+import AppFooter from "@/layouts/default/Footer.vue";
 </script>

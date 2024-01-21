@@ -8,7 +8,7 @@
             Concepteur développeur d'applications
           </h1>
           <!-- drawerlist mobile -->
-          <DrawerList v-show="$vuetify.display.mobile" />
+          <AvatarList v-show="$vuetify.display.mobile" />
         </v-col>
       </v-row>
 

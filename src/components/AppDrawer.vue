@@ -9,6 +9,8 @@
 </template>
 
 <script setup lang="ts">
+import vuetify from "@/plugins/vuetify";
+
 //#region props
 interface Props {
   location?: Locations;
@@ -18,7 +20,7 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   location: "left",
   disableResizer: false,
-  modelDrawer: false,
+  modelDrawer: !vuetify.display.mobile.value,
 });
 //#endregion
 </script>

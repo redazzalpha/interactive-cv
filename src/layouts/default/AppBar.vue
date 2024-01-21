@@ -7,12 +7,17 @@
           v-for="link in links"
           :key="link.label"
         >
-          <AppTag :size-chevron="40" :size-slash="30" :visible="true">
+          <AppTag
+            :size-chevron="40"
+            :size-slash="30"
+            v-show="!$vuetify.display.mobile"
+          >
             {{ link.label }}
           </AppTag>
         </v-col>
       </v-row>
     </v-container>
+    <v-app-bar-nav-icon v-show="$vuetify.display.mobile"></v-app-bar-nav-icon>
   </v-app-bar>
 </template>
 

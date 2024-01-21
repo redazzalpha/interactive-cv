@@ -1,6 +1,6 @@
 <template>
   <v-app-bar density="prominent" elevation="0">
-    <v-container grid-list-xs style="border: solid red 3px">
+    <v-container grid-list-xs>
       <v-row>
         <v-col
           class="d-flex justify-center"

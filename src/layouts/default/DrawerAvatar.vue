@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer location="left">
+  <AppDrawer>
     <AvatarList />
-  </v-navigation-drawer>
+  </AppDrawer>
 </template>

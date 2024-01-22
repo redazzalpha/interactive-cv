@@ -1,9 +1,13 @@
 <template>
-  <v-app-bar density="prominent" elevation="0">
-    <v-container grid-list-xs fluid class="pa-0 ma-0">
-      <v-row class="pt-8">
+  <v-app-bar
+    density="prominent"
+    elevation="0"
+    class="d-flex justify-center align-center"
+  >
+    <v-container grid-list-xs fluid class="ma-auto">
+      <v-row>
         <v-col
-          class="d-flex justify-center align-center pa-0 ma-0"
+          class="d-flex justify-center align-center"
           v-for="link in store.links"
           :key="link.label"
         >
@@ -18,9 +22,11 @@
             {{ link.label }}
           </AppTag>
         </v-col>
+        <v-spacer></v-spacer>
       </v-row>
     </v-container>
     <v-app-bar-nav-icon
+      class="align-self-center"
       v-show="$vuetify.display.mobile"
       @click="clickNavIcon"
     ></v-app-bar-nav-icon>

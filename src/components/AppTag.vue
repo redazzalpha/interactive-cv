@@ -48,7 +48,7 @@ const props = withDefaults(defineProps<Props>(), {
   sizeChevron: 40,
   sizeSlash: 30,
   visible: true,
-  textVariantSize: "text-h6",
+  textVariantSize: "text-subtitle-1",
   icon: "",
 });
 //#endregion

@@ -16,15 +16,30 @@ const routes: RouteRecordRaw[] = [
     children: [
       {
         name: "home",
-        path: "",
+        path: "/home",
         component: () => import("@/pages/home.vue"),
-      }
+      },
+      {
+        name: "test",
+        path: "/test",
+        component: () => import("@/pages/test.vue"),
+      },
+      {
+        name: "test2",
+        path: "/test2",
+        component: () => import("@/pages/test2.vue"),
+      },
+      {
+        name: "test3",
+        path: "/test3",
+        component: () => import("@/pages/test3.vue"),
+      },
     ],
   },
 
   // redirects
   {
-    path: "/home",
+    path: "",
     redirect: {name: "home"}
   },
 

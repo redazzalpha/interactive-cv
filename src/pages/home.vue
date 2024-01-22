@@ -8,8 +8,8 @@
             Concepteur développeur d'applications
           </h1>
 
-          <!-- avatar list mobile -->
-          <AvatarList
+          <!-- avatar mobile -->
+          <AppAvatar
             :image="Avatar"
             :size="170"
             mail="willness@outlook.fr"
@@ -71,5 +71,3 @@ const colBindings = {
 };
 //#endregion
 </script>
-
-<style lang="scss" scoped></style>

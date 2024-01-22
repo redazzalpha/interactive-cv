@@ -1,6 +1,7 @@
 <template>
   <AppDrawer tag="aside">
-    <AvatarList :image="Avatar" mail="willness@outlook.fr" :size="170" />
+    <!-- avatar -->
+    <AppAvatar :image="Avatar" mail="willness@outlook.fr" :size="170" />
   </AppDrawer>
 </template>
 

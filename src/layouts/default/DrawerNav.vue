@@ -1,8 +1,8 @@
 <template>
   <AppDrawer location="right" :disable-resizer="true" v-model="store.drawer">
     <v-list>
-      <!-- avatar list  -->
-      <AvatarList :image="Avatar" mail="willness@outlook.fr" :size="170" />
+      <!-- avatar  -->
+      <AppAvatar :image="Avatar" mail="willness@outlook.fr" :size="170" />
       <!-- nav links -->
       <v-list-item v-for="link in store.links" :key="link.label">
         <AppTag

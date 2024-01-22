@@ -13,12 +13,6 @@
 </template>
 
 <script setup lang="ts">
-//#region bindings
-const listItemBindings = {
-  class: "d-flex justify-center",
-};
-//#endregion
-
 //#region props
 interface Props {
   image: string;
@@ -29,6 +23,12 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   size: 170,
 });
+//#endregion
+
+//#region bindings
+const listItemBindings = {
+  class: "d-flex justify-center",
+};
 //#endregion
 </script>
 

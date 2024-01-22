@@ -1,6 +1,7 @@
 <template>
   <router-link :to="props.href" active-class="active">
     <v-card flat class="item">
+      <!-- icon  -->
       <v-icon :icon="props.icon"></v-icon>
 
       <!-- chevron left -->
@@ -43,7 +44,6 @@ interface Props {
   icon?: string;
   onClick: (path: string) => void;
 }
-
 const props = withDefaults(defineProps<Props>(), {
   sizeChevron: 40,
   sizeSlash: 30,
@@ -55,6 +55,7 @@ const props = withDefaults(defineProps<Props>(), {
 </script>
 
 <style lang="scss" scoped>
+/* #region variables */
 $duration: 0.4s;
 $transition-color: color linear $duration;
 $transition-opacity: opacity linear $duration;
@@ -65,11 +66,14 @@ $opacity-end: 1;
 $item-start-x: -20px;
 $chevron-left-end: 10px;
 $chevron-right-end: 20px;
+/* #endregion */
 
+/* #region mixins */
 @mixin position($direction) {
   position: relative;
   #{$direction}: $item-start-x;
 }
+/* #endregion */
 
 a {
   text-decoration: none;

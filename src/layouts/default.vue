@@ -2,8 +2,8 @@
   <DrawerAvatar />
   <DrawerNav />
   <HeaderBar />
-  <AppView />
-  <AppFooter />
+  <MainView />
+  <FooterBar />
   <ScrollTopButton />
 </template>
 
@@ -11,6 +11,6 @@
 import DrawerAvatar from "@/layouts/default/DrawerAvatar.vue";
 import DrawerNav from "@/layouts/default/DrawerNav.vue";
 import HeaderBar from "@/layouts/default/HeaderBar.vue";
-import AppView from "@/layouts/default/View.vue";
-import AppFooter from "@/layouts/default/Footer.vue";
+import MainView from "@/layouts/default/MainView.vue";
+import FooterBar from "@/layouts/default/FooterBar.vue";
 </script>

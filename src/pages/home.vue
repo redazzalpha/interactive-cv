@@ -71,3 +71,5 @@ const colBindings = {
 };
 //#endregion
 </script>
+
+<style lang="scss" scoped></style>

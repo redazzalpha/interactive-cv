@@ -60,9 +60,6 @@ $transition-color: color linear $duration;
 $transition-opacity: opacity linear $duration;
 $transition-left: left linear $duration;
 $transition-right: right linear $duration;
-$color-active: #03a9f4;
-$color-hover: #c43b3b;
-$color-base: white;
 $opacity-start: 0;
 $opacity-end: 1;
 $item-start-x: -20px;
@@ -80,9 +77,9 @@ a {
 
 .active {
   .item {
-    color: $color-active;
+    color: rgb(var(--v-theme-active));
     &_tag {
-      color: $color-base;
+      color: rgb(var(--v-theme-base));
       opacity: $opacity-end;
     }
     &_chevron-left {
@@ -98,7 +95,7 @@ a {
   width: 100%;
   transition: $transition-color;
   &_tag {
-    color: $color-base;
+    color: rgb(var(--v-theme-base));
     opacity: $opacity-start;
     transition: $transition-color, $transition-opacity, $transition-left,
       $transition-right;
@@ -111,10 +108,10 @@ a {
   }
 
   &:hover {
-    color: $color-hover;
+    color: rgb(var(--v-theme-hover));
     .item {
       &_tag {
-        color: $color-base;
+        color: rgb(var(--v-theme-base));
         opacity: $opacity-end;
       }
       &_chevron-left {

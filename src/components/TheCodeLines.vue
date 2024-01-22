@@ -147,7 +147,7 @@ const text3 = "Développeur web";
 const sheetBinding = ref({
   class: "pa-3 d-flex flex-row rounded-lg",
   style: "font-size: 18px; line-height: 130%",
-  color: "#1f1f1f",
+  color: "primary",
   "max-width": 900,
   "min-width": 300,
 });
@@ -161,13 +161,13 @@ const textBlue = ref({
   class: "text-blue",
 });
 const textBlueLighten = ref({
-  class: "text-blue-lighten-2",
+  class: "text-blue-lighten",
 });
 const textTeal = ref({
-  class: "text-teal-accent-3",
+  class: "text-teal",
 });
 const textRed = ref({
-  class: "text-red-lighten-2",
+  class: "text-red",
 });
 const verticalLine = {
   class: "mr-5",

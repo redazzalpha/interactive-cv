@@ -18,9 +18,17 @@ export default createVuetify({
       "app-theme": {
         dark: true,
         colors: {
-          primary: "#212121",
+          primary: "#1f1f1f",
           secondary: "#121212",
           background: "#212121",
+          active: "#03a9f4",
+          hover: "#c43b3b",
+          base: "#ffffff",
+          blue: "#2196F3",
+          "blue-lighten": "#64B5F6",
+          teal: "#1de9b6",
+          red: "#E57373"
+
         }
       }
     },

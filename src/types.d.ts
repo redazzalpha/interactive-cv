@@ -3,6 +3,7 @@ declare module "dynamics.js";
 declare interface Link {
   label: string;
   href: string;
+  icon: string;
 }
 
 declare type State = {

@@ -3,7 +3,7 @@
     <v-container grid-list-xs fluid class="pa-0 ma-0">
       <v-row class="pt-8">
         <v-col
-          class="d-flex justify-center pa-0 ma-0"
+          class="d-flex justify-center align-center pa-0 ma-0"
           v-for="link in store.links"
           :key="link.label"
         >
@@ -12,6 +12,7 @@
             :size-chevron="40"
             :size-slash="30"
             :href="link.href"
+            :icon="link.icon"
             :on-click="router.push"
           >
             {{ link.label }}

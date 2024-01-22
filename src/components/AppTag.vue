@@ -1,6 +1,8 @@
 <template>
   <router-link :to="props.href" active-class="active">
     <v-card flat class="item">
+      <v-icon :icon="props.icon"></v-icon>
+
       <!-- chevron left -->
       <v-icon
         class="item_chevron-left item_tag"
@@ -9,7 +11,9 @@
       ></v-icon>
 
       <!-- content -->
-      <slot> </slot>
+      <span :class="props.textVariantSize">
+        <slot> </slot>
+      </span>
 
       <!-- slash -->
       <v-icon
@@ -35,6 +39,8 @@ interface Props {
   sizeChevron?: number;
   sizeSlash?: number;
   visible?: boolean;
+  textVariantSize?: string;
+  icon?: string;
   onClick: (path: string) => void;
 }
 
@@ -42,6 +48,8 @@ const props = withDefaults(defineProps<Props>(), {
   sizeChevron: 40,
   sizeSlash: 30,
   visible: true,
+  textVariantSize: "text-h6",
+  icon: "",
 });
 //#endregion
 </script>
@@ -86,6 +94,7 @@ a {
 }
 
 .item {
+  width: 100%;
   transition: $transition-color;
   &_tag {
     color: $base-color;

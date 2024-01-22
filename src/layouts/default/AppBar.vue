@@ -1,16 +1,18 @@
 <template>
   <v-app-bar density="prominent" elevation="0">
-    <v-container grid-list-xs>
-      <v-row>
+    <v-container grid-list-xs fluid class="pa-0 ma-0">
+      <v-row class="pt-8">
         <v-col
-          class="d-flex justify-center"
-          v-for="link in links"
+          class="d-flex justify-center pa-0 ma-0"
+          v-for="link in store.links"
           :key="link.label"
         >
           <AppTag
+            v-show="!$vuetify.display.mobile"
             :size-chevron="40"
             :size-slash="30"
-            v-show="!$vuetify.display.mobile"
+            :href="link.href"
+            :on-click="router.push"
           >
             {{ link.label }}
           </AppTag>
@@ -25,25 +27,13 @@
 </template>
 
 <script lang="ts" setup>
+import router from "@/router";
 import { useAppStore } from "@/store/app";
-
-//#region variables
 const store = useAppStore();
-//#endregion
 
 //#region event handlers
-function clickNavIcon() {
+function clickNavIcon(): void {
   store.setDrawer(true);
 }
-//#endregion
-
-//#region arrays
-const links: Links[] = [
-  { label: "Home", href: "/" },
-  { label: "Test", href: "/papi" },
-  { label: "Test1", href: "" },
-  { label: "Test2", href: "" },
-  { label: "Test3", href: "" },
-];
 //#endregion
 </script>

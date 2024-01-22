@@ -62,6 +62,4 @@ const colBindings = {
   lg: "6",
 };
 //#endregion
-
-//#endregion
 </script>

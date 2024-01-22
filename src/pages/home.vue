@@ -38,9 +38,10 @@
           <p class="text-h6 text-sm-h5 text-xl-h4">
             C/C++, C#, JAVA, Javascript, TypeScript, HTML5, CSS3, Scss, Kotlin,
             SQL, NoSQL<br />
-            Bootstrap, JQuery, VueJs, Vuetify, Spring Boot, ADO.net, WPF.NET,
-            Xaml, Web ASP.NET MVC, Java JPA-Hibernate, Xamarin, ReactJs, React
-            native, NodeJs, git, Script Bash, Modélisation 3D<br />
+            Bootstrap, JQuery, VueJs, Vuetify, Flutter, Spring Boot, ADO.net,
+            WPF.NET, Xaml, Web ASP.NET MVC, Java JPA-Hibernate, Xamarin,
+            ReactJs, React native, NodeJs, git, Script Bash, Modélisation 3D,
+            ...<br />
           </p>
         </v-col>
       </v-row>

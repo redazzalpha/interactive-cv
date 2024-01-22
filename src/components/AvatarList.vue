@@ -2,12 +2,12 @@
   <v-list class="mt-15">
     <!-- avatar item -->
     <v-list-item v-bind="listItemBindings">
-      <v-avatar size="170" image="@/assets/wolf.jpg"></v-avatar>
+      <v-avatar :size="props.size" :image="props.image"></v-avatar>
     </v-list-item>
 
     <!-- mail item -->
     <v-list-item v-bind="listItemBindings">
-      <a href="mailto:willness@outlook.fr">willness@outlook.fr</a>
+      <a :href="`mailto:${props.mail}`">{{ props.mail }}</a>
     </v-list-item>
   </v-list>
 </template>
@@ -17,6 +17,18 @@
 const listItemBindings = {
   class: "d-flex justify-center",
 };
+//#endregion
+
+//#region props
+interface Props {
+  image: string;
+  size?: number;
+  mail?: string;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  size: 170,
+});
 //#endregion
 </script>
 

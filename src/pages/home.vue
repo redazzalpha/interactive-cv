@@ -7,8 +7,14 @@
           <h1 class="text-center text-lg-left">
             Concepteur développeur d'applications
           </h1>
-          <!-- drawerlist mobile -->
-          <AvatarList v-show="$vuetify.display.mobile" />
+
+          <!-- avatar list mobile -->
+          <AvatarList
+            :image="Avatar"
+            :size="170"
+            mail="willness@outlook.fr"
+            v-show="$vuetify.display.mobile"
+          />
         </v-col>
       </v-row>
 
@@ -45,6 +51,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import vuetify from "@/plugins/vuetify";
+import Avatar from "@/assets/wolf.jpg";
 
 //#region computed
 const titleMargin = computed<string>(() => {

@@ -4,6 +4,7 @@
   <AppBar />
   <AppView />
   <AppFooter />
+  <ScrollTopButton />
 </template>
 
 <script lang="ts" setup>

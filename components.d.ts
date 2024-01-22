@@ -15,6 +15,7 @@ declare module 'vue' {
     ListAvatar: typeof import('./src/components/ListAvatar.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    ScrollTopButton: typeof import('./src/components/ScrollTopButton.vue')['default']
     TheCodeLines: typeof import('./src/components/TheCodeLines.vue')['default']
   }
 }

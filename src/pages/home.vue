@@ -20,7 +20,7 @@
 
       <!-- code lines row -->
       <v-row :style="titleMargin">
-        <v-col v-bind="colBindings" lg="12">
+        <v-col>
           <TheCodeLines />
         </v-col>
       </v-row>

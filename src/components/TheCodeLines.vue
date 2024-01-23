@@ -28,7 +28,7 @@
     </div>
 
     <!-- code lines container  -->
-    <div>
+    <div style="width: 100%">
       <!-- template tag -->
       <div :class="containerClass">
         <p :class="codeClass">{{ chevronLeft }}</p>
@@ -73,32 +73,43 @@
         <p :class="codeClass">{{ chevronRight }}</p>
       </div>
 
-      <!-- h2 tag -->
-      <div :class="containerClass" v-bind="ml15">
-        <p :class="codeClass">{{ chevronLeft }}</p>
-        <p :class="codeClass" v-bind="textBlue">{{ h2 }}</p>
-        <p :class="codeClass">{{ chevronRight }}</p>
-        <p :class="codeClass">{{ activityH2 }}</p>
-        <p :class="codeClass" v-bind="ml2">{{ activityH2_1 }}</p>
-        <p :class="codeClass" v-bind="ml2" v-show="!$vuetify.display.mobile">
-          {{ activityH2_2 }}
-        </p>
-        <p :class="codeClass">{{ chevronLeft }}</p>
-        <p :class="codeClass">{{ slash }}</p>
-        <p :class="codeClass" v-bind="textBlue">{{ h2 }}</p>
-        <p :class="codeClass">{{ chevronRight }}</p>
+      <div class="d-flex flex-row">
+        <!-- p tag -->
+        <div :class="containerClass" v-bind="ml15">
+          <p :class="codeClass">{{ chevronLeft }}</p>
+          <p :class="codeClass" v-bind="textBlue">{{ p }}</p>
+          <p :class="codeClass">{{ chevronRight }}</p>
+        </div>
+
+        <!-- p content -->
+        <div :class="containerClass">
+          <p :class="codeClass">{{ activityH2 }}</p>
+          <p :class="codeClass" v-bind="ml2">{{ activityH2_1 }}</p>
+          <p :class="codeClass" v-bind="ml2" v-show="!$vuetify.display.mobile">
+            {{ activityH2_2 }}
+          </p>
+        </div>
+
+        <!-- p end tag -->
+        <div :class="containerClass">
+          <p :class="codeClass">{{ chevronLeft }}</p>
+          <p :class="codeClass">{{ slash }}</p>
+          <p :class="codeClass" v-bind="textBlue">{{ p }}</p>
+          <p :class="codeClass">{{ chevronRight }}</p>
+        </div>
       </div>
 
-      <!-- h3 tag -->
+      <!-- p tag 2 -->
+
       <div :class="containerClass" v-bind="ml15">
         <p :class="codeClass">{{ chevronLeft }}</p>
-        <p :class="codeClass" v-bind="textBlue">{{ h3 }}</p>
+        <p :class="codeClass" v-bind="textBlue">{{ p }}</p>
         <p :class="codeClass">{{ chevronRight }}</p>
         <p :class="codeClass">{{ activityH3 }}</p>
         <p :class="codeClass" v-bind="ml2">{{ activityH3_1 }}</p>
         <p :class="codeClass">{{ chevronLeft }}</p>
         <p :class="codeClass">{{ slash }}</p>
-        <p :class="codeClass" v-bind="textBlue">{{ h3 }}</p>
+        <p :class="codeClass" v-bind="textBlue">{{ p }}</p>
         <p :class="codeClass">{{ chevronRight }}</p>
       </div>
 
@@ -188,6 +199,7 @@ const quote = '"';
 const equal = "=";
 const chevronLeft = "<";
 const chevronRight = ">";
+const p = "p";
 const firstname = "Wilfried";
 const lastname = "Nessoumou";
 const activityH2 = "Concepteur";
@@ -200,7 +212,7 @@ const activityH3_1 = "web";
 //#region computed
 const computedSize = computed<string>(() => {
   if (vuetify.display.xs.value) return "font-size: 100%";
-  if (vuetify.display.sm.value) return "font-size: 100%";
+  if (vuetify.display.sm.value) return "font-size: 110%";
   if (vuetify.display.md.value) return "font-size: 130%";
   if (vuetify.display.lg.value) return "font-size: 130%";
   if (vuetify.display.xl.value) return "font-size: 130%";
@@ -210,10 +222,10 @@ const computedSize = computed<string>(() => {
 
 //#region bindings
 const sheetBinding: Ref<Binding> = ref({
-  class: "pa-3 d-flex flex-row rounded-lg",
+  class: "pa-0 pa-sm-5 pa-md-8 d-flex flex-row rounded-lg",
   style: "line-height: 130%;",
   color: "primary",
-  "max-width": 900,
+  "max-width": 1000,
   "min-width": 300,
 });
 const lineNumbersContainerBinding: Binding = {

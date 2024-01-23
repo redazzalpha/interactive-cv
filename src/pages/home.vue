@@ -4,13 +4,13 @@
       <!-- title row -->
       <v-row :style="rowMargin" style="margin: 0">
         <v-col>
-          <h1 class="text-center text-lg-left">
+          <h1 id="title" class="text-center text-lg-left">
             Concepteur développeur d'applications
           </h1>
 
           <!-- avatar mobile -->
           <AppAvatar
-            :image="Avatar"
+            :image="AvatarImg"
             :size="170"
             mail="willness@outlook.fr"
             v-show="$vuetify.display.mobile"
@@ -50,9 +50,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 import vuetify from "@/plugins/vuetify";
-import Avatar from "@/assets/wolf.jpg";
+import AvatarImg from "@/assets/wolf.jpg";
+import * as dynamics from "dynamics.js";
 
 //#region computed
 const titleMargin = computed<string>(() => {
@@ -69,5 +70,32 @@ const colBindings: Binding = {
   cols: "12",
   lg: "6",
 };
+//#endregion
+
+//#region animation functions
+function showTitle(): void {
+  const title: HTMLElement | null = document.getElementById("title");
+
+  dynamics.css(title, {
+    scale: 0,
+  });
+
+  dynamics.animate(
+    title,
+    {
+      scale: 1,
+    },
+    {
+      type: dynamics.spring,
+      delay: 800,
+    }
+  );
+}
+//#endregion
+
+//#region hooks
+onMounted(() => {
+  showTitle();
+});
 //#endregion
 </script>

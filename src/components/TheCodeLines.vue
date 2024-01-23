@@ -1,5 +1,5 @@
 <template>
-  <v-sheet v-bind="sheetBinding" :style="computedSize">
+  <v-sheet id="sheet" v-bind="sheetBinding" :style="computedSize">
     <!-- line numbers container-->
     <div v-bind="lineNumbersContainerBinding">
       <!-- line numbers -->
@@ -253,13 +253,8 @@ const ml15: Binding = {
 //#endregion
 
 //#region animation functions
-function writeCode(): void {
-  const codeElements: NodeListOf<Element> = document.querySelectorAll(".code");
+function writeCode(codeElements: NodeListOf<Element>) {
   let count: number = 0;
-
-  dynamics.css(codeElements, {
-    scale: 0,
-  });
 
   codeElements.forEach((code: Element): void => {
     dynamics.animate(
@@ -271,17 +266,42 @@ function writeCode(): void {
         type: dynamics.spring,
         duration: 1,
         friction: 1000,
-        delay: 1000 + count * 100,
+        delay: count * 100,
       }
     );
     count++;
   });
 }
+function animateCodeLines(): void {
+  const sheet: HTMLElement | null = document.getElementById("sheet");
+  const codeElements: NodeListOf<Element> = document.querySelectorAll(".code");
+
+  // set elements css
+  dynamics.css(sheet, {
+    scale: 0,
+  });
+  dynamics.css(codeElements, {
+    scale: 0,
+  });
+
+  // animate elements
+  dynamics.animate(
+    sheet,
+    {
+      scale: 1,
+    },
+    {
+      type: dynamics.spring,
+      delay: 1500,
+      complete: () => writeCode(codeElements),
+    }
+  );
+}
 //#endregion
 
 //#region hooks
 onMounted(() => {
-  writeCode();
+  animateCodeLines();
 });
 //#endregion
 </script>

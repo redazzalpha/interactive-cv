@@ -1,5 +1,6 @@
 <template>
   <v-app-bar
+    id="app-bar"
     density="prominent"
     elevation="0"
     class="d-flex justify-center align-center"
@@ -36,11 +37,43 @@
 <script lang="ts" setup>
 import router from "@/router";
 import { useAppStore } from "@/store/app";
+import { onMounted } from "vue";
+import * as dynamics from "dynamics.js";
+
 const store = useAppStore();
+
+//#region animation functions
+function updown(): void {
+  const appbar: HTMLElement | null = document.getElementById("app-bar");
+
+  dynamics.css(appbar, {
+    translateY: -100,
+  });
+
+  dynamics.animate(
+    appbar,
+    {
+      translateY: 0,
+    },
+    {
+      type: dynamics.spring,
+      frequency: 200,
+      friction: 200,
+      duration: 500,
+    }
+  );
+}
+//#endregion
 
 //#region event handlers
 function clickNavIcon(): void {
   store.setDrawer(true);
 }
+//#endregion
+
+//#region hooks
+onMounted(() => {
+  updown();
+});
 //#endregion
 </script>

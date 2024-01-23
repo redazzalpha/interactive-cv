@@ -27,100 +27,141 @@
       <div v-bind="verticalLine"></div>
     </div>
 
-    <!-- code lines  -->
+    <!-- code lines container  -->
     <div>
       <!-- template tag -->
-      <p>
-        {{ chevronLeft }}<span v-bind="textBlue">{{ template }}</span
-        >{{ chevronRight }}
-      </p>
+      <div :class="containerClass">
+        <p :class="codeClass">{{ chevronLeft }}</p>
+        <p :class="codeClass" v-bind="textBlue">{{ template }}</p>
+        <p :class="codeClass">{{ chevronRight }}</p>
+      </div>
 
       <!-- v-container tag -->
-      <p v-bind="ml3">
-        {{ chevronLeft }}<span v-bind="textTeal">{{ vcontainer }}</span>
-        <span v-bind="textBlueLighten" v-bind:="ml2">{{ gridList }}</span
-        >{{ chevronRight }}
-      </p>
+      <div :class="containerClass" v-bind="ml3">
+        <p :class="codeClass">{{ chevronLeft }}</p>
+        <p :class="codeClass" v-bind="textTeal">{{ vcontainer }}</p>
+        <p :class="codeClass" v-bind="textBlueLighten" v-bind:="ml2">
+          {{ gridList }}
+        </p>
+        <p :class="codeClass">{{ chevronRight }}</p>
+      </div>
 
       <!-- row tag -->
-      <p v-bind="ml7">
-        {{ chevronLeft }}<span v-bind="textTeal">{{ row }}</span
-        >{{ chevronRight }}
-      </p>
+      <div :class="containerClass" v-bind="ml7">
+        <p :class="codeClass">{{ chevronLeft }}</p>
+        <p :class="codeClass" v-bind="textTeal">{{ row }}</p>
+        <p :class="codeClass">{{ chevronRight }}</p>
+      </div>
 
       <!-- col tag -->
-      <p v-bind="ml11">
-        {{ chevronLeft }}<span v-bind="textTeal">{{ col }}</span
-        >{{ chevronRight }}
-      </p>
+      <div :class="containerClass" v-bind="ml11">
+        <p :class="codeClass">{{ chevronLeft }}</p>
+        <p :class="codeClass" v-bind="textTeal">{{ col }}</p>
+        <p :class="codeClass">{{ chevronRight }}</p>
+      </div>
 
       <!-- h1 tag -->
-      <p v-bind="ml15">
-        {{ chevronLeft }}<span v-bind="textBlue">{{ h1 }}</span
-        >{{ chevronRight }}{{ text1 }}{{ chevronLeft }}{{ slash
-        }}<span v-bind="textBlue">{{ h1 }}</span
-        >{{ chevronRight }}
-      </p>
+      <div :class="containerClass" v-bind="ml15">
+        <p :class="codeClass">{{ chevronLeft }}</p>
+        <p :class="codeClass" v-bind="textBlue">{{ h1 }}</p>
+        <p :class="codeClass">{{ chevronRight }}</p>
+        <p :class="codeClass">{{ text1 }}</p>
+        <p :class="codeClass">{{ chevronLeft }}</p>
+        <p :class="codeClass">{{ slash }}</p>
+        <p :class="codeClass" v-bind="textBlue">{{ h1 }}</p>
+        <p :class="codeClass">{{ chevronRight }}</p>
+      </div>
 
       <!-- h2 tag -->
-      <p v-bind="ml15">
-        {{ chevronLeft }}<span v-bind="textBlue">{{ h2 }}</span
-        >{{ chevronRight }}{{ text2 }}{{ chevronLeft }}{{ slash
-        }}<span v-bind="textBlue">{{ h2 }}</span
-        >{{ chevronRight }}
-      </p>
+      <div :class="containerClass" v-bind="ml15">
+        <p :class="codeClass">{{ chevronLeft }}</p>
+        <p :class="codeClass" v-bind="textBlue">{{ h2 }}</p>
+        <p :class="codeClass">{{ chevronRight }}</p>
+        <p :class="codeClass">{{ text2 }}</p>
+        <p :class="codeClass">{{ chevronLeft }}</p>
+        <p :class="codeClass">{{ slash }}</p>
+        <p :class="codeClass" v-bind="textBlue">{{ h2 }}</p>
+        <p :class="codeClass">{{ chevronRight }}</p>
+      </div>
 
       <!-- h3 tag -->
-      <p v-bind="ml15">
-        {{ chevronLeft }}<span v-bind="textBlue">{{ h3 }}</span
-        >{{ chevronRight }}{{ text3 }}{{ chevronLeft }}{{ slash
-        }}<span v-bind="textBlue">{{ h3 }}</span
-        >{{ chevronRight }}
-      </p>
+      <div :class="containerClass" v-bind="ml15">
+        <p :class="codeClass">{{ chevronLeft }}</p>
+        <p :class="codeClass" v-bind="textBlue">{{ h3 }}</p>
+        <p :class="codeClass">{{ chevronRight }}</p>
+        <p :class="codeClass">{{ text3 }}</p>
+        <p :class="codeClass">{{ chevronLeft }}</p>
+        <p :class="codeClass">{{ slash }}</p>
+        <p :class="codeClass" v-bind="textBlue">{{ h3 }}</p>
+        <p :class="codeClass">{{ chevronRight }}</p>
+      </div>
 
       <!-- end tag col -->
-      <p v-bind="ml11">
-        {{ chevronLeft }}{{ slash }}<span v-bind="textTeal">{{ col }}</span
-        >{{ chevronRight }}
-      </p>
+      <div :class="containerClass" v-bind="ml11">
+        <p :class="codeClass">{{ chevronLeft }}</p>
+        <p :class="codeClass">{{ slash }}</p>
+        <p :class="codeClass" v-bind="textTeal">{{ col }}</p>
+        <p :class="codeClass">{{ chevronRight }}</p>
+      </div>
 
       <!-- end tag row -->
-      <p v-bind="ml7">
-        {{ chevronLeft }}{{ slash }}<span v-bind="textTeal">{{ row }}</span
-        >{{ chevronRight }}
-      </p>
+      <div :class="containerClass" v-bind="ml7">
+        <p :class="codeClass">{{ chevronLeft }}</p>
+        <p :class="codeClass">{{ slash }}</p>
+        <p :class="codeClass" v-bind="textTeal">{{ row }}</p>
+        <p :class="codeClass">{{ chevronRight }}</p>
+      </div>
+
       <!-- end tag v-container -->
-      <p v-bind="ml3">
-        {{ chevronLeft }}{{ slash
-        }}<span v-bind="textTeal">{{ vcontainer }}</span
-        >{{ chevronRight }}
-      </p>
+      <div :class="containerClass" v-bind="ml3">
+        <p :class="codeClass">{{ chevronLeft }}</p>
+        <p :class="codeClass">{{ slash }}</p>
+        <p :class="codeClass" v-bind="textTeal">{{ vcontainer }}</p>
+        <p :class="codeClass">{{ chevronRight }}</p>
+      </div>
 
       <!-- end tag template -->
-      <p>
-        {{ chevronLeft }}{{ slash }}<span v-bind="textBlue">{{ template }}</span
-        >{{ chevronRight }}
-      </p>
+      <div :class="containerClass">
+        <p :class="codeClass">{{ chevronLeft }}</p>
+        <p :class="codeClass">{{ slash }}</p>
+        <p :class="codeClass" v-bind="textBlue">{{ template }}</p>
+        <p :class="codeClass">{{ chevronRight }}</p>
+      </div>
+
+      <br />
 
       <!-- script tag -->
-      <br />
-      <p>
-        {{ chevronLeft }}<span v-bind="textBlue">{{ script }}</span>
-        <span v-bind="ml2" v-bind:="textBlueLighten">{{ setup }}</span>
-        <span v-bind="ml2" v-bind:="textBlueLighten">{{ lang }}</span
-        >{{ equal }}<span v-bind="textRed">{{ quote }}{{ ts }}{{ quote }}</span
-        >{{ chevronRight }}{{ chevronLeft }}{{ slash
-        }}<span v-bind="textBlue">{{ script }}</span
-        >{{ chevronRight }}
-      </p>
+      <div :class="containerClass">
+        <p :class="codeClass">{{ chevronLeft }}</p>
+        <p :class="codeClass" v-bind="textBlue">{{ script }}</p>
+        <p :class="codeClass" v-bind="ml2" v-bind:="textBlueLighten">
+          {{ setup }}
+        </p>
+        <p :class="codeClass" v-bind="ml2" v-bind:="textBlueLighten">
+          {{ lang }}
+        </p>
+        <p :class="codeClass">{{ equal }}</p>
+        <p :class="codeClass" v-bind="textRed">
+          {{ quote }}{{ ts }}{{ quote }}
+        </p>
+        <p :class="codeClass">{{ chevronRight }}</p>
+        <p :class="codeClass">{{ chevronLeft }}</p>
+        <p :class="codeClass">{{ slash }}</p>
+        <p :class="codeClass" v-bind="textBlue">{{ script }}</p>
+        <p :class="codeClass">{{ chevronRight }}</p>
+      </div>
     </div>
   </v-sheet>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { onMounted } from "vue";
+import * as dynamics from "dynamics.js";
 
 //#region variables
+const containerClass: string = "d-flex";
+const codeClass: string = "code";
+
 const slash = "/";
 const template = "template";
 const vcontainer = "v-container";
@@ -144,49 +185,82 @@ const text3 = "Développeur web";
 //#endregion
 
 //#region bindings
-const sheetBinding = ref({
+const sheetBinding: Binding = {
   class: "pa-3 d-flex flex-row rounded-lg",
   style: "font-size: 18px; line-height: 130%",
   color: "primary",
   "max-width": 900,
   "min-width": 300,
-});
-const lineNumbersContainerBinding = ref({
+};
+const lineNumbersContainerBinding: Binding = {
   class: "d-flex flex-row",
-});
-const lineNumbersBinding = ref({
+};
+const lineNumbersBinding: Binding = {
   class: "d-flex flex-column pr-5 text-right",
-});
-const textBlue = ref({
+};
+const textBlue: Binding = {
   class: "text-blue",
-});
-const textBlueLighten = ref({
+};
+const textBlueLighten: Binding = {
   class: "text-blue-lighten",
-});
-const textTeal = ref({
+};
+const textTeal: Binding = {
   class: "text-teal",
-});
-const textRed = ref({
+};
+const textRed: Binding = {
   class: "text-red",
-});
-const verticalLine = {
+};
+const verticalLine: Binding = {
   class: "mr-5",
   style: "border: solid grey 1px",
 };
-const ml2 = ref({
+const ml2: Binding = {
   class: "ml-2",
-});
-const ml3 = ref({
+};
+const ml3: Binding = {
   class: "ml-3",
-});
-const ml7 = ref({
+};
+const ml7: Binding = {
   class: "ml-7",
-});
-const ml11 = ref({
+};
+const ml11: Binding = {
   class: "ml-11",
-});
-const ml15 = ref({
+};
+const ml15: Binding = {
   class: "ml-15",
+};
+//#endregion
+
+//#region animation functions
+function writeCode(): void {
+  const codeElements: NodeListOf<Element> = document.querySelectorAll(".code");
+  let count: number = 0;
+
+  dynamics.css(codeElements, {
+    scale: 0,
+  });
+
+  codeElements.forEach((code: Element): void => {
+    dynamics.animate(
+      code,
+      {
+        scale: 1,
+      },
+      {
+        type: dynamics.spring,
+        duration: 1000,
+        friction: 1000,
+        delay: 1000 + count * 250,
+      }
+    );
+    count++;
+  });
+}
+//#endregion
+
+//#region hooks
+onMounted(() => {
+  writeCode();
 });
 //#endregion
 </script>

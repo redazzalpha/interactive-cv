@@ -248,9 +248,9 @@ function writeCode(): void {
       },
       {
         type: dynamics.spring,
-        duration: 1000,
+        duration: 1,
         friction: 1000,
-        delay: 1000 + count * 250,
+        delay: 1000 + count * 100,
       }
     );
     count++;

@@ -161,7 +161,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, Ref, computed } from "vue";
+import { onMounted, computed } from "vue";
 import * as dynamics from "dynamics.js";
 import vuetify from "@/plugins/vuetify";
 
@@ -206,13 +206,13 @@ const computedSize = computed<string>(() => {
 //#endregion
 
 //#region bindings
-const sheetBinding: Ref<Binding> = ref({
+const sheetBinding: Binding = {
   class: "pa-0 py-5 pa-sm-5 pa-md-8 d-flex flex-row rounded-lg",
   style: "line-height: 130%;",
   color: "primary",
   "max-width": 1000,
   "min-width": 300,
-});
+};
 const lineNumbersContainerBinding: Binding = {
   class: "d-flex flex-row",
 };

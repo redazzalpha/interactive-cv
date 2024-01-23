@@ -39,7 +39,6 @@ import router from "@/router";
 import { useAppStore } from "@/store/app";
 import { onMounted } from "vue";
 import * as dynamics from "dynamics.js";
-
 const store = useAppStore();
 
 //#region animation functions

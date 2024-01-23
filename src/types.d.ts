@@ -20,6 +20,8 @@ declare interface Binding {
   color?: string;
   "max-width"?: string | number;
   "min-width"?: string | number;
+  lg?: string;
+  cols?: string;
 }
 //#endregion
 

@@ -64,7 +64,7 @@ const rowMargin = computed<string>(() => {
 //#endregion
 
 //#region bindings
-const colBindings = {
+const colBindings: Binding = {
   class: "d-flex justify-center align-center",
   cols: "12",
   lg: "6",

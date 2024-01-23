@@ -26,7 +26,7 @@ const props = withDefaults(defineProps<Props>(), {
 //#endregion
 
 //#region bindings
-const listItemBindings = {
+const listItemBindings: Binding = {
   class: "d-flex justify-center",
 };
 //#endregion

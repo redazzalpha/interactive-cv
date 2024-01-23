@@ -28,7 +28,7 @@
     </div>
 
     <!-- code lines container  -->
-    <div style="width: 100%">
+    <div>
       <!-- template tag -->
       <div :class="containerClass">
         <p :class="codeClass">{{ chevronLeft }}</p>
@@ -73,34 +73,23 @@
         <p :class="codeClass">{{ chevronRight }}</p>
       </div>
 
-      <div class="d-flex flex-row">
-        <!-- p tag -->
-        <div :class="containerClass" v-bind="ml15">
-          <p :class="codeClass">{{ chevronLeft }}</p>
-          <p :class="codeClass" v-bind="textBlue">{{ p }}</p>
-          <p :class="codeClass">{{ chevronRight }}</p>
-        </div>
-
-        <!-- p content -->
-        <div :class="containerClass">
-          <p :class="codeClass">{{ activityH2 }}</p>
-          <p :class="codeClass" v-bind="ml2">{{ activityH2_1 }}</p>
-          <p :class="codeClass" v-bind="ml2" v-show="!$vuetify.display.mobile">
-            {{ activityH2_2 }}
-          </p>
-        </div>
-
-        <!-- p end tag -->
-        <div :class="containerClass">
-          <p :class="codeClass">{{ chevronLeft }}</p>
-          <p :class="codeClass">{{ slash }}</p>
-          <p :class="codeClass" v-bind="textBlue">{{ p }}</p>
-          <p :class="codeClass">{{ chevronRight }}</p>
-        </div>
+      <!-- p tag -->
+      <div :class="containerClass" v-bind="ml15">
+        <p :class="codeClass">{{ chevronLeft }}</p>
+        <p :class="codeClass" v-bind="textBlue">{{ p }}</p>
+        <p :class="codeClass">{{ chevronRight }}</p>
+        <p :class="codeClass">{{ activityH2 }}</p>
+        <p :class="codeClass" v-bind="ml2">{{ activityH2_1 }}</p>
+        <p :class="codeClass" v-bind="ml2" v-show="!$vuetify.display.mobile">
+          {{ activityH2_2 }}
+        </p>
+        <p :class="codeClass">{{ chevronLeft }}</p>
+        <p :class="codeClass">{{ slash }}</p>
+        <p :class="codeClass" v-bind="textBlue">{{ p }}</p>
+        <p :class="codeClass">{{ chevronRight }}</p>
       </div>
 
       <!-- p tag 2 -->
-
       <div :class="containerClass" v-bind="ml15">
         <p :class="codeClass">{{ chevronLeft }}</p>
         <p :class="codeClass" v-bind="textBlue">{{ p }}</p>
@@ -179,8 +168,6 @@ import vuetify from "@/plugins/vuetify";
 //#region variables
 const containerClass: string = "d-flex";
 const codeClass: string = "code";
-const fixShrinkY: string = "d-flex align-end";
-const fixShrinkX: string = "text-center";
 
 const slash = "/";
 const template = "template";
@@ -189,8 +176,7 @@ const gridList = "grid-list-xs";
 const row = "row";
 const col = "col";
 const h1 = "h1";
-const h2 = "h2";
-const h3 = "h3";
+const p = "p";
 const script = "script";
 const lang = "lang";
 const setup = "setup";
@@ -199,7 +185,6 @@ const quote = '"';
 const equal = "=";
 const chevronLeft = "<";
 const chevronRight = ">";
-const p = "p";
 const firstname = "Wilfried";
 const lastname = "Nessoumou";
 const activityH2 = "Concepteur";
@@ -222,7 +207,7 @@ const computedSize = computed<string>(() => {
 
 //#region bindings
 const sheetBinding: Ref<Binding> = ref({
-  class: "pa-0 pa-sm-5 pa-md-8 d-flex flex-row rounded-lg",
+  class: "pa-0 py-5 pa-sm-5 pa-md-8 d-flex flex-row rounded-lg",
   style: "line-height: 130%;",
   color: "primary",
   "max-width": 1000,

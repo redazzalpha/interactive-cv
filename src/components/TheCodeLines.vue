@@ -1,5 +1,5 @@
 <template>
-  <v-sheet v-bind="sheetBinding">
+  <v-sheet v-bind="sheetBinding" :style="computedSize">
     <!-- line numbers container-->
     <div v-bind="lineNumbersContainerBinding">
       <!-- line numbers -->
@@ -65,7 +65,8 @@
         <p :class="codeClass">{{ chevronLeft }}</p>
         <p :class="codeClass" v-bind="textBlue">{{ h1 }}</p>
         <p :class="codeClass">{{ chevronRight }}</p>
-        <p :class="codeClass">{{ text1 }}</p>
+        <p :class="codeClass">{{ firstname }}</p>
+        <p :class="codeClass" v-bind="ml2">{{ lastname }}</p>
         <p :class="codeClass">{{ chevronLeft }}</p>
         <p :class="codeClass">{{ slash }}</p>
         <p :class="codeClass" v-bind="textBlue">{{ h1 }}</p>
@@ -77,7 +78,11 @@
         <p :class="codeClass">{{ chevronLeft }}</p>
         <p :class="codeClass" v-bind="textBlue">{{ h2 }}</p>
         <p :class="codeClass">{{ chevronRight }}</p>
-        <p :class="codeClass">{{ text2 }}</p>
+        <p :class="codeClass">{{ activityH2 }}</p>
+        <p :class="codeClass" v-bind="ml2">{{ activityH2_1 }}</p>
+        <p :class="codeClass" v-bind="ml2" v-show="!$vuetify.display.mobile">
+          {{ activityH2_2 }}
+        </p>
         <p :class="codeClass">{{ chevronLeft }}</p>
         <p :class="codeClass">{{ slash }}</p>
         <p :class="codeClass" v-bind="textBlue">{{ h2 }}</p>
@@ -89,7 +94,8 @@
         <p :class="codeClass">{{ chevronLeft }}</p>
         <p :class="codeClass" v-bind="textBlue">{{ h3 }}</p>
         <p :class="codeClass">{{ chevronRight }}</p>
-        <p :class="codeClass">{{ text3 }}</p>
+        <p :class="codeClass">{{ activityH3 }}</p>
+        <p :class="codeClass" v-bind="ml2">{{ activityH3_1 }}</p>
         <p :class="codeClass">{{ chevronLeft }}</p>
         <p :class="codeClass">{{ slash }}</p>
         <p :class="codeClass" v-bind="textBlue">{{ h3 }}</p>
@@ -155,12 +161,15 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
+import { onMounted, ref, Ref, computed } from "vue";
 import * as dynamics from "dynamics.js";
+import vuetify from "@/plugins/vuetify";
 
 //#region variables
 const containerClass: string = "d-flex";
 const codeClass: string = "code";
+const fixShrinkY: string = "d-flex align-end";
+const fixShrinkX: string = "text-center";
 
 const slash = "/";
 const template = "template";
@@ -179,19 +188,34 @@ const quote = '"';
 const equal = "=";
 const chevronLeft = "<";
 const chevronRight = ">";
-const text1 = "Wilfried Nessoumou";
-const text2 = "Concepteur développeur d'applications";
-const text3 = "Développeur web";
+const firstname = "Wilfried";
+const lastname = "Nessoumou";
+const activityH2 = "Concepteur";
+const activityH2_1 = "développeur";
+const activityH2_2 = "d'applications";
+const activityH3 = "Développeur";
+const activityH3_1 = "web";
+//#endregion
+
+//#region computed
+const computedSize = computed<string>(() => {
+  if (vuetify.display.xs.value) return "font-size: 100%";
+  if (vuetify.display.sm.value) return "font-size: 100%";
+  if (vuetify.display.md.value) return "font-size: 130%";
+  if (vuetify.display.lg.value) return "font-size: 130%";
+  if (vuetify.display.xl.value) return "font-size: 130%";
+  return "font-size: 90%";
+});
 //#endregion
 
 //#region bindings
-const sheetBinding: Binding = {
+const sheetBinding: Ref<Binding> = ref({
   class: "pa-3 d-flex flex-row rounded-lg",
-  style: "font-size: 18px; line-height: 130%",
+  style: "line-height: 130%;",
   color: "primary",
   "max-width": 900,
   "min-width": 300,
-};
+});
 const lineNumbersContainerBinding: Binding = {
   class: "d-flex flex-row",
 };

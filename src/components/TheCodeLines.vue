@@ -1,7 +1,7 @@
 <template>
-  <v-sheet id="sheet_code" v-bind="sheetBinding" :style="computedSize">
+  <v-sheet v-bind="sheetBindings" :style="computedSize">
     <!-- line numbers container-->
-    <div v-bind="lineNumbersContainerBinding">
+    <div v-bind="lineNumbersContainerBindings">
       <!-- line numbers -->
       <div v-bind="lineNumbersBinding">
         <p>1</p>
@@ -161,7 +161,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, computed } from "vue";
+import { computed } from "vue";
 import * as dynamics from "dynamics.js";
 import vuetify from "@/plugins/vuetify";
 
@@ -206,14 +206,15 @@ const computedSize = computed<string>(() => {
 //#endregion
 
 //#region bindings
-const sheetBinding: Binding = {
+const sheetBindings: Binding = {
+  id: "sheet_code-lines",
   class: "pa-0 py-5 pa-sm-5 pa-md-8 d-flex flex-row rounded-lg",
   style: "line-height: 130%;",
   color: "primary",
   "max-width": 1000,
   "min-width": 300,
 };
-const lineNumbersContainerBinding: Binding = {
+const lineNumbersContainerBindings: Binding = {
   class: "d-flex flex-row",
 };
 const lineNumbersBinding: Binding = {
@@ -250,54 +251,5 @@ const ml11: Binding = {
 const ml15: Binding = {
   class: "ml-15",
 };
-//#endregion
-
-//#region animation functions
-function writeCode(codeElements: NodeListOf<Element>) {
-  const appear = { scale: 1 };
-  const type = dynamics.spring;
-  const friction = 1000;
-  const duration = 1;
-  const offset: number = 100;
-  let count: number = 0;
-
-  codeElements.forEach((code: Element): void => {
-    dynamics.animate(code, appear, {
-      type,
-      friction,
-      duration,
-      delay: count * offset,
-    });
-    count++;
-  });
-}
-function handWrite(
-  background: HtmlItem,
-  codeElements: NodeListOf<Element>
-): void {
-  const init = { scale: 0 };
-  const appear = { scale: 1 };
-  const type = dynamics.spring;
-  const delay = 1500;
-
-  // initialize elements's css
-  dynamics.css(background, init);
-  dynamics.css(codeElements, init);
-
-  // animate elements
-  dynamics.animate(background, appear, {
-    type,
-    delay,
-    complete: () => writeCode(codeElements),
-  });
-}
-//#endregion
-
-//#region hooks
-onMounted(() => {
-  const sheet: HtmlItem = document.getElementById("sheet_code");
-  const codeElements: NodeListOf<Element> = document.querySelectorAll(".code");
-  handWrite(sheet, codeElements);
-});
 //#endregion
 </script>

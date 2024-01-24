@@ -16,6 +16,7 @@ declare interface Link {
   icon: string;
 }
 declare interface Binding {
+  id?: string;
   class?: string;
   style?: string;
   color?: string;

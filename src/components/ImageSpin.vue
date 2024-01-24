@@ -1,6 +1,6 @@
 <template>
   <v-sheet v-bind="sheetBindings">
-    <div id="container" v-bind="containerBindings">
+    <div id="container">
       <v-img
         id="giphy"
         :src="ImgGiphy"

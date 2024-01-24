@@ -33,6 +33,7 @@ const sheetBindings = {
   id: "sheet_image-spin",
   style:
     "width: 100%; max-width: 550px;\
+    background-color: transparent;\
     position: relative;",
 };
 const imgBindings = ref({

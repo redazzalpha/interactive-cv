@@ -32,15 +32,13 @@ const timeout: number = 3000;
 const sheetBindings = {
   id: "sheet_image-spin",
   style:
-    "width: fit-content;\
+    "width: 100%; max-width: 550px;\
     position: relative;",
 };
-const containerBindings = ref({
-  style: "width: 550px;",
-});
 const imgBindings = ref({
   style:
-    "width: 550px;\
+    "width: 100%;\
+    max- width: 550px; \
     top: 0;\
     border-radius: 15px;",
 });

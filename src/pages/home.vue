@@ -1,5 +1,7 @@
 <template>
   <article>
+    <ImageSpin />
+
     <v-container grid-list-xs class="pa-0">
       <!-- title row -->
       <v-row :style="rowMargin" style="margin: 0">
@@ -73,29 +75,27 @@ const colBindings: Binding = {
 //#endregion
 
 //#region animation functions
-function showTitle(): void {
-  const title: HTMLElement | null = document.getElementById("title");
+function bounce(element: HtmlItem): void {
+  const init = { scale: 0 };
+  const grow = { scale: 1 };
+  const type = dynamics.spring;
+  const delay = 800;
 
-  dynamics.css(title, {
-    scale: 0,
+  // initialize element's css
+  dynamics.css(element, init);
+
+  // animate element
+  dynamics.animate(element, grow, {
+    type,
+    delay,
   });
-
-  dynamics.animate(
-    title,
-    {
-      scale: 1,
-    },
-    {
-      type: dynamics.spring,
-      delay: 800,
-    }
-  );
 }
 //#endregion
 
 //#region hooks
 onMounted(() => {
-  showTitle();
+  const title: HtmlItem = document.getElementById("title");
+  bounce(title);
 });
 //#endregion
 </script>

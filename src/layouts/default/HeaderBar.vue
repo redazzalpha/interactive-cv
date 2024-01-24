@@ -41,38 +41,38 @@ import { onMounted } from "vue";
 import * as dynamics from "dynamics.js";
 const store = useAppStore();
 
-//#region animation functions
-function updown(): void {
-  const appbar: HTMLElement | null = document.getElementById("app-bar");
-
-  dynamics.css(appbar, {
-    translateY: -100,
-  });
-
-  dynamics.animate(
-    appbar,
-    {
-      translateY: 0,
-    },
-    {
-      type: dynamics.spring,
-      frequency: 200,
-      friction: 200,
-      duration: 500,
-    }
-  );
-}
-//#endregion
-
 //#region event handlers
 function clickNavIcon(): void {
   store.setDrawer(true);
 }
 //#endregion
 
+//#region animation functions
+function updown(element: HtmlItem): void {
+  const init = { translateY: -100 };
+  const translation = { translateY: 0 };
+  const type = dynamics.spring;
+  const frequency = 200;
+  const friction = 200;
+  const duration = 500;
+
+  // initialize element's css
+  dynamics.css(element, init);
+
+  // animate element
+  dynamics.animate(element, translation, {
+    type,
+    frequency,
+    friction,
+    duration,
+  });
+}
+//#endregion
+
 //#region hooks
 onMounted(() => {
-  updown();
+  const appbar: HtmlItem = document.getElementById("app-bar");
+  updown(appbar);
 });
 //#endregion
 </script>

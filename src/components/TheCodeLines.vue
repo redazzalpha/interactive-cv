@@ -1,5 +1,5 @@
 <template>
-  <v-sheet id="sheet" v-bind="sheetBinding" :style="computedSize">
+  <v-sheet id="sheet_code" v-bind="sheetBinding" :style="computedSize">
     <!-- line numbers container-->
     <div v-bind="lineNumbersContainerBinding">
       <!-- line numbers -->
@@ -254,54 +254,50 @@ const ml15: Binding = {
 
 //#region animation functions
 function writeCode(codeElements: NodeListOf<Element>) {
+  const appear = { scale: 1 };
+  const type = dynamics.spring;
+  const friction = 1000;
+  const duration = 1;
+  const offset: number = 100;
   let count: number = 0;
 
   codeElements.forEach((code: Element): void => {
-    dynamics.animate(
-      code,
-      {
-        scale: 1,
-      },
-      {
-        type: dynamics.spring,
-        duration: 1,
-        friction: 1000,
-        delay: count * 100,
-      }
-    );
+    dynamics.animate(code, appear, {
+      type,
+      friction,
+      duration,
+      delay: count * offset,
+    });
     count++;
   });
 }
-function animateCodeLines(): void {
-  const sheet: HTMLElement | null = document.getElementById("sheet");
-  const codeElements: NodeListOf<Element> = document.querySelectorAll(".code");
+function handWrite(
+  background: HtmlItem,
+  codeElements: NodeListOf<Element>
+): void {
+  const init = { scale: 0 };
+  const appear = { scale: 1 };
+  const type = dynamics.spring;
+  const delay = 1500;
 
-  // set elements css
-  dynamics.css(sheet, {
-    scale: 0,
-  });
-  dynamics.css(codeElements, {
-    scale: 0,
-  });
+  // initialize elements's css
+  dynamics.css(background, init);
+  dynamics.css(codeElements, init);
 
   // animate elements
-  dynamics.animate(
-    sheet,
-    {
-      scale: 1,
-    },
-    {
-      type: dynamics.spring,
-      delay: 1500,
-      complete: () => writeCode(codeElements),
-    }
-  );
+  dynamics.animate(background, appear, {
+    type,
+    delay,
+    complete: () => writeCode(codeElements),
+  });
 }
 //#endregion
 
 //#region hooks
 onMounted(() => {
-  animateCodeLines();
+  const sheet: HtmlItem = document.getElementById("sheet_code");
+  const codeElements: NodeListOf<Element> = document.querySelectorAll(".code");
+  handWrite(sheet, codeElements);
 });
 //#endregion
 </script>

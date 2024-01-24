@@ -55,7 +55,7 @@ import * as dynamics from "dynamics.js";
 
 //#region variables
 let spinning: boolean = true;
-const timeout: number = 3000;
+let scrolling: boolean = true;
 //#endregion
 
 //#region computed
@@ -73,6 +73,15 @@ const colBindings: Binding = {
   cols: "12",
   lg: "6",
 };
+//#endregion
+
+//#region event handlers
+function onScroll(): void {
+  if (scrolling && scrollY >= 720) {
+    imgSpin();
+    scrolling = false;
+  }
+}
 //#endregion
 
 //#region animation functions
@@ -223,27 +232,28 @@ function handWrite(
   });
 }
 function imgSpin(): void {
-  setTimeout(() => {
-    const sheet: HtmlItem = document.getElementById("sheet_image-spin");
-    const spinner: HtmlItem = document.getElementById("spinner");
-    const image: HtmlItem = document.getElementById("image");
-    const container: HtmlItem = document.getElementById("container");
+  const sheet: HtmlItem = document.getElementById("sheet_image-spin");
+  const spinner: HtmlItem = document.getElementById("spinner");
+  const image: HtmlItem = document.getElementById("image");
+  const container: HtmlItem = document.getElementById("container");
 
-    ghost([image, spinner]);
-    spin(sheet);
-    breath(container);
-  }, timeout);
+  ghost([image, spinner]);
+  spin(sheet);
+  breath(container);
+
+  // setTimeout(() => {}, timeout);
 }
 //#endregion
 
 //#region hooks
 onMounted(() => {
+  onscroll = onScroll;
+
   const title: HtmlItem = document.getElementById("title");
   const sheet: HtmlItem = document.getElementById("sheet_code-lines");
   const codeElements: NodeListOf<Element> = document.querySelectorAll(".code");
   bounce(title);
   handWrite(sheet, codeElements);
-  imgSpin();
 });
 //#endregion
 </script>

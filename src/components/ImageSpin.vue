@@ -71,7 +71,11 @@ function breath(element: HtmlItem): void {
     duration,
     points,
     complete: () => {
-      dynamics.animate(element, init, { type, duration, points });
+      dynamics.animate(element, init, {
+        type,
+        duration,
+        points,
+      });
     },
   });
 }
@@ -80,7 +84,7 @@ function ghost([willAppear, willDisappear]: [HtmlItem, HtmlItem]): void {
   const appear = { opacity: 1, scale: 1 };
   const disappear = { opacity: 0 };
   const type: unknown = dynamics.bezier;
-  const duration: number = 1500;
+  const duration: number = 1400;
   const points = [
     { x: 0, y: 0, cp: [{ x: 0.96, y: -0.133 }] },
     {

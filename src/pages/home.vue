@@ -1,7 +1,5 @@
 <template>
   <article>
-    <ImageSpin />
-
     <v-container grid-list-xs class="pa-0">
       <!-- title row -->
       <v-row :style="rowMargin" style="margin: 0">
@@ -30,11 +28,13 @@
       <!-- technical stack row -->
       <v-row :style="rowMargin">
         <v-col v-bind="colBindings">
-          <v-img
+          <ImageSpin />
+
+          <!-- <v-img
             src="@/assets/giphy.gif"
             max-width="550"
             class="rounded-lg"
-          ></v-img>
+          ></v-img> -->
         </v-col>
         <v-col v-bind="colBindings">
           <p class="text-h6 text-sm-h5 text-xl-h4">

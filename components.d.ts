@@ -13,6 +13,7 @@ declare module 'vue' {
     AppTag: typeof import('./src/components/AppTag.vue')['default']
     AvatarList: typeof import('./src/components/AvatarList.vue')['default']
     DrawerList: typeof import('./src/components/DrawerList.vue')['default']
+    ImageSpin: typeof import('./src/components/ImageSpin.vue')['default']
     ListAvatar: typeof import('./src/components/ListAvatar.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

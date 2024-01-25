@@ -31,8 +31,9 @@ const computedWidth = computed<string>(() => {
 const glowBindings: Ref<Binding> = ref({
   style: `width: ${computedWidth.value};\
     height: ${props.height}px;\
-    border-radius: 15px;\
-    box-shadow: 0px 0px 40px 20px ${props.color}`,
+    border-radius: 50%;\
+    background-color: ${props.color};\
+    box-shadow: 0px 0px 50px 30px ${props.color}`,
 });
 
 //#endregion

@@ -121,7 +121,10 @@ function breath(element: HtmlItem): void {
     { x: 1, y: 1, cp: [{ x: 0.9, y: 1 }] },
   ];
 
+  // intialize element's css
   dynamics.css(element, init);
+
+  // animate element
   dynamics.animate(element, shrink, {
     type,
     duration,
@@ -193,6 +196,39 @@ function spin(element: HtmlItem): void {
     },
   });
 }
+function blur(element: HtmlItem): void {
+  const init = { opacity: 0 };
+  const appear = { opacity: 0.8 };
+  const type: unknown = dynamics.bezier;
+  const duration: number = 500;
+  const delay = 350;
+  const points = [
+    { x: 0, y: 0, cp: [{ x: 0.96, y: -0.133 }] },
+    {
+      x: 0.841,
+      y: 0.647,
+      cp: [
+        { x: 0.741, y: 0.647 },
+        { x: 0.963, y: 0.621 },
+      ],
+    },
+    { x: 1, y: 1, cp: [{ x: 0.9, y: 1 }] },
+  ];
+
+  // initialize element's css
+  dynamics.css(element, init);
+
+  // animate element
+  dynamics.animate(element, appear, {
+    type,
+    points,
+    duration,
+    delay,
+    complete: () => {
+      dynamics.animate(element, init, { type, points, duration });
+    },
+  });
+}
 function writeCode(codeElements: NodeListOf<Element>) {
   const appear = { scale: 1 };
   const type = dynamics.spring;
@@ -238,9 +274,11 @@ function imgSpin(): void {
   const spinner: HtmlItem = document.getElementById("spinner");
   const image: HtmlItem = document.getElementById("image");
   const container: HtmlItem = document.getElementById("container");
+  const glow: HtmlItem = document.getElementById("glow");
 
   ghost([image, spinner]);
   spin(sheet);
+  blur(glow);
   breath(container);
 
   // setTimeout(() => {}, timeout);

@@ -13,7 +13,14 @@
         v-bind="imgBindings"
         style="position: absolute; opacity: 1"
       ></v-img>
-      <AppGlow :width="0" />
+      <AppGlow
+        id="glow"
+        :width="300"
+        :height="300"
+        color="#a399ba"
+        :unset-width="false"
+        style="position: absolute; top: 18%; left: 23%; opacity: 0"
+      />
     </div>
   </v-sheet>
 </template>
@@ -40,7 +47,7 @@ const sheetBindings: Binding = {
 const imgBindings: Ref<Binding> = ref({
   style:
     "width: 100%;\
-    max- width: 550px; \
+    max-width: 550px; \
     top: 0;\
     border-radius: 15px;",
 });

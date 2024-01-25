@@ -22,6 +22,8 @@ declare interface Binding {
   color?: string;
   "max-width"?: string | number;
   "min-width"?: string | number;
+  sm?: string;
+  md?: string;
   lg?: string;
   cols?: string;
 }

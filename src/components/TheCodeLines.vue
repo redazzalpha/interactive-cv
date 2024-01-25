@@ -161,7 +161,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 import * as dynamics from "dynamics.js";
 import vuetify from "@/plugins/vuetify";
 
@@ -251,5 +251,59 @@ const ml11: Binding = {
 const ml15: Binding = {
   class: "ml-15",
 };
+//#endregion
+
+//#region animation functions
+// low leveal animations
+function writeCode(codeElements: NodeListOf<Element>) {
+  const appear = { scale: 1 };
+  const type = dynamics.spring;
+  const friction = 1000;
+  const duration = 1;
+  const offset: number = 100;
+  let count: number = 0;
+
+  codeElements.forEach((code: Element): void => {
+    dynamics.animate(code, appear, {
+      type,
+      friction,
+      duration,
+      delay: count * offset,
+    });
+    count++;
+  });
+}
+
+// top level animations
+function handWrite(
+  background: HtmlItem,
+  codeElements: NodeListOf<Element>
+): void {
+  const init = { scale: 0 };
+  const appear = { scale: 1 };
+  const type = dynamics.spring;
+  const friction = 420;
+  const delay = 1500;
+
+  // initialize elements's css
+  dynamics.css(background, init);
+  dynamics.css(codeElements, init);
+
+  // animate elements
+  dynamics.animate(background, appear, {
+    type,
+    friction,
+    delay,
+    complete: () => writeCode(codeElements),
+  });
+}
+//#endregion
+
+//#region hooks
+onMounted(() => {
+  const sheet: HtmlItem = document.getElementById("sheet_code-lines");
+  const codeElements: NodeListOf<Element> = document.querySelectorAll(".code");
+  handWrite(sheet, codeElements);
+});
 //#endregion
 </script>

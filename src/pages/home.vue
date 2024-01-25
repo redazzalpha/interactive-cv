@@ -28,7 +28,7 @@
       <!-- technical stack row -->
       <v-row :style="rowMargin">
         <!-- image spin -->
-        <v-col class="d-flex justify-center align-center">
+        <v-col class="d-flex justify-center align-center pa-lg-12">
           <ImageSpin
             :image-spinner="ImgSpinner"
             :image-appear="ImgGiphy"

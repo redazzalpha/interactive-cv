@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, Ref } from "vue";
 
 //#region props
 interface Props {
@@ -29,14 +29,14 @@ const props = defineProps<Props>();
 //#endregion
 
 //#region bindings
-const sheetBindings = {
+const sheetBindings: Binding = {
   id: "sheet_image-spin",
   style:
     "width: 100%; max-width: 550px;\
     background-color: transparent;\
     position: relative;",
 };
-const imgBindings = ref({
+const imgBindings: Ref<Binding> = ref({
   style:
     "width: 100%;\
     max- width: 550px; \

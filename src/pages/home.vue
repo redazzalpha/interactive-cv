@@ -1,5 +1,7 @@
 <template>
   <article>
+    <AppGlow :unset-width="true" />
+
     <v-container grid-list-xs class="pa-0">
       <!-- title row -->
       <v-row :style="rowMargin" style="margin: 0">

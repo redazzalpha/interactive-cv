@@ -10,6 +10,7 @@ declare module 'vue' {
     AppAvatar: typeof import('./src/components/AppAvatar.vue')['default']
     AppCard: typeof import('./src/components/AppCard.vue')['default']
     AppDrawer: typeof import('./src/components/AppDrawer.vue')['default']
+    AppGlow: typeof import('./src/components/AppGlow.vue')['default']
     AppTag: typeof import('./src/components/AppTag.vue')['default']
     AvatarList: typeof import('./src/components/AvatarList.vue')['default']
     DrawerList: typeof import('./src/components/DrawerList.vue')['default']

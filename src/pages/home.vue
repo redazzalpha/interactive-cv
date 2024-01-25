@@ -1,7 +1,5 @@
 <template>
   <article>
-    <AppGlow :unset-width="true" />
-
     <v-container grid-list-xs class="pa-0">
       <!-- title row -->
       <v-row :style="rowMargin" style="margin: 0">
@@ -29,9 +27,16 @@
 
       <!-- technical stack row -->
       <v-row :style="rowMargin">
-        <v-col v-bind="colBindings">
-          <ImageSpin :image-spinner="ImgSpinner" :image-appear="ImgGiphy" />
+        <!-- image spin -->
+        <v-col class="d-flex justify-center">
+          <ImageSpin
+            :image-spinner="ImgSpinner"
+            :image-appear="ImgGiphy"
+            :image-glow="ImgGlow"
+          />
         </v-col>
+
+        <!-- skills -->
         <v-col v-bind="colBindings">
           <p class="text-h6 text-sm-h5 text-xl-h4">
             C/C++, C#, JAVA, Javascript, TypeScript, HTML5, CSS3, Scss, Kotlin,
@@ -53,6 +58,7 @@ import vuetify from "@/plugins/vuetify";
 import AvatarImg from "@/assets/wolf.jpg";
 import ImgSpinner from "@/assets/spinner.png";
 import ImgGiphy from "@/assets/giphy.gif";
+import ImgGlow from "@/assets/glow.png";
 import * as dynamics from "dynamics.js";
 
 //#region variables
@@ -198,7 +204,7 @@ function spin(element: HtmlItem): void {
 }
 function blur(element: HtmlItem): void {
   const init = { opacity: 0 };
-  const appear = { opacity: 0.8 };
+  const appear = { opacity: 0.9 };
   const type: unknown = dynamics.bezier;
   const duration: number = 500;
   const delay = 350;

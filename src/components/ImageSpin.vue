@@ -1,26 +1,29 @@
 <template>
   <v-sheet v-bind="sheetBindings">
+    <!-- container -->
     <div id="container">
+      <!-- image appear -->
       <v-img
         id="image"
         :src="props.imageAppear"
-        v-bind="imgBindings"
-        style="position: relative; opacity: 0"
+        style="border-radius: 15px; opacity: 0"
       ></v-img>
+
+      <!-- image spinner -->
       <v-img
         id="spinner"
         :src="props.imageSpinner"
         v-bind="imgBindings"
-        style="position: absolute; opacity: 1"
+        style="opacity: 1"
       ></v-img>
-      <AppGlow
+
+      <!-- image glow -->
+      <v-img
         id="glow"
-        :width="300"
-        :height="300"
-        color="#a399ba"
-        :unset-width="false"
-        style="position: absolute; top: 18%; left: 23%; opacity: 0"
-      />
+        :src="props.imageGlow"
+        v-bind="imgBindings"
+        style="opacity: 0"
+      ></v-img>
     </div>
   </v-sheet>
 </template>
@@ -32,6 +35,7 @@ import { ref, Ref } from "vue";
 interface Props {
   imageSpinner: string;
   imageAppear: string;
+  imageGlow: string;
 }
 const props = defineProps<Props>();
 //#endregion
@@ -40,16 +44,17 @@ const props = defineProps<Props>();
 const sheetBindings: Binding = {
   id: "sheet_image-spin",
   style:
-    "width: 100%; max-width: 550px;\
+    "width: 100%;\
     background-color: transparent;\
     position: relative;",
 };
 const imgBindings: Ref<Binding> = ref({
   style:
     "width: 100%;\
-    max-width: 550px; \
+    border-radius: 15px;\
+    position: absolute;\
     top: 0;\
-    border-radius: 15px;",
+    left: 0; ",
 });
 //#endregion
 </script>

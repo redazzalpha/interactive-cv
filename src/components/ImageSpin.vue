@@ -13,6 +13,7 @@
         v-bind="imgBindings"
         style="position: absolute; opacity: 1"
       ></v-img>
+      <AppGlow :width="0" />
     </div>
   </v-sheet>
 </template>

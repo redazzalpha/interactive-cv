@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<Props>(), {
   width: 0,
   height: 0,
   color: "#0ff",
-  unsetWidth: true,
+  unsetWidth: false,
 });
 //#endregion
 

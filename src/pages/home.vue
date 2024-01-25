@@ -1,6 +1,6 @@
 <template>
   <article>
-    <v-container grid-list-xs class="pa-0">
+    <v-container grid-list-xs fluid class="pa-0">
       <!-- title row -->
       <v-row :style="rowMargin" style="margin: 0">
         <v-col>

@@ -14,21 +14,28 @@ const routes: RouteRecordRaw[] = [
     path: "/",
     component: () => import("@/layouts/default.vue"),
     children: [
+      // home
       {
         name: "home",
         path: "/home",
         component: () => import("@/pages/home.vue"),
       },
+
+      // test
       {
         name: "test",
         path: "/test",
         component: () => import("@/pages/test.vue"),
       },
+
+      // projets
       {
-        name: "test2",
-        path: "/test2",
-        component: () => import("@/pages/test2.vue"),
+        name: "projets",
+        path: "/projets",
+        component: () => import("@/pages/projets.vue"),
       },
+
+      // test 3
       {
         name: "test3",
         path: "/test3",

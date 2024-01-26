@@ -1,8 +1,10 @@
 <template>
-  <v-list class="mt-15">
+  <v-list>
     <!-- avatar item -->
     <v-list-item v-bind="listItemBindings">
-      <v-avatar :size="props.size" :image="props.image"></v-avatar>
+      <a href="mailto:willness@outlook.fr">
+        <v-avatar :size="props.size" :image="props.image"></v-avatar>
+      </a>
     </v-list-item>
 
     <!-- mail item -->

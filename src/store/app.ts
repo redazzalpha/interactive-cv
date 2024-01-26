@@ -1,13 +1,15 @@
 // Utilities
-import { defineStore } from 'pinia'
+import { defineStore } from 'pinia';
+import AvatarImg from "@/assets/wolf.jpg";
 
 export const useAppStore = defineStore('app', {
   state: (): State => ({
     drawer: false,
+    avatar: AvatarImg,
     links: [
-      { label: "Home", href: "/home", icon: "mdi-home" },
+      { label: "Accueil", href: "/home", icon: "mdi-home" },
       { label: "Test", href: "/test", icon: "mdi-folder" },
-      { label: "Test2", href: "/test2", icon: "mdi-border-all" },
+      { label: "Projets", href: "/projets", icon: "mdi-semantic-web" },
       { label: "Test3", href: "/test3", icon: "mdi-content-cut" },
     ]
   }),

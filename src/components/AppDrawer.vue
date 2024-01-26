@@ -4,7 +4,17 @@
     :disable-resize-watcher="props.disableResizer"
     :model-value="props.modelDrawer"
   >
+    <!-- title slot -->
+    <slot name="title"></slot>
+
+    <!-- default slot -->
     <slot></slot>
+
+    <!-- text slot -->
+    <slot name="text"></slot>
+
+    <!-- links slot -->
+    <slot name="links"></slot>
   </v-navigation-drawer>
 </template>
 

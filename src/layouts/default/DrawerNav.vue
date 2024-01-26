@@ -2,7 +2,7 @@
   <AppDrawer location="right" :disable-resizer="true" v-model="store.drawer">
     <v-list>
       <!-- avatar  -->
-      <AppAvatar :image="Avatar" mail="willness@outlook.fr" :size="170" />
+      <AppAvatar :image="store.avatar" mail="willness@outlook.fr" :size="170" />
       <!-- nav links -->
       <v-list-item v-for="link in store.links" :key="link.label">
         <AppTag
@@ -21,7 +21,6 @@
 import vuetify from "@/plugins/vuetify";
 import router from "@/router";
 import { useAppStore } from "@/store/app";
-import Avatar from "@/assets/wolf.jpg";
 const store = useAppStore();
 
 //#region event handler

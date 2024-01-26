@@ -8,7 +8,7 @@
     <v-container grid-list-xs fluid class="ma-auto">
       <v-row>
         <v-col
-          class="d-flex justify-center align-center"
+          class="d-flex justify-left align-center"
           v-for="link in store.links"
           :key="link.label"
         >

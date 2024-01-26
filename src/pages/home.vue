@@ -10,7 +10,7 @@
 
           <!-- avatar mobile -->
           <AppAvatar
-            :image="AvatarImg"
+            :image="store.avatar"
             :size="170"
             mail="willness@outlook.fr"
             v-show="$vuetify.display.mobile"
@@ -54,12 +54,13 @@
 
 <script setup lang="ts">
 import { computed, onMounted } from "vue";
+import { useAppStore } from "@/store/app";
 import vuetify from "@/plugins/vuetify";
-import AvatarImg from "@/assets/wolf.jpg";
 import ImgSpinner from "@/assets/spinner.png";
 import ImgGiphy from "@/assets/giphy.gif";
 import ImgGlow from "@/assets/glow.png";
 import * as dynamics from "dynamics.js";
+const store = useAppStore();
 
 //#region computed
 const titleMargin = computed<string>(() => {

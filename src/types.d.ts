@@ -6,6 +6,7 @@ declare type Locations = "left" | "end" | "start" | "top" | "bottom" | "right" |
 declare type State = {
   drawer: boolean,
   links: Link[],
+  avatar: string,
 }
 //#endregion
 

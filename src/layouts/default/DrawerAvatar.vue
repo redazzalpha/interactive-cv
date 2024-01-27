@@ -5,7 +5,7 @@
       <v-container grid-list-xs fluid>
         <v-row>
           <v-col>
-            <p class="text-center text-h6">Nessoumou Wilfried</p>
+            <p class="text-center text-h5">Nessoumou Wilfried</p>
           </v-col>
         </v-row>
       </v-container>
@@ -57,8 +57,8 @@ const store = useAppStore();
 </script>
 
 <style lang="scss" scoped>
-@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kalam&display=swap");
 p {
-  font-family: "Permanent Marker", cursive;
+  font-family: "Kalam", cursive;
 }
 </style>

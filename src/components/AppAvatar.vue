@@ -9,7 +9,9 @@
 
     <!-- mail item -->
     <v-list-item v-bind="listItemBindings">
-      <a :href="`mailto:${props.mail}`">{{ props.mail }}</a>
+      <a :href="`mailto:${props.mail}`" class="text-decoration-underline">{{
+        props.mail
+      }}</a>
     </v-list-item>
   </v-list>
 </template>

@@ -214,8 +214,6 @@ function imgSpin(): void {
   spin(sheet);
   blur(glow);
   breath(container);
-
-  // setTimeout(() => {}, timeout);
 }
 //#endregion
 

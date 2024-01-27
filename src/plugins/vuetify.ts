@@ -20,6 +20,7 @@ export default createVuetify({
         colors: {
           primary: "#1f1f1f",
           secondary: "#121212",
+          tertiary: "#212121",
           background: "#212121",
           active: "#03a9f4",
           hover: "#c43b3b",

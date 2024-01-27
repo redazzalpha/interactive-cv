@@ -1,7 +1,7 @@
 declare module "dynamics.js";
 
 //#region types
-type HtmlItem = HTMLElement | null;
+type HtmlItem = HTMLElement | null | Element;
 declare type Locations = "left" | "end" | "start" | "top" | "bottom" | "right" | undefined;
 declare type State = {
   drawer: boolean,

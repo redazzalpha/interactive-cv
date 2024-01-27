@@ -1,6 +1,6 @@
 // Utilities
 import { defineStore } from 'pinia';
-import AvatarImg from "@/assets/wolf.jpg";
+import AvatarImg from "@/assets/wolf.png";
 
 export const useAppStore = defineStore('app', {
   state: (): State => ({

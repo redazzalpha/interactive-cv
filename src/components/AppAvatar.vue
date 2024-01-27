@@ -3,7 +3,11 @@
     <!-- avatar item -->
     <v-list-item v-bind="listItemBindings">
       <a href="mailto:willness@outlook.fr">
-        <v-avatar :size="props.size" :image="props.image"></v-avatar>
+        <v-avatar
+          class="avatar"
+          :size="props.size"
+          :image="props.image"
+        ></v-avatar>
       </a>
     </v-list-item>
 
@@ -17,6 +21,9 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from "vue";
+import * as dynamics from "dynamics.js";
+
 //#region props
 interface Props {
   image: string;
@@ -33,6 +40,39 @@ const props = withDefaults(defineProps<Props>(), {
 const listItemBindings: Binding = {
   class: "d-flex justify-center",
 };
+//#endregion
+
+//#region animation functions
+function breath(element: HtmlItem): void {
+  const init = { scale: 1 };
+  const shrink = { scale: 0.98 };
+  const type: unknown = dynamics.linear;
+  const duration: number = 1000;
+
+  // intialize element's css
+  dynamics.css(element, init);
+
+  // animate element
+  dynamics.animate(element, shrink, {
+    type,
+    duration,
+    complete: () => {
+      dynamics.animate(element, init, {
+        type,
+        duration,
+        complete: () => breath(element),
+      });
+    },
+  });
+}
+
+//#endregion
+
+//#region hooks
+onMounted(() => {
+  const avatar = document.querySelector(".avatar");
+  breath(avatar);
+});
 //#endregion
 </script>
 

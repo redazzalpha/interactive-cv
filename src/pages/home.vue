@@ -38,7 +38,7 @@
 
         <!-- skills -->
         <v-col v-bind="colBindings">
-          <v-img src="@/assets/skills.png"></v-img>
+          <v-img src="@/assets/skills.png" max-width="700"></v-img>
         </v-col>
       </v-row>
     </v-container>

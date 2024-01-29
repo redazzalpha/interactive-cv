@@ -1,3 +1,3 @@
 <template>
-  <v-footer></v-footer>
+  <v-footer style="min-height: 300px"></v-footer>
 </template>

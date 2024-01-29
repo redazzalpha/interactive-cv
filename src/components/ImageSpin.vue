@@ -219,7 +219,7 @@ function imgSpin(): void {
 
 //#region hooks
 onMounted(() => {
-  onscroll = onScroll;
+  addEventListener("scroll", onScroll);
 });
 //#endregion
 </script>

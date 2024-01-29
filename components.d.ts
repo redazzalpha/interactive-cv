@@ -7,16 +7,20 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AnimatedTitle: typeof import('./src/components/AnimatedTitle.vue')['default']
+    AppAnimatedTitle: typeof import('./src/components/AppAnimatedTitle.vue')['default']
     AppAvatar: typeof import('./src/components/AppAvatar.vue')['default']
     AppCard: typeof import('./src/components/AppCard.vue')['default']
     AppCode: typeof import('./src/components/AppCode.vue')['default']
     AppDrawer: typeof import('./src/components/AppDrawer.vue')['default']
     AppGlow: typeof import('./src/components/AppGlow.vue')['default']
+    AppSkills: typeof import('./src/components/AppSkills.vue')['default']
     AppTag: typeof import('./src/components/AppTag.vue')['default']
     AvatarList: typeof import('./src/components/AvatarList.vue')['default']
     DrawerList: typeof import('./src/components/DrawerList.vue')['default']
     ImageSpin: typeof import('./src/components/ImageSpin.vue')['default']
     ListAvatar: typeof import('./src/components/ListAvatar.vue')['default']
+    MainView: typeof import('./src/components/MainView.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     ScrollTopButton: typeof import('./src/components/ScrollTopButton.vue')['default']

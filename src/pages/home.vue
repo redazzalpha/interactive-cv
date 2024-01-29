@@ -4,9 +4,12 @@
       <!-- title row -->
       <v-row :style="rowMargin" style="margin: 0">
         <v-col>
-          <h1 id="title" class="text-center text-lg-left">
-            Concepteur développeur d'applications
-          </h1>
+          <AnimatedTitle
+            id="title"
+            tag="h1"
+            :text="title"
+            class="text-center text-lg-left"
+          />
 
           <!-- avatar mobile -->
           <AppAvatar
@@ -38,12 +41,7 @@
 
         <!-- skills -->
         <v-col v-bind="colBindings">
-          <v-img
-            id="skills"
-            src="@/assets/skills.png"
-            max-width="700"
-            style="opacity: 0"
-          ></v-img>
+          <AppSkills :image="ImgSkills" />
         </v-col>
       </v-row>
     </v-container>
@@ -57,10 +55,13 @@ import vuetify from "@/plugins/vuetify";
 import ImgSpinner from "@/assets/spinner.png";
 import ImgGiphy from "@/assets/giphy.gif";
 import ImgGlow from "@/assets/glow.png";
+import ImgSkills from "@/assets/skills.png";
 import * as dynamics from "dynamics.js";
+import AnimatedTitle from "@/components/AnimatedTitle.vue";
 const store = useAppStore();
 
 //#region variables
+const title: string = "Concepteur développeur d'applications";
 let scrolling: boolean = true;
 //#endregion
 
@@ -94,33 +95,13 @@ function onScroll(): void {
 
 //#region animation functions
 // low level animations
-function bump(
-  element: HtmlItem,
-  friction: number = 200,
-  delay: number = 800,
-  complete: () => void = () => {}
-): void {
-  const init = { scale: 0 };
-  const grow = { scale: 1 };
-  const type = dynamics.spring;
 
-  // initialize element's css
-  dynamics.css(element, init);
-
-  // animate element
-  dynamics.animate(element, grow, {
-    type,
-    friction,
-    delay,
-    complete: () => complete(),
-  });
-}
 function foo(element: HtmlItem): void {
   const init = { opacity: 0, translateX: 300 };
   const type = dynamics.spring;
   const duration = 1000;
   const delay = 1500;
-  const animation = { opacity: 1, translateX: 0 };
+  const animation = { opacity: 1, translateX: 0, rotateX: 360 };
 
   // initialize element's css
   dynamics.css(element, init);
@@ -133,9 +114,6 @@ function foo(element: HtmlItem): void {
 //#region hooks
 onMounted(() => {
   addEventListener("scroll", onScroll);
-
-  const title: HtmlItem = document.getElementById("title");
-  bump(title);
 });
 //#endregion
 </script>

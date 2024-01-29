@@ -42,7 +42,7 @@
 
         <!-- skills -->
         <v-col v-bind="colBindings">
-          <AppSkills :image="ImgSkills" />
+          <AnimatedSkills :image="ImgSkills" />
         </v-col>
       </v-row>
     </v-container>

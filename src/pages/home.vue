@@ -33,7 +33,7 @@
       <v-row :style="rowMargin">
         <!-- image spin -->
         <v-col class="d-flex justify-center align-center pa-lg-12">
-          <ImageSpin
+          <AnimatedImageSpin
             :image-spinner="ImgSpinner"
             :image-appear="ImgGiphy"
             :image-glow="ImgGlow"

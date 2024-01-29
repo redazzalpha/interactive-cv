@@ -4,6 +4,7 @@
       <!-- title row -->
       <v-row :style="rowMargin" style="margin: 0">
         <v-col>
+          <!-- animated title -->
           <AnimatedTitle
             id="title"
             tag="h1"
@@ -24,7 +25,7 @@
       <!-- code lines row -->
       <v-row :style="titleMargin">
         <v-col>
-          <TheCodeLines />
+          <AnimatedTheCodeLines />
         </v-col>
       </v-row>
 

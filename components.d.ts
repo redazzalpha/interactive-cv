@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AnimatedTheCodeLines: typeof import('./src/components/AnimatedTheCodeLines.vue')['default']
     AnimatedTitle: typeof import('./src/components/AnimatedTitle.vue')['default']
     AppAnimatedTitle: typeof import('./src/components/AppAnimatedTitle.vue')['default']
     AppAvatar: typeof import('./src/components/AppAvatar.vue')['default']

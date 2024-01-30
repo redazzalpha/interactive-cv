@@ -1,9 +1,15 @@
 <template>
   <article>
-    <v-container grid-list-xs class="pa-0">
+    <v-container grid-list-xs fluid class="pa-0">
       <v-row>
         <v-col>
-          <h1>Page Projets in construction</h1>
+          <!-- animated title -->
+          <AnimatedTitle
+            id="title-projects"
+            tag="h1"
+            :text="title"
+            class="text-center text-lg-left"
+          />
         </v-col>
       </v-row>
     </v-container>
@@ -11,8 +17,14 @@
 </template>
 
 <script setup lang="ts">
+import AnimatedTitle from "@/components/AnimatedTitle.vue";
 import { onMounted } from "vue";
 
+//#region variables
+const title: string = "Mes Projets";
+//#endregion
+
+//#region hooks
 onMounted(() => {
   fetch("https://api.github.com/users/redazzalpha/repos?sort=updated").then(
     (response) => {
@@ -25,4 +37,5 @@ onMounted(() => {
     }
   );
 });
+//#endregion
 </script>

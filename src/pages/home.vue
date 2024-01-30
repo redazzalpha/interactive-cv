@@ -6,7 +6,7 @@
         <v-col>
           <!-- animated title -->
           <AnimatedTitle
-            id="title"
+            id="title-home"
             tag="h1"
             :text="title"
             class="text-center text-lg-left"
@@ -50,6 +50,11 @@
 </template>
 
 <script setup lang="ts">
+import AnimatedTitle from "@/components/AnimatedTitle.vue";
+import AnimatedTheCodeLines from "@/components/AnimatedTheCodeLines.vue";
+import AnimatedImageSpin from "@/components/AnimatedImageSpin.vue";
+import AnimatedSkills from "@/components/AnimatedSkills.vue";
+import AppAvatar from "@/components/AppAvatar.vue";
 import { computed, onMounted } from "vue";
 import { useAppStore } from "@/store/app";
 import vuetify from "@/plugins/vuetify";
@@ -58,7 +63,6 @@ import ImgGiphy from "@/assets/giphy.gif";
 import ImgGlow from "@/assets/glow.png";
 import ImgSkills from "@/assets/skills.png";
 import * as dynamics from "dynamics.js";
-import AnimatedTitle from "@/components/AnimatedTitle.vue";
 const store = useAppStore();
 
 //#region variables

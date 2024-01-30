@@ -18,6 +18,8 @@
 </template>
 
 <script setup lang="ts">
+import AppDrawer from "@/components/AppDrawer.vue";
+import AppAvatar from "@/components/AppAvatar.vue";
 import vuetify from "@/plugins/vuetify";
 import router from "@/router";
 import { useAppStore } from "@/store/app";

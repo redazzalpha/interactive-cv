@@ -9,8 +9,8 @@ export const useAppStore = defineStore('app', {
     links: [
       { label: "Accueil", href: "/home", icon: "mdi-home" },
       { label: "Test", href: "/test", icon: "mdi-folder" },
-      { label: "Projets", href: "/projets", icon: "mdi-semantic-web" },
-      { label: "Test3", href: "/test3", icon: "mdi-content-cut" },
+      { label: "Projets", href: "/projects", icon: "mdi-semantic-web" },
+      { label: "Qui suis-je ?", href: "/about", icon: "mdi-information-outline" },
     ]
   }),
   getters: {

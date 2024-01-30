@@ -2,7 +2,7 @@
   <v-hover>
     <template v-slot:default="{ isHovering: hover, props: hoverProp }">
       <v-card
-        class="kkk w-100 pa-5"
+        class="w-100 pa-5"
         variant="outlined"
         :href="props.data?.html_url"
         v-bind="hoverProp"
@@ -12,11 +12,14 @@
         <v-card-title :class="`text-${hover ? 'hover' : 'active'}`"
           >{{ props.data?.name }}
         </v-card-title>
+        <v-card-subtitle>{{ props.data?.description }}</v-card-subtitle>
 
         <!-- container -->
         <div class="d-flex flex-column flex-md-row justify-start align-start">
           <!-- creation & update dates -->
-          <v-card-text class="d-inline-block text-truncate flex-grow-0 w-100">
+          <v-card-text
+            class="d-inline-block text-truncate flex-grow-0 w-100 text-body"
+          >
             Crée le {{ creationDate }} -:- Dernière mise à jour le
             {{ lastUpdateDate }}
           </v-card-text>
@@ -30,6 +33,16 @@
             {{ props.data?.language }}
           </span>
         </div>
+
+        <v-btn
+          v-show="props.data?.homepage"
+          rounded
+          variant="text"
+          flat
+          style="text-transform: unset"
+          :href="props.data?.homepage"
+          >homepage: {{ props.data?.homepage }}</v-btn
+        >
       </v-card>
     </template>
   </v-hover>
@@ -59,6 +72,7 @@ const lastUpdateDate = computed<string>(() => {
   const objectDate = DateTime.fromISO(props.data?.updated_at);
   return `${objectDate.day} ${objectDate.monthLong} ${objectDate.year}`;
 });
+
 //#endregion
 
 //#region functions

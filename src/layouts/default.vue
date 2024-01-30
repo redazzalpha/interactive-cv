@@ -13,6 +13,7 @@ import DrawerNav from "@/layouts/default/DrawerNav.vue";
 import HeaderBar from "@/layouts/default/HeaderBar.vue";
 import MainView from "@/layouts/default/MainView.vue";
 import FooterBar from "@/layouts/default/FooterBar.vue";
+import ScrollTopButton from "@/components/ScrollTopButton.vue";
 import router from "@/router";
 import { useAppStore } from "@/store/app";
 import { onMounted } from "vue";

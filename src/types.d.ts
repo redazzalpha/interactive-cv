@@ -44,6 +44,8 @@ declare interface GitData {
   ssh_url: string;
   updated_at: string;
   visibility: string;
+  description: string;
+  homepage: string;
 }
 declare interface HeaderBarTitleRoute {
   [index: string]: string;

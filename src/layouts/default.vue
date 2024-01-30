@@ -17,8 +17,11 @@ import router from "@/router";
 import { useAppStore } from "@/store/app";
 import { onMounted } from "vue";
 const store = useAppStore();
+
+//#region variables
 const titleRoutes: HeaderBarTitleRoute = {};
 let currentPath: string = `/${router.currentRoute.value.name!.toString()}`;
+//#endregion
 
 //#region hooks
 onMounted(() => {
@@ -33,6 +36,9 @@ onMounted(() => {
 
   // set app bar title on mount default layout
   store.setAppBartTitle(titleRoutes[currentPath]);
+});
+router.beforeEach(() => {
+  scrollTo({ behavior: "instant", top: 0 });
 });
 router.afterEach(() => {
   currentPath = `/${router.currentRoute.value.name!.toString()}`;

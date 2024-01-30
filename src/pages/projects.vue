@@ -6,13 +6,16 @@
         <v-col>
           <!-- animated title -->
           <AnimatedTitle
+            v-show="!$vuetify.display.mobile"
             id="title-projects"
             tag="h1"
             :text="title"
             class="text-center text-lg-left"
+            style="position: fixed"
           />
         </v-col>
       </v-row>
+
       <!-- projects row -->
       <v-row
         v-for="item in data"

@@ -5,7 +5,7 @@
  */
 
 // Composables
-import { RouteRecordRaw, createRouter, createWebHistory } from 'vue-router'
+import { RouteRecordRaw, createRouter, createWebHistory } from 'vue-router';
 
 const routes: RouteRecordRaw[] = [
   // base
@@ -63,4 +63,4 @@ const router = createRouter({
   routes
 })
 
-export default router
+export default router;

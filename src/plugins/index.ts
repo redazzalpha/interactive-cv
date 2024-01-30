@@ -22,3 +22,5 @@ export function registerPlugins (app: App) {
     .use(router)
     .use(pinia)
 }
+
+

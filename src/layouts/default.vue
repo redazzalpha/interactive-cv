@@ -13,4 +13,31 @@ import DrawerNav from "@/layouts/default/DrawerNav.vue";
 import HeaderBar from "@/layouts/default/HeaderBar.vue";
 import MainView from "@/layouts/default/MainView.vue";
 import FooterBar from "@/layouts/default/FooterBar.vue";
+import router from "@/router";
+import { useAppStore } from "@/store/app";
+import { onMounted } from "vue";
+const store = useAppStore();
+const titleRoutes: HeaderBarTitleRoute = {};
+let currentPath: string = `/${router.currentRoute.value.name!.toString()}`;
+
+//#region hooks
+onMounted(() => {
+  // get each link from store
+  // store href as key into titleRoutes
+  // store appbarTitle as value
+  // to retrieve appbartitle value
+  // on router after each
+  store.links.forEach((e: Link): void => {
+    titleRoutes[e.href] = e.appbartTitle;
+  });
+
+  // set app bar title on mount default layout
+  store.setAppBartTitle(titleRoutes[currentPath]);
+});
+router.afterEach(() => {
+  currentPath = `/${router.currentRoute.value.name!.toString()}`;
+  // set app bar title on router after each
+  store.setAppBartTitle(titleRoutes[currentPath]);
+});
+//#endregion
 </script>

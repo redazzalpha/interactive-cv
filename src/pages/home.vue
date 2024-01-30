@@ -6,6 +6,7 @@
         <v-col>
           <!-- animated title -->
           <AnimatedTitle
+            v-show="!$vuetify.display.mobile"
             id="title-home"
             tag="h1"
             :text="title"

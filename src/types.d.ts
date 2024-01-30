@@ -1,13 +1,16 @@
+//#region module
 declare module "dynamics.js";
 declare module "luxon";
+//#endregion
 
 //#region types
-type HtmlItem = HTMLElement | null | Element;
+declare type HtmlItem = HTMLElement | null | Element;
 declare type Locations = "left" | "end" | "start" | "top" | "bottom" | "right" | undefined;
 declare type State = {
-  drawer: boolean,
-  links: Link[],
-  avatar: string,
+  drawer: boolean;
+  links: Link[];
+  avatar: string;
+  appbarTitle: Ref<string>;
 }
 //#endregion
 
@@ -16,6 +19,7 @@ declare interface Link {
   label: string;
   href: string;
   icon: string;
+  appbartTitle: string;
 }
 declare interface Binding {
   id?: string;
@@ -40,6 +44,9 @@ declare interface GitData {
   ssh_url: string;
   updated_at: string;
   visibility: string;
+}
+declare interface HeaderBarTitleRoute {
+  [index: string]: string;
 }
 //#endregion
 

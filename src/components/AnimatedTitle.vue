@@ -14,12 +14,14 @@ interface Props {
   friction?: number;
   duration?: number;
   delay?: number;
+  disabled?: boolean;
   complete?: () => void;
 }
 const props = withDefaults(defineProps<Props>(), {
   friction: 200,
   duration: 1000,
   delay: 800,
+  disabled: false,
 });
 //#endregion
 
@@ -44,8 +46,10 @@ function bump(element: HtmlItem, complete: () => void = () => {}): void {
 
 //#region hooks
 onMounted(() => {
-  const element: HtmlItem = document.getElementById(props.id);
-  bump(element, props.complete);
+  if (!props.disabled) {
+    const element: HtmlItem = document.getElementById(props.id);
+    bump(element, props.complete);
+  }
 });
 //#endregion
 </script>

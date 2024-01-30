@@ -28,7 +28,8 @@ export default createVuetify({
           blue: "#2196F3",
           "blue-lighten": "#64B5F6",
           teal: "#1de9b6",
-          red: "#E57373"
+          red: "#E57373",
+          white: "#ffffff"
 
         }
       }

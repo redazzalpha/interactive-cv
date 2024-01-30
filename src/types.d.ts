@@ -1,4 +1,5 @@
 declare module "dynamics.js";
+declare module "luxon";
 
 //#region types
 type HtmlItem = HTMLElement | null | Element;
@@ -27,6 +28,18 @@ declare interface Binding {
   md?: string;
   lg?: string;
   cols?: string;
+}
+declare interface GitData {
+  name: string;
+  created_at: string;
+  html_url: string;
+  url: string;
+  langage: string;
+  langage_url: object;
+  private: boolean;
+  ssh_url: string;
+  updated_at: string;
+  visibility: string;
 }
 //#endregion
 

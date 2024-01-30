@@ -37,13 +37,11 @@ onMounted(() => {
   // set app bar title on mount default layout
   store.setAppBartTitle(titleRoutes[currentPath]);
 });
-router.beforeEach(() => {
-  scrollTo({ behavior: "instant", top: 0 });
-});
 router.afterEach(() => {
   currentPath = `/${router.currentRoute.value.name!.toString()}`;
   // set app bar title on router after each
   store.setAppBartTitle(titleRoutes[currentPath]);
+  scrollTo({ behavior: "instant", top: 0 });
 });
 //#endregion
 </script>

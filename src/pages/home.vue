@@ -14,6 +14,7 @@
 
           <!-- avatar mobile -->
           <AppAvatar
+            id="avatar-mobile"
             :image="store.avatar"
             :size="170"
             mail="willness@outlook.fr"

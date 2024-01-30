@@ -17,9 +17,10 @@
         <v-col class="pa-0">
           <!-- avatar -->
           <AppAvatar
+            id="avatar-drawer"
             :image="store.avatar"
-            mail="willness@outlook.fr"
             :size="170"
+            mail="willness@outlook.fr"
           />
         </v-col>
       </v-row>

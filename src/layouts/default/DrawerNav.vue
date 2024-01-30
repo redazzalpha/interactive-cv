@@ -2,7 +2,12 @@
   <AppDrawer location="right" :disable-resizer="true" v-model="store.drawer">
     <v-list>
       <!-- avatar  -->
-      <AppAvatar :image="store.avatar" mail="willness@outlook.fr" :size="170" />
+      <AppAvatar
+        id="avatar-nav"
+        :image="store.avatar"
+        mail="willness@outlook.fr"
+        :size="170"
+      />
       <!-- nav links -->
       <v-list-item v-for="link in store.links" :key="link.label">
         <AppTag

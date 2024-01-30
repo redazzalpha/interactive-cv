@@ -1,7 +1,7 @@
 <template>
-  <article>
-    <v-container grid-list-xs fluid class="pa-0">
-      <v-row>
+  <article style="border: solid red 3px">
+    <v-container grid-list-xs fluid class="pa-0" style="border: solid blue 3px">
+      <v-row style="border: solid green 3px">
         <v-col>
           <!-- animated title -->
           <AnimatedTitle
@@ -13,7 +13,7 @@
         </v-col>
       </v-row>
       <v-row v-for="item in data" :key="(item as GitData).name">
-        <v-col>
+        <v-col class="d-flex justify-centers">
           <AppGit :data="item" />
         </v-col>
       </v-row>
@@ -41,7 +41,6 @@ const data = ref<GitData[] | undefined>();
 async function getData(): Promise<void> {
   const response: Response = await fetch(dataUrl);
   data.value = await response.json();
-  console.log();
 }
 //#endregion
 

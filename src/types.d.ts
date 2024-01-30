@@ -34,8 +34,8 @@ declare interface GitData {
   created_at: string;
   html_url: string;
   url: string;
-  langage: string;
-  langage_url: object;
+  language: string;
+  languages_url: object;
   private: boolean;
   ssh_url: string;
   updated_at: string;

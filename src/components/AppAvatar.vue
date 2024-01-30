@@ -4,7 +4,7 @@
     <v-list-item v-bind="listItemBindings">
       <a href="mailto:willness@outlook.fr">
         <v-avatar
-          class="avatar"
+          :id="props.id"
           :size="props.size"
           :image="props.image"
         ></v-avatar>
@@ -26,6 +26,7 @@ import * as dynamics from "dynamics.js";
 
 //#region props
 interface Props {
+  id: string;
   image: string;
   size?: number;
   mail?: string;
@@ -70,7 +71,7 @@ function breath(element: HtmlItem): void {
 
 //#region hooks
 onMounted(() => {
-  const avatar = document.querySelector(".avatar");
+  const avatar = document.getElementById(props.id);
   breath(avatar);
 });
 //#endregion

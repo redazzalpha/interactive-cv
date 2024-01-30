@@ -22,7 +22,7 @@
         :key="(item as GitData).name"
         class="justify-center"
       >
-        <v-col class="d-flex justify-centers" cols="12" md="7">
+        <v-col class="d-flex justify-centers" cols="11" md="7">
           <AppGit :data="item" />
         </v-col>
       </v-row>

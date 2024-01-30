@@ -1,5 +1,5 @@
 <template>
-  <v-card class="w-50 pa-5" variant="outlined" :href="props.data?.html_url">
+  <v-card class="w-100 pa-5" variant="outlined" :href="props.data?.html_url">
     <!-- title -->
     <v-card-title class="text-active">{{ props.data?.name }} </v-card-title>
 

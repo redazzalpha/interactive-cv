@@ -1,7 +1,8 @@
 <template>
-  <article style="border: solid red 3px">
-    <v-container grid-list-xs fluid class="pa-0" style="border: solid blue 3px">
-      <v-row style="border: solid green 3px">
+  <article>
+    <v-container grid-list-xs fluid class="pa-0">
+      <!-- title row -->
+      <v-row>
         <v-col>
           <!-- animated title -->
           <AnimatedTitle
@@ -12,8 +13,13 @@
           />
         </v-col>
       </v-row>
-      <v-row v-for="item in data" :key="(item as GitData).name">
-        <v-col class="d-flex justify-centers">
+      <!-- projects row -->
+      <v-row
+        v-for="item in data"
+        :key="(item as GitData).name"
+        class="justify-center"
+      >
+        <v-col class="d-flex justify-centers" cols="12" md="7">
           <AppGit :data="item" />
         </v-col>
       </v-row>

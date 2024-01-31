@@ -1,7 +1,4 @@
 
-import { useAppStore } from "@/store/app";
-const store = useAppStore();
-
 export function storageAvailable(type: string): LocalStorage | null | boolean {
   const storage: LocalStorage = window[type as any] as unknown as LocalStorage;
   const x: string = "__storage_test__";
@@ -26,10 +23,8 @@ export function storageAvailable(type: string): LocalStorage | null | boolean {
     );
   }
 }
-
 export function clearStorage(): void {
   const storage: LocalStorage | null | boolean = storageAvailable("localStorage");
-  store.setDrawer
   if (storage) {
     if ((storage as LocalStorage).removeItem != undefined)
       (storage as LocalStorage).removeItem("app");

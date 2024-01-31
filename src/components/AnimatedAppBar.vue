@@ -89,7 +89,7 @@ function updown(element: HtmlItem): void {
 //#region hooks
 onMounted(() => {
   const appbar: HtmlItem = document.getElementById("app-bar");
-  updown(appbar);
+  if (appbar != null) updown(appbar);
 });
 //#endregion
 </script>

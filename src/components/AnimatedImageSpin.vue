@@ -209,11 +209,26 @@ function imgSpin(): void {
   const image: HtmlItem = document.getElementById("image");
   const container: HtmlItem = document.getElementById("container");
   const glow: HtmlItem = document.getElementById("glow");
+  const ready: boolean =
+    sheet != null &&
+    spinner != null &&
+    image != null &&
+    container != null &&
+    glow != null;
 
-  ghost([image, spinner]);
-  spin(sheet);
-  blur(glow);
-  breath(container);
+  // const ready: boolean =
+  //   sheet != null &&
+  //   spinner != null &&
+  //   image != null &&
+  //   container != null &&
+  //   glow != null;
+
+  if (ready) {
+    ghost([image, spinner]);
+    spin(sheet);
+    blur(glow);
+    breath(container);
+  }
 }
 //#endregion
 

@@ -57,19 +57,17 @@ import AnimatedTheCodeLines from "@/components/AnimatedTheCodeLines.vue";
 import AnimatedImageSpin from "@/components/AnimatedImageSpin.vue";
 import AnimatedSkills from "@/components/AnimatedSkills.vue";
 import AppAvatar from "@/components/AppAvatar.vue";
-import { computed, onMounted } from "vue";
+import { computed } from "vue";
 import { useAppStore } from "@/store/app";
 import vuetify from "@/plugins/vuetify";
 import ImgSpinner from "@/assets/spinner.png";
 import ImgGiphy from "@/assets/giphy.gif";
 import ImgGlow from "@/assets/glow.png";
 import ImgSkills from "@/assets/skills.png";
-import * as dynamics from "dynamics.js";
 const store = useAppStore();
 
 //#region variables
 const title: string = "Concepteur développeur d'applications";
-let scrolling: boolean = true;
 //#endregion
 
 //#region computed
@@ -87,40 +85,5 @@ const colBindings: Binding = {
   cols: "12",
   sm: "7",
 };
-//#endregion
-
-//#region event handlers
-function onScroll(): void {
-  if (scrolling && scrollY >= 720) {
-    scrolling = false;
-    const skills: HtmlItem = document.getElementById("skills");
-    foo(skills);
-  }
-}
-
-//#endregion
-
-//#region animation functions
-// low level animations
-
-function foo(element: HtmlItem): void {
-  const init = { opacity: 0, translateX: 300 };
-  const type = dynamics.spring;
-  const duration = 1000;
-  const delay = 1500;
-  const animation = { opacity: 1, translateX: 0, rotateX: 360 };
-
-  // initialize element's css
-  dynamics.css(element, init);
-
-  // animate element
-  dynamics.animate(element, animation, { type, duration, delay });
-}
-//#endregion
-
-//#region hooks
-onMounted(() => {
-  addEventListener("scroll", onScroll);
-});
 //#endregion
 </script>

@@ -17,6 +17,7 @@ import ScrollTopButton from "@/components/ScrollTopButton.vue";
 import router from "@/router";
 import { useAppStore } from "@/store/app";
 import { onMounted } from "vue";
+import { clearStorage } from "../utils/functions";
 const store = useAppStore();
 
 //#region variables
@@ -26,6 +27,8 @@ let currentPath: string = `/${router.currentRoute.value.name!.toString()}`;
 
 //#region hooks
 onMounted(() => {
+  addEventListener("beforeunload", () => clearStorage());
+
   // get each link from store
   // store href as key into titleRoutes
   // store appbarTitle as value

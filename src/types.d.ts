@@ -50,5 +50,14 @@ declare interface GitData {
 declare interface HeaderBarTitleRoute {
   [index: string]: string;
 }
+declare interface LocalStorage {
+  [name: string]: any;
+  length: number;
+  clear:() => void;
+  getItem: (key: string) => string | null;
+  key: (index: number) => string | null;
+  removeItem: (key: string) => void;
+  setItem: (key: string, value: string) => void;
+}
 //#endregion
 

@@ -27,13 +27,16 @@ import * as dynamics from "dynamics.js";
 //#region props
 interface Props {
   id: string;
+  disabled?: boolean;
   image: string;
   size?: number;
   mail?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  disabled: false,
   size: 170,
+  mail: "",
 });
 //#endregion
 
@@ -44,7 +47,8 @@ const listItemBindings: Binding = {
 //#endregion
 
 //#region animation functions
-function breath(element: HtmlItem): void {
+// low level animations
+function swell(element: HtmlItem): void {
   const init = { scale: 1 };
   const shrink = { scale: 0.98 };
   const type: unknown = dynamics.linear;
@@ -61,18 +65,24 @@ function breath(element: HtmlItem): void {
       dynamics.animate(element, init, {
         type,
         duration,
-        complete: () => breath(element),
+        complete: () => swell(element),
       });
     },
   });
 }
 
+// top level animation function
+function breath(): void {
+  if (!props.disabled) {
+    const avatar = document.getElementById(props.id);
+    if (avatar != null) swell(avatar);
+  }
+}
 //#endregion
 
 //#region hooks
 onMounted(() => {
-  const avatar = document.getElementById(props.id);
-  breath(avatar);
+  breath();
 });
 //#endregion
 </script>

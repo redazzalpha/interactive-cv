@@ -1,5 +1,5 @@
 <template>
-  <v-sheet v-bind="sheetBindings" :style="computedSize">
+  <v-sheet :id="props.idSheet" v-bind="sheetBindings" :style="computedSize">
     <!-- line numbers container-->
     <div v-bind="lineNumbersContainerBindings">
       <!-- line numbers -->
@@ -31,130 +31,134 @@
     <div>
       <!-- template tag -->
       <div :class="containerClass">
-        <p :class="codeClass">{{ chevronLeft }}</p>
-        <p :class="codeClass" v-bind="textBlue">{{ template }}</p>
-        <p :class="codeClass">{{ chevronRight }}</p>
+        <p :class="props.classCode">{{ chevronLeft }}</p>
+        <p :class="props.classCode" v-bind="textBlue">{{ template }}</p>
+        <p :class="props.classCode">{{ chevronRight }}</p>
       </div>
 
       <!-- v-container tag -->
       <div :class="containerClass" v-bind="ml3">
-        <p :class="codeClass">{{ chevronLeft }}</p>
-        <p :class="codeClass" v-bind="textTeal">{{ vcontainer }}</p>
-        <p :class="codeClass" v-bind="textBlueLighten" v-bind:="ml2">
+        <p :class="props.classCode">{{ chevronLeft }}</p>
+        <p :class="props.classCode" v-bind="textTeal">{{ vcontainer }}</p>
+        <p :class="props.classCode" v-bind="textBlueLighten" v-bind:="ml2">
           {{ gridList }}
         </p>
-        <p :class="codeClass">{{ chevronRight }}</p>
+        <p :class="props.classCode">{{ chevronRight }}</p>
       </div>
 
       <!-- row tag -->
       <div :class="containerClass" v-bind="ml7">
-        <p :class="codeClass">{{ chevronLeft }}</p>
-        <p :class="codeClass" v-bind="textTeal">{{ row }}</p>
-        <p :class="codeClass">{{ chevronRight }}</p>
+        <p :class="props.classCode">{{ chevronLeft }}</p>
+        <p :class="props.classCode" v-bind="textTeal">{{ row }}</p>
+        <p :class="props.classCode">{{ chevronRight }}</p>
       </div>
 
       <!-- col tag -->
       <div :class="containerClass" v-bind="ml11">
-        <p :class="codeClass">{{ chevronLeft }}</p>
-        <p :class="codeClass" v-bind="textTeal">{{ col }}</p>
-        <p :class="codeClass">{{ chevronRight }}</p>
+        <p :class="props.classCode">{{ chevronLeft }}</p>
+        <p :class="props.classCode" v-bind="textTeal">{{ col }}</p>
+        <p :class="props.classCode">{{ chevronRight }}</p>
       </div>
 
       <!-- h1 tag -->
       <div :class="containerClass" v-bind="ml15">
-        <p :class="codeClass">{{ chevronLeft }}</p>
-        <p :class="codeClass" v-bind="textBlue">{{ h1 }}</p>
-        <p :class="codeClass">{{ chevronRight }}</p>
-        <p :class="codeClass">{{ firstname }}</p>
-        <p :class="codeClass" v-bind="ml2">{{ lastname }}</p>
-        <p :class="codeClass">{{ chevronLeft }}</p>
-        <p :class="codeClass">{{ slash }}</p>
-        <p :class="codeClass" v-bind="textBlue">{{ h1 }}</p>
-        <p :class="codeClass">{{ chevronRight }}</p>
+        <p :class="props.classCode">{{ chevronLeft }}</p>
+        <p :class="props.classCode" v-bind="textBlue">{{ h1 }}</p>
+        <p :class="props.classCode">{{ chevronRight }}</p>
+        <p :class="props.classCode">{{ firstname }}</p>
+        <p :class="props.classCode" v-bind="ml2">{{ lastname }}</p>
+        <p :class="props.classCode">{{ chevronLeft }}</p>
+        <p :class="props.classCode">{{ slash }}</p>
+        <p :class="props.classCode" v-bind="textBlue">{{ h1 }}</p>
+        <p :class="props.classCode">{{ chevronRight }}</p>
       </div>
 
       <!-- p tag -->
       <div :class="containerClass" v-bind="ml15">
-        <p :class="codeClass">{{ chevronLeft }}</p>
-        <p :class="codeClass" v-bind="textBlue">{{ p }}</p>
-        <p :class="codeClass">{{ chevronRight }}</p>
-        <p :class="codeClass">{{ activityH2 }}</p>
-        <p :class="codeClass" v-bind="ml2">{{ activityH2_1 }}</p>
-        <p :class="codeClass" v-bind="ml2" v-show="!$vuetify.display.mobile">
+        <p :class="props.classCode">{{ chevronLeft }}</p>
+        <p :class="props.classCode" v-bind="textBlue">{{ p }}</p>
+        <p :class="props.classCode">{{ chevronRight }}</p>
+        <p :class="props.classCode">{{ activityH2 }}</p>
+        <p :class="props.classCode" v-bind="ml2">{{ activityH2_1 }}</p>
+        <p
+          :class="props.classCode"
+          v-bind="ml2"
+          v-show="!$vuetify.display.mobile"
+        >
           {{ activityH2_2 }}
         </p>
-        <p :class="codeClass">{{ chevronLeft }}</p>
-        <p :class="codeClass">{{ slash }}</p>
-        <p :class="codeClass" v-bind="textBlue">{{ p }}</p>
-        <p :class="codeClass">{{ chevronRight }}</p>
+        <p :class="props.classCode">{{ chevronLeft }}</p>
+        <p :class="props.classCode">{{ slash }}</p>
+        <p :class="props.classCode" v-bind="textBlue">{{ p }}</p>
+        <p :class="props.classCode">{{ chevronRight }}</p>
       </div>
 
       <!-- p tag 2 -->
       <div :class="containerClass" v-bind="ml15">
-        <p :class="codeClass">{{ chevronLeft }}</p>
-        <p :class="codeClass" v-bind="textBlue">{{ p }}</p>
-        <p :class="codeClass">{{ chevronRight }}</p>
-        <p :class="codeClass">{{ activityH3 }}</p>
-        <p :class="codeClass" v-bind="ml2">{{ activityH3_1 }}</p>
-        <p :class="codeClass">{{ chevronLeft }}</p>
-        <p :class="codeClass">{{ slash }}</p>
-        <p :class="codeClass" v-bind="textBlue">{{ p }}</p>
-        <p :class="codeClass">{{ chevronRight }}</p>
+        <p :class="props.classCode">{{ chevronLeft }}</p>
+        <p :class="props.classCode" v-bind="textBlue">{{ p }}</p>
+        <p :class="props.classCode">{{ chevronRight }}</p>
+        <p :class="props.classCode">{{ activityH3 }}</p>
+        <p :class="props.classCode" v-bind="ml2">{{ activityH3_1 }}</p>
+        <p :class="props.classCode">{{ chevronLeft }}</p>
+        <p :class="props.classCode">{{ slash }}</p>
+        <p :class="props.classCode" v-bind="textBlue">{{ p }}</p>
+        <p :class="props.classCode">{{ chevronRight }}</p>
       </div>
 
       <!-- end tag col -->
       <div :class="containerClass" v-bind="ml11">
-        <p :class="codeClass">{{ chevronLeft }}</p>
-        <p :class="codeClass">{{ slash }}</p>
-        <p :class="codeClass" v-bind="textTeal">{{ col }}</p>
-        <p :class="codeClass">{{ chevronRight }}</p>
+        <p :class="props.classCode">{{ chevronLeft }}</p>
+        <p :class="props.classCode">{{ slash }}</p>
+        <p :class="props.classCode" v-bind="textTeal">{{ col }}</p>
+        <p :class="props.classCode">{{ chevronRight }}</p>
       </div>
 
       <!-- end tag row -->
       <div :class="containerClass" v-bind="ml7">
-        <p :class="codeClass">{{ chevronLeft }}</p>
-        <p :class="codeClass">{{ slash }}</p>
-        <p :class="codeClass" v-bind="textTeal">{{ row }}</p>
-        <p :class="codeClass">{{ chevronRight }}</p>
+        <p :class="props.classCode">{{ chevronLeft }}</p>
+        <p :class="props.classCode">{{ slash }}</p>
+        <p :class="props.classCode" v-bind="textTeal">{{ row }}</p>
+        <p :class="props.classCode">{{ chevronRight }}</p>
       </div>
 
       <!-- end tag v-container -->
       <div :class="containerClass" v-bind="ml3">
-        <p :class="codeClass">{{ chevronLeft }}</p>
-        <p :class="codeClass">{{ slash }}</p>
-        <p :class="codeClass" v-bind="textTeal">{{ vcontainer }}</p>
-        <p :class="codeClass">{{ chevronRight }}</p>
+        <p :class="props.classCode">{{ chevronLeft }}</p>
+        <p :class="props.classCode">{{ slash }}</p>
+        <p :class="props.classCode" v-bind="textTeal">{{ vcontainer }}</p>
+        <p :class="props.classCode">{{ chevronRight }}</p>
       </div>
 
       <!-- end tag template -->
       <div :class="containerClass">
-        <p :class="codeClass">{{ chevronLeft }}</p>
-        <p :class="codeClass">{{ slash }}</p>
-        <p :class="codeClass" v-bind="textBlue">{{ template }}</p>
-        <p :class="codeClass">{{ chevronRight }}</p>
+        <p :class="props.classCode">{{ chevronLeft }}</p>
+        <p :class="props.classCode">{{ slash }}</p>
+        <p :class="props.classCode" v-bind="textBlue">{{ template }}</p>
+        <p :class="props.classCode">{{ chevronRight }}</p>
       </div>
 
       <br />
 
       <!-- script tag -->
       <div :class="containerClass">
-        <p :class="codeClass">{{ chevronLeft }}</p>
-        <p :class="codeClass" v-bind="textBlue">{{ script }}</p>
-        <p :class="codeClass" v-bind="ml2" v-bind:="textBlueLighten">
+        <p :class="props.classCode">{{ chevronLeft }}</p>
+        <p :class="props.classCode" v-bind="textBlue">{{ script }}</p>
+        <p :class="props.classCode" v-bind="ml2" v-bind:="textBlueLighten">
           {{ setup }}
         </p>
-        <p :class="codeClass" v-bind="ml2" v-bind:="textBlueLighten">
+        <p :class="props.classCode" v-bind="ml2" v-bind:="textBlueLighten">
           {{ lang }}
         </p>
-        <p :class="codeClass">{{ equal }}</p>
-        <p :class="codeClass" v-bind="textRed">
+        <p :class="props.classCode">{{ equal }}</p>
+        <p :class="props.classCode" v-bind="textRed">
           {{ quote }}{{ ts }}{{ quote }}
         </p>
-        <p :class="codeClass">{{ chevronRight }}</p>
-        <p :class="codeClass">{{ chevronLeft }}</p>
-        <p :class="codeClass">{{ slash }}</p>
-        <p :class="codeClass" v-bind="textBlue">{{ script }}</p>
-        <p :class="codeClass">{{ chevronRight }}</p>
+        <p :class="props.classCode">{{ chevronRight }}</p>
+        <p :class="props.classCode">{{ chevronLeft }}</p>
+        <p :class="props.classCode">{{ slash }}</p>
+        <p :class="props.classCode" v-bind="textBlue">{{ script }}</p>
+        <p :class="props.classCode">{{ chevronRight }}</p>
       </div>
     </div>
   </v-sheet>
@@ -167,7 +171,6 @@ import vuetify from "@/plugins/vuetify";
 
 //#region variables
 const containerClass: string = "d-flex";
-const codeClass: string = "code";
 
 const slash = "/";
 const template = "template";
@@ -194,6 +197,15 @@ const activityH3 = "Développeur";
 const activityH3_1 = "web";
 //#endregion
 
+//#region props
+interface Props {
+  idSheet: string;
+  classCode: string;
+  disabled?: boolean;
+}
+const props = withDefaults(defineProps<Props>(), { disabled: false });
+//#endregion
+
 //#region computed
 const computedSize = computed<string>(() => {
   if (vuetify.display.xs.value) return "font-size: 100%";
@@ -207,7 +219,6 @@ const computedSize = computed<string>(() => {
 
 //#region bindings
 const sheetBindings: Binding = {
-  id: "sheet_code-lines",
   class: "pa-0 py-5 pa-sm-5 pa-md-8 d-flex flex-row rounded-lg",
   style: "line-height: 130%;",
   color: "primary",
@@ -255,30 +266,7 @@ const ml15: Binding = {
 
 //#region animation functions
 // low leveal animations
-function writeCode(codeElements: NodeListOf<Element>) {
-  const appear = { scale: 1 };
-  const type = dynamics.spring;
-  const friction = 1000;
-  const duration = 1;
-  const offset: number = 100;
-  let count: number = 0;
-
-  codeElements.forEach((code: Element): void => {
-    dynamics.animate(code, appear, {
-      type,
-      friction,
-      duration,
-      delay: count * offset,
-    });
-    count++;
-  });
-}
-
-// top level animations
-function handWrite(
-  background: HtmlItem,
-  codeElements: NodeListOf<Element>
-): void {
+function writeCode(sheet: HtmlItem, codeElements: NodeListOf<Element>) {
   const init = { scale: 0 };
   const appear = { scale: 1 };
   const type = dynamics.spring;
@@ -286,24 +274,51 @@ function handWrite(
   const delay = 1500;
 
   // initialize elements's css
-  dynamics.css(background, init);
+  dynamics.css(sheet, init);
   dynamics.css(codeElements, init);
 
   // animate elements
-  dynamics.animate(background, appear, {
+  dynamics.animate(sheet, appear, {
     type,
     friction,
     delay,
-    complete: () => writeCode(codeElements),
+    complete: () => {
+      const appear = { scale: 1 };
+      const type = dynamics.spring;
+      const friction = 1000;
+      const duration = 1;
+      const offset: number = 100;
+      let count: number = 0;
+
+      codeElements.forEach((code: Element): void => {
+        dynamics.animate(code, appear, {
+          type,
+          friction,
+          duration,
+          delay: count * offset,
+        });
+        count++;
+      });
+    },
   });
+}
+
+// top level animations
+function handWrite(): void {
+  if (!props.disabled) {
+    const sheet: HtmlItem = document.getElementById(props.idSheet);
+    const codeElements: NodeListOf<Element> = document.querySelectorAll(
+      `.${props.classCode}`
+    );
+    const ready: boolean = sheet != null && codeElements != null;
+    if (ready) writeCode(sheet, codeElements);
+  }
 }
 //#endregion
 
 //#region hooks
 onMounted(() => {
-  const sheet: HtmlItem = document.getElementById("sheet_code-lines");
-  const codeElements: NodeListOf<Element> = document.querySelectorAll(".code");
-  handWrite(sheet, codeElements);
+  handWrite();
 });
 //#endregion
 </script>

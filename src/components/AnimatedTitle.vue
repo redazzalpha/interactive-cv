@@ -10,11 +10,11 @@ import { onMounted } from "vue";
 interface Props {
   id: string;
   tag: string;
+  disabled?: boolean;
   text: string;
   friction?: number;
   duration?: number;
   delay?: number;
-  disabled?: boolean;
   complete?: () => void;
 }
 const props = withDefaults(defineProps<Props>(), {
@@ -26,7 +26,8 @@ const props = withDefaults(defineProps<Props>(), {
 //#endregion
 
 //#region animation functions
-function bump(element: HtmlItem, complete: () => void = () => {}): void {
+// low level animations
+function bounce(element: HtmlItem, complete: () => void = () => {}): void {
   const init = { scale: 0 };
   const grow = { scale: 1 };
 
@@ -42,14 +43,19 @@ function bump(element: HtmlItem, complete: () => void = () => {}): void {
     complete: () => complete(),
   });
 }
+
+// top level animation
+function bump() {
+  if (!props.disabled) {
+    const element: HtmlItem = document.getElementById(props.id);
+    if (element != null) bounce(element, props.complete);
+  }
+}
 //#endregion
 
 //#region hooks
 onMounted(() => {
-  if (!props.disabled) {
-    const element: HtmlItem = document.getElementById(props.id);
-    bump(element, props.complete);
-  }
+  bump();
 });
 //#endregion
 </script>

@@ -1,17 +1,17 @@
 <template>
-  <v-sheet v-bind="sheetBindings">
+  <v-sheet :id="props.idSheet" v-bind="sheetBindings">
     <!-- container -->
-    <div id="container">
+    <div :id="props.idContainer">
       <!-- image appear -->
       <v-img
-        id="image"
+        :id="props.idImage"
         :src="props.imageAppear"
         style="border-radius: 15px; opacity: 0"
       ></v-img>
 
       <!-- image spinner -->
       <v-img
-        id="spinner"
+        :id="props.idSpinner"
         :src="props.imageSpinner"
         v-bind="imgBindings"
         style="opacity: 1"
@@ -19,7 +19,7 @@
 
       <!-- image glow -->
       <v-img
-        id="glow"
+        :id="props.idGlow"
         :src="props.imageGlow"
         v-bind="imgBindings"
         style="opacity: 0"
@@ -39,16 +39,23 @@ let scrolling: boolean = true;
 
 //#region props
 interface Props {
+  idSheet: string;
+  idSpinner: string;
+  idImage: string;
+  idContainer: string;
+  idGlow: string;
+  disabled?: boolean;
   imageSpinner: string;
   imageAppear: string;
   imageGlow: string;
 }
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+  disabled: false,
+});
 //#endregion
 
 //#region bindings
 const sheetBindings: Binding = {
-  id: "sheet_image-spin",
   style:
     "width: 100%;\
     background-color: transparent;\
@@ -204,30 +211,25 @@ function blur(element: HtmlItem): void {
 
 // top level animations
 function imgSpin(): void {
-  const sheet: HtmlItem = document.getElementById("sheet_image-spin");
-  const spinner: HtmlItem = document.getElementById("spinner");
-  const image: HtmlItem = document.getElementById("image");
-  const container: HtmlItem = document.getElementById("container");
-  const glow: HtmlItem = document.getElementById("glow");
-  const ready: boolean =
-    sheet != null &&
-    spinner != null &&
-    image != null &&
-    container != null &&
-    glow != null;
+  if (!props.disabled) {
+    const sheet: HtmlItem = document.getElementById(props.idSheet);
+    const spinner: HtmlItem = document.getElementById(props.idSpinner);
+    const image: HtmlItem = document.getElementById(props.idImage);
+    const container: HtmlItem = document.getElementById(props.idContainer);
+    const glow: HtmlItem = document.getElementById(props.idGlow);
+    const ready: boolean =
+      sheet != null &&
+      spinner != null &&
+      image != null &&
+      container != null &&
+      glow != null;
 
-  // const ready: boolean =
-  //   sheet != null &&
-  //   spinner != null &&
-  //   image != null &&
-  //   container != null &&
-  //   glow != null;
-
-  if (ready) {
-    ghost([image, spinner]);
-    spin(sheet);
-    blur(glow);
-    breath(container);
+    if (ready) {
+      ghost([image, spinner]);
+      spin(sheet);
+      blur(glow);
+      breath(container);
+    }
   }
 }
 //#endregion

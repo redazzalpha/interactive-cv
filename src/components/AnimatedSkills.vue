@@ -1,6 +1,6 @@
 <template>
   <v-img
-    id="skills"
+    :id="props.id"
     :src="props.image"
     max-width="700"
     style="opacity: 0"
@@ -17,23 +17,25 @@ let scrolling: boolean = true;
 
 //#region props
 interface Props {
+  id: string;
+  disabled?: boolean;
   image: string;
 }
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), { disabled: false });
 //#endregion
 
 //#region event handlers
 function onScroll(): void {
   if (scrolling && scrollY >= 720) {
+    sideways();
     scrolling = false;
-    const skills: HtmlItem = document.getElementById("skills");
-    sideways(skills);
   }
 }
 //#endregion
 
 //#region animation functions
-function sideways(element: HtmlItem): void {
+// low level animation
+function move(element: HtmlItem): void {
   const init = { opacity: 0, translateX: 300 };
   const type = dynamics.spring;
   const duration = 1000;
@@ -45,6 +47,14 @@ function sideways(element: HtmlItem): void {
 
   // animate element
   dynamics.animate(element, animation, { type, duration, delay });
+}
+
+// top level animamtion
+function sideways(): void {
+  if (!props.disabled) {
+    const skills: HtmlItem = document.getElementById(props.id);
+    if (skills != null) move(skills);
+  }
 }
 //#endregion
 

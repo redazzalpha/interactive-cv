@@ -14,7 +14,7 @@
           />
 
           <!-- avatar mobile -->
-          <AppAvatar
+          <AnimatedAvatar
             id="avatar-mobile"
             :image="store.avatar"
             :size="170"
@@ -27,7 +27,10 @@
       <!-- code lines row -->
       <v-row :style="titleMargin">
         <v-col>
-          <AnimatedTheCodeLines />
+          <AnimatedTheCodeLines
+            id-sheet="home-codelines-sheet"
+            class-code="home-code-element"
+          />
         </v-col>
       </v-row>
 
@@ -36,6 +39,11 @@
         <!-- image spin -->
         <v-col class="d-flex justify-center align-center pa-lg-12">
           <AnimatedImageSpin
+            id-sheet="home-image-spin-sheet"
+            id-spinner="home-image-spin-spinner"
+            id-image="home-image-spin-image"
+            id-container="home-image-spin-container"
+            id-glow="home-image-spin-glow"
             :image-spinner="ImgSpinner"
             :image-appear="ImgGiphy"
             :image-glow="ImgGlow"
@@ -44,7 +52,7 @@
 
         <!-- skills -->
         <v-col v-bind="colBindings">
-          <AnimatedSkills :image="ImgSkills" />
+          <AnimatedSkills id="home-skills" :image="ImgSkills" />
         </v-col>
       </v-row>
     </v-container>
@@ -56,7 +64,7 @@ import AnimatedTitle from "@/components/AnimatedTitle.vue";
 import AnimatedTheCodeLines from "@/components/AnimatedTheCodeLines.vue";
 import AnimatedImageSpin from "@/components/AnimatedImageSpin.vue";
 import AnimatedSkills from "@/components/AnimatedSkills.vue";
-import AppAvatar from "@/components/AppAvatar.vue";
+import AnimatedAvatar from "@/components/AnimatedAvatar.vue";
 import { computed } from "vue";
 import { useAppStore } from "@/store/app";
 import vuetify from "@/plugins/vuetify";

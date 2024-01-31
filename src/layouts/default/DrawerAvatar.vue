@@ -16,7 +16,7 @@
       <v-row>
         <v-col class="pa-0">
           <!-- avatar -->
-          <AppAvatar
+          <AnimatedAvatar
             id="avatar-drawer"
             :image="store.avatar"
             :size="170"
@@ -54,7 +54,7 @@
 
 <script setup lang="ts">
 import AppDrawer from "@/components/AppDrawer.vue";
-import AppAvatar from "@/components/AppAvatar.vue";
+import AnimatedAvatar from "@/components/AnimatedAvatar.vue";
 import { useAppStore } from "@/store/app";
 const store = useAppStore();
 </script>

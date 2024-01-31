@@ -1,6 +1,6 @@
 <template>
   <v-app-bar
-    id="app-bar"
+    :id="props.id"
     density="prominent"
     elevation="0"
     class="d-flex justify-center align-center"
@@ -53,11 +53,14 @@ import * as dynamics from "dynamics.js";
 
 //#region props
 interface Props {
+  id: string;
+  disabled?: boolean;
   title?: string;
   links?: Link[] | undefined;
   clickNavIcon: () => void | undefined;
 }
 const props = withDefaults(defineProps<Props>(), {
+  disabled: false,
   title: "",
   links: undefined,
   onclick: undefined,
@@ -65,6 +68,7 @@ const props = withDefaults(defineProps<Props>(), {
 //#endregion
 
 //#region animation functions
+// low level animation
 function updown(element: HtmlItem): void {
   const init = { translateY: -100 };
   const translation = { translateY: 0 };
@@ -84,12 +88,19 @@ function updown(element: HtmlItem): void {
     duration,
   });
 }
+
+// top level animation
+function slide(): void {
+  if (!props.disabled) {
+    const appbar: HtmlItem = document.getElementById(props.id);
+    if (appbar != null) updown(appbar);
+  }
+}
 //#endregion
 
 //#region hooks
 onMounted(() => {
-  const appbar: HtmlItem = document.getElementById("app-bar");
-  if (appbar != null) updown(appbar);
+  slide();
 });
 //#endregion
 </script>

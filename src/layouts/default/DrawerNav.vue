@@ -2,7 +2,7 @@
   <AppDrawer location="right" :disable-resizer="true" v-model="store.drawer">
     <v-list>
       <!-- avatar  -->
-      <AppAvatar
+      <AnimatedAvatar
         id="avatar-nav"
         :image="store.avatar"
         mail="willness@outlook.fr"
@@ -24,7 +24,7 @@
 
 <script setup lang="ts">
 import AppDrawer from "@/components/AppDrawer.vue";
-import AppAvatar from "@/components/AppAvatar.vue";
+import AnimatedAvatar from "@/components/AnimatedAvatar.vue";
 import vuetify from "@/plugins/vuetify";
 import router from "@/router";
 import { useAppStore } from "@/store/app";

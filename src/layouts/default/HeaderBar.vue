@@ -1,5 +1,6 @@
 <template>
   <AnimatedAppBar
+    id="header-bar-app-bar"
     :title="store.appbarTitle"
     :click-nav-icon="clickNavIcon"
     :links="store.links"

@@ -169,6 +169,26 @@ import { computed, onMounted } from "vue";
 import * as dynamics from "dynamics.js";
 import vuetify from "@/plugins/vuetify";
 
+//#region props
+interface Props {
+  idSheet: string;
+  classCode: string;
+  disabled?: boolean;
+}
+const props = withDefaults(defineProps<Props>(), { disabled: false });
+//#endregion
+
+//#region computed
+const computedSize = computed<string>(() => {
+  if (vuetify.display.xs.value) return "font-size: 100%";
+  if (vuetify.display.sm.value) return "font-size: 110%";
+  if (vuetify.display.md.value) return "font-size: 130%";
+  if (vuetify.display.lg.value) return "font-size: 130%";
+  if (vuetify.display.xl.value) return "font-size: 130%";
+  return "font-size: 90%";
+});
+//#endregion
+
 //#region variables
 const containerClass: string = "d-flex";
 
@@ -195,26 +215,6 @@ const activityH2_1 = "développeur";
 const activityH2_2 = "d'applications";
 const activityH3 = "Développeur";
 const activityH3_1 = "web";
-//#endregion
-
-//#region props
-interface Props {
-  idSheet: string;
-  classCode: string;
-  disabled?: boolean;
-}
-const props = withDefaults(defineProps<Props>(), { disabled: false });
-//#endregion
-
-//#region computed
-const computedSize = computed<string>(() => {
-  if (vuetify.display.xs.value) return "font-size: 100%";
-  if (vuetify.display.sm.value) return "font-size: 110%";
-  if (vuetify.display.md.value) return "font-size: 130%";
-  if (vuetify.display.lg.value) return "font-size: 130%";
-  if (vuetify.display.xl.value) return "font-size: 130%";
-  return "font-size: 90%";
-});
 //#endregion
 
 //#region bindings

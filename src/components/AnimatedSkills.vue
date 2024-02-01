@@ -11,10 +11,6 @@
 import * as dynamics from "dynamics.js";
 import { onMounted } from "vue";
 
-//#region variables
-let scrolling: boolean = true;
-//#endregion
-
 //#region props
 interface Props {
   id: string;
@@ -22,6 +18,10 @@ interface Props {
   image: string;
 }
 const props = withDefaults(defineProps<Props>(), { disabled: false });
+//#endregion
+
+//#region variables
+let scrolling: boolean = true;
 //#endregion
 
 //#region event handlers

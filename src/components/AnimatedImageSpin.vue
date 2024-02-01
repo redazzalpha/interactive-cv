@@ -32,11 +32,6 @@
 import { ref, Ref, onMounted } from "vue";
 import * as dynamics from "dynamics.js";
 
-//#region variables
-let spinning: boolean = true;
-let scrolling: boolean = true;
-//#endregion
-
 //#region props
 interface Props {
   idSheet: string;
@@ -52,6 +47,11 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   disabled: false,
 });
+//#endregion
+
+//#region variables
+let spinning: boolean = true;
+let scrolling: boolean = true;
 //#endregion
 
 //#region bindings

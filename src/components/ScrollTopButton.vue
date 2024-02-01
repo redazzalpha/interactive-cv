@@ -22,21 +22,6 @@ interface Position {
 }
 //#endregion
 
-//#region variables
-const scrollOffset = 400;
-const bottom = 10;
-const rightIn = 10;
-const rightOut = -300;
-const transitionTime = 0.3;
-//#endregion
-
-//#region refs
-const position = ref<Position>({
-  bottom: `${bottom}px`,
-  right: `${rightOut}px`,
-});
-//#endregion
-
 //#region props
 interface Props {
   icon?: string;
@@ -54,6 +39,21 @@ const props = withDefaults(defineProps<Props>(), {
       top: 0,
     });
   },
+});
+//#endregion
+
+//#region variables
+const scrollOffset = 400;
+const bottom = 10;
+const rightIn = 10;
+const rightOut = -300;
+const transitionTime = 0.3;
+//#endregion
+
+//#region refs
+const position = ref<Position>({
+  bottom: `${bottom}px`,
+  right: `${rightOut}px`,
 });
 //#endregion
 

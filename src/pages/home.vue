@@ -74,10 +74,6 @@ import ImgGlow from "@/assets/glow.png";
 import ImgSkills from "@/assets/skills.png";
 const store = useAppStore();
 
-//#region variables
-const title: string = "Concepteur développeur d'applications";
-//#endregion
-
 //#region computed
 const titleMargin = computed<string>(() => {
   return `margin: ${vuetify.display.mobile.value ? 40 : 100}px 0px`;
@@ -85,6 +81,10 @@ const titleMargin = computed<string>(() => {
 const rowMargin = computed<string>(() => {
   return `margin: ${vuetify.display.mobile.value ? 40 : 300}px 0px`;
 });
+//#endregion
+
+//#region variables
+const title: string = "Concepteur développeur d'applications";
 //#endregion
 
 //#region bindings

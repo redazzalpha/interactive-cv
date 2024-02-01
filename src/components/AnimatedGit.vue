@@ -70,6 +70,10 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), { disabled: false });
 //#endregion
 
+//#region variables
+const index: number = parseInt(props.id.substring(props.id.length - 1));
+//#endregion
+
 //#region computed
 const creationDate = computed<string>(() => {
   const objectDate = DateTime.fromISO(props.data?.created_at);
@@ -97,15 +101,16 @@ function slide(element: HtmlItem): void {
   const type = dynamics.spring;
   const friction = 1000;
   const duration = 4000;
+  const delay = index * 100;
 
   // initialize element's css
   dynamics.css(element, init);
 
   // animate element
-  dynamics.animate(element, downappear, { type, friction, duration });
+  dynamics.animate(element, downappear, { type, friction, duration, delay });
 }
 function appear(element: HtmlItem): void {
-  const index: number = parseInt(props.id.substring(props.id.length - 1));
+  // const index: number = parseInt(props.id.substring(props.id.length - 1));
   const init = { opacity: 0, scale: 0 };
   const downappear = { opacity: 1, scale: 1 };
   const type = dynamics.spring;

@@ -23,9 +23,9 @@
         class="justify-center"
       >
         <v-col class="d-flex justify-centers" cols="11" md="7">
-          <AppGit
-            :id-wrapper="`projects-app-git-wrapper-${index}`"
-            :id="`projects-app-git-${index}`"
+          <AnimatedGit
+            :id-wrapper="`projects-git-wrapper-${index}`"
+            :id="`projects-git-${index}`"
             :data="item"
           />
         </v-col>
@@ -36,7 +36,7 @@
 
 <script setup lang="ts">
 import AnimatedTitle from "@/components/AnimatedTitle.vue";
-import AppGit from "@/components/AppGit.vue";
+import AnimatedGit from "@/components/AnimatedGit.vue";
 import { ref } from "vue";
 import { onMounted } from "vue";
 

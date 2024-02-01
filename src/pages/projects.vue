@@ -18,12 +18,16 @@
 
       <!-- projects row -->
       <v-row
-        v-for="item in data"
+        v-for="(item, index) in data"
         :key="(item as GitData).name"
         class="justify-center"
       >
         <v-col class="d-flex justify-centers" cols="11" md="7">
-          <AppGit :data="item" />
+          <AppGit
+            :id-wrapper="`projects-app-git-wrapper-${index}`"
+            :id="`projects-app-git-${index}`"
+            :data="item"
+          />
         </v-col>
       </v-row>
     </v-container>

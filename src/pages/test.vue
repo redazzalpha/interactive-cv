@@ -24,7 +24,7 @@ const far = 1000;
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-const renderer = new THREE.WebGLRenderer();
+const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
 const loader = new GLTFLoader();
 
 let mixer: THREE.AnimationMixer;
@@ -74,10 +74,19 @@ function animate() {
 
   renderer.render(scene, camera);
 }
+function onResize() {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.render(scene, camera);
+}
+
 //#endregion
 
 //#region hooks
 onMounted(() => {
+  addEventListener("resize", onResize, false);
+
   foo();
 });
 //#endregion

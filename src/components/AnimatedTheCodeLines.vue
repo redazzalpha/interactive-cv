@@ -282,7 +282,7 @@ function writeCode(sheet: HtmlItem, codeElements: NodeListOf<Element>) {
   const init = { scale: 0 };
   const appear = { scale: 1 };
   const type = dynamics.spring;
-  const friction = 420;
+  const friction = 1000;
 
   // initialize elements's css
   dynamics.css(sheet, init);

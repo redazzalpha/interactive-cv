@@ -82,7 +82,6 @@ function initGltfScene(gltf: GLTF): void {
 function animate(): void {
   frameId = requestAnimationFrame(animate);
   if (ready) {
-    // console.log("ready");
     mixer.update(clock.getDelta());
     animationAction.paused = false;
   }

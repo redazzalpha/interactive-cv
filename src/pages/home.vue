@@ -139,16 +139,24 @@ const colBindings: Binding = {
 //#region event handlers
 function onScroll(): void {
   if (scrollingDown && scrollDirection() == "down" && scrollY >= scrollOffset) {
-    spin(() => {
-      scrollingDown = false;
-      scrollingUp = true;
-    });
+    spin(
+      () => {
+        scrollingDown = false;
+      },
+      () => {
+        scrollingUp = true;
+      }
+    );
   }
   if (scrollingUp && scrollDirection() == "up" && scrollY < scrollOffset) {
-    spin(() => {
-      scrollingUp = false;
-      scrollingDown = true;
-    });
+    spin(
+      () => {
+        scrollingUp = false;
+      },
+      () => {
+        scrollingDown = true;
+      }
+    );
   }
 }
 //#endregion
@@ -185,12 +193,16 @@ function place(element: HtmlItem): void {
 }
 
 // treejs animations
-function spin(callback?: () => void | undefined): void {
-  if (callback) callback();
+function spin(
+  callfront?: () => void | undefined,
+  callback?: () => void | undefined
+): void {
+  if (callfront) callfront();
   cancelAnimationFrame(frameId);
   modelExposed.value?.animate();
   setTimeout(() => {
     modelExposed.value?.stopAnimate();
+    if (callback) callback();
   }, timeout);
 }
 function standFront(): void {

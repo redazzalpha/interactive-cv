@@ -121,7 +121,8 @@ const modelHeight = 600;
 const offset = 600;
 const scrollOffset = modelHeight - modelHeight / 2 - 200;
 const scrollLimit = modelHeight + offset;
-const timeout = 1500;
+const timeoutSpin = 1500;
+const timeout = 1000;
 let scrollingDown = false;
 let scrollingUp = false;
 let frameId = 0;
@@ -181,7 +182,7 @@ function place(element: HtmlItem): void {
   const init = { top: -600, left: 1000, opacity: 0 };
   const move = { top: -150, left: 0, opacity: 1 };
   const type = dynamics.linear;
-  const duration = 1000;
+  const duration = 500;
   const delay = 0;
   const friction = 1000;
 
@@ -198,28 +199,22 @@ function spin(
   callback?: () => void | undefined
 ): void {
   if (callfront) callfront();
-  cancelAnimationFrame(frameId);
-  modelExposed.value?.animate();
-  setTimeout(() => {
-    modelExposed.value?.stopAnimate();
-    if (callback) callback();
-  }, timeout);
-}
-function standFront(): void {
-  if (modelExposed.value!.model3D.scene.rotation.y < 6.386)
-    modelExposed.value!.model3D.scene.rotation.y += 0.1;
+  if (modelExposed.value && modelExposed.value.model3D.scene.rotation.y < 6.386)
+    modelExposed.value.model3D.scene.rotation.y += 0.1;
   else {
     cancelAnimationFrame(frameId);
     modelExposed.value?.animate();
     setTimeout(() => {
       modelExposed.value?.stopAnimate();
-      scrollingDown = true;
-    }, 1500);
+      if (callback) callback();
+    }, timeoutSpin);
   }
 }
 function circling(): void {
   frameId = requestAnimationFrame(circling);
-  standFront();
+  spin(undefined, () => {
+    scrollingDown = true;
+  });
   render();
 }
 function render(): void {
@@ -244,7 +239,7 @@ onMounted(() => {
 
   setTimeout(() => {
     moonwalk();
-  }, 1000);
+  }, timeout);
 });
 onBeforeUnmount(() => {
   cancelAnimationFrame(frameId);

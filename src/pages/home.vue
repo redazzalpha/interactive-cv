@@ -87,7 +87,7 @@ import AnimatedSkills from "@/components/AnimatedSkills.vue";
 import AnimatedAvatar from "@/components/AnimatedAvatar.vue";
 import Animated3DModel from "@/components/Animated3DModel.vue";
 import type { Model3DExposed } from "@/components/Animated3DModel.vue";
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, onMounted, onBeforeUnmount } from "vue";
 import { useAppStore } from "@/store/app";
 import vuetify from "@/plugins/vuetify";
 import ImgSpinner from "@/assets/spinner.png";
@@ -96,6 +96,7 @@ import ImgGlow from "@/assets/glow.png";
 import ImgSkills from "@/assets/skills.png";
 import { Object3D, Object3DEventMap } from "three";
 import * as dynamics from "dynamics.js";
+import {} from "vue";
 const store = useAppStore();
 
 //#region computed
@@ -117,11 +118,13 @@ const id = "computer-3D";
 const model3D = "/3D/laptop.glb";
 const title: string = "Concepteur développeur d'applications";
 const modelHeight = 600;
-const offset = 1000;
-const scrollOffset = 350;
+const offset = 600;
+const scrollOffset = modelHeight - modelHeight / 2 - 200;
 const scrollLimit = modelHeight + offset;
-let scrolling = true;
+let scrollingDown = false;
+let scrollingUp = false;
 let frameId = 0;
+let scrollBase = 0;
 //#endregion
 
 //#region bindings
@@ -134,15 +137,39 @@ const colBindings: Binding = {
 
 //#region event handlers
 function onScroll(): void {
-  if (scrolling && scrollY >= scrollOffset) {
-    moonwalk();
-    scrolling = false;
+  if (scrollingDown && scrollDirection() == "down" && scrollY >= scrollOffset) {
+    scrollingDown = false;
+    moonwalkBack();
   }
+  if (scrollingUp && scrollDirection() == "up" && scrollY < scrollOffset) {
+    scrollingUp = false;
+    // animate();
+    cancelAnimationFrame(frameId);
+    modelExposed.value?.animate();
+    setTimeout(() => {
+      modelExposed.value?.stopAnimate();
+      scrollingDown = true;
+    }, 1500);
+  }
+}
+//#endregion
+
+//#region functions
+function scrollDirection(): ScrollDir {
+  let current = scrollBase;
+  let dir: ScrollDir;
+
+  if (scrollY > current) {
+    dir = "down";
+  } else dir = "up";
+  scrollBase = scrollY;
+  return dir;
 }
 //#endregion
 
 //#region animate functions
 // low level animation
+// dynamics.js animations
 function place(element: HtmlItem): void {
   const init = { top: -600, left: 1000, opacity: 0 };
   const move = { top: -150, left: 0, opacity: 1 };
@@ -157,6 +184,8 @@ function place(element: HtmlItem): void {
   // animate element
   dynamics.animate(element, move, { type, friction, delay, duration });
 }
+
+// treejs animations
 function spin(): void {
   if (modelExposed.value!.model3D.scene.rotation.y < 6.386)
     modelExposed.value!.model3D.scene.rotation.y += 0.1;
@@ -165,11 +194,20 @@ function spin(): void {
     modelExposed.value?.animate();
     setTimeout(() => {
       modelExposed.value?.stopAnimate();
+      scrollingDown = true;
     }, 1500);
   }
 }
+function spinBack(): void {
+  cancelAnimationFrame(frameId);
+  modelExposed.value?.animate();
+  setTimeout(() => {
+    modelExposed.value?.stopAnimate();
+    scrollingUp = true;
+  }, 1500);
+}
 function render(): void {
-  modelExposed.value!.renderer.render(
+  modelExposed.value?.renderer.render(
     modelExposed.value?.scene as Object3D<Object3DEventMap>,
     modelExposed.value?.camera as THREE.Camera
   );
@@ -179,32 +217,48 @@ function animate(): void {
   spin();
   render();
 }
+function animateBack(): void {
+  frameId = requestAnimationFrame(animateBack);
+  spinBack();
+  render();
+}
 
 // top level animation
 function moonwalk(): void {
   const model: HtmlItem = document.getElementById(id);
-  modelExposed.value!.model3D.scene.rotation.y = 0;
+  cancelAnimationFrame(frameId);
   animate();
   place(model);
+}
+function moonwalkBack(): void {
+  cancelAnimationFrame(frameId);
+  animateBack();
 }
 //#endregion
 
 //#region hooks
 onMounted(() => {
+  addEventListener("scroll", onScroll);
+
   setTimeout(() => {
     moonwalk();
   }, 1000);
+});
+onBeforeUnmount(() => {
+  cancelAnimationFrame(frameId);
 });
 //#endregion
 </script>
 
 <style lang="scss" scoped>
-.codelines {
-  transform: scale(0);
-}
 .model {
   position: relative;
+  left: 0px;
+  opacity: 0;
   left: 1000px;
   opacity: 0;
+}
+.codelines {
+  transform: scale(0);
 }
 </style>

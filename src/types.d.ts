@@ -11,6 +11,7 @@ declare type State = {
   avatar: string;
   appbarTitle: Ref<string>;
 }
+declare type ScrollDir = "up" | "down";
 //#endregion
 
 //#region interfaces

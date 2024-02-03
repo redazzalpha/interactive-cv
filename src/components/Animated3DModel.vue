@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { onMounted, ref, onBeforeUnmount } from "vue";
 import * as THREE from "three";
 import { GLTF, GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
@@ -73,6 +73,7 @@ function initGltfScene(gltf: GLTF): void {
   gltf.scene.rotation.x = 0.5;
   camera.position.z = 5;
   ready = true;
+  animationAction.play();
 
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.render(scene, camera);
@@ -80,13 +81,15 @@ function initGltfScene(gltf: GLTF): void {
 function animate(): void {
   frameId = requestAnimationFrame(animate);
   if (ready) {
-    animationAction.play();
+    // console.log("ready");
     mixer.update(clock.getDelta());
+    animationAction.paused = false;
   }
   renderer.render(scene, camera);
 }
 function stopAnimate(): void {
   cancelAnimationFrame(frameId);
+  animationAction.paused = true;
 }
 //#endregion
 
@@ -109,6 +112,9 @@ onMounted(() => {
 
   const container = document.getElementById(props.id);
   container?.appendChild(load3DModel());
+});
+onBeforeUnmount(() => {
+  cancelAnimationFrame(frameId);
 });
 //#endregion
 </script>

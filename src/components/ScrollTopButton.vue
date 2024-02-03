@@ -15,8 +15,8 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 
-//#region interfaces
-interface Position {
+//#region export interfaces
+export interface Position {
   bottom: string;
   right: string;
 }

@@ -24,6 +24,17 @@
         </v-col>
       </v-row>
 
+      <v-row>
+        <v-col>
+          <Animated3DModel
+            ref="model"
+            :id="id"
+            :model3d="model3D"
+            :is-animate="animate"
+          />
+        </v-col>
+      </v-row>
+
       <!-- code lines row -->
       <v-row :style="titleMargin">
         <v-col>
@@ -65,7 +76,9 @@ import AnimatedTheCodeLines from "@/components/AnimatedTheCodeLines.vue";
 import AnimatedImageSpin from "@/components/AnimatedImageSpin.vue";
 import AnimatedSkills from "@/components/AnimatedSkills.vue";
 import AnimatedAvatar from "@/components/AnimatedAvatar.vue";
-import { computed } from "vue";
+import Animated3DModel from "@/components/Animated3DModel.vue";
+import type { Model3DExposed } from "@/components/Animated3DModel.vue";
+import { ref, computed } from "vue";
 import { useAppStore } from "@/store/app";
 import vuetify from "@/plugins/vuetify";
 import ImgSpinner from "@/assets/spinner.png";
@@ -83,7 +96,14 @@ const rowMargin = computed<string>(() => {
 });
 //#endregion
 
+//#region refs
+const model = ref<null | Model3DExposed>(null);
+const animate = ref<boolean>(true);
+//#endregion
+
 //#region variables
+const id = "test-3D-computer";
+const model3D = "/3D/laptop.glb";
 const title: string = "Concepteur développeur d'applications";
 //#endregion
 
@@ -93,5 +113,8 @@ const colBindings: Binding = {
   cols: "12",
   sm: "7",
 };
+//#endregion
+
+//#region hooks
 //#endregion
 </script>

@@ -7,16 +7,21 @@ import { onMounted } from "vue";
 import * as THREE from "three";
 import { GLTF, GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
+//#region export interfaces
+export interface Model3DExposed {
+  animate: () => void;
+  stopAnimate: () => void;
+}
+//#endregion
+
 //#region props
 interface Props {
   id: string;
   model3d: string;
-  width?: number;
-  height?: number;
+  isAnimate?: boolean;
 }
 const props = withDefaults(defineProps<Props>(), {
-  width: window.innerWidth,
-  height: window.innerHeight,
+  isAnimate: true,
 });
 //#endregion
 
@@ -35,6 +40,7 @@ const loader = new GLTFLoader();
 let mixer: THREE.AnimationMixer;
 let animationAction: THREE.AnimationAction;
 let ready = false;
+let frameId = 0;
 //#endregion
 
 //#region functions
@@ -64,16 +70,17 @@ function initGltfScene(gltf: GLTF): void {
 
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.render(scene, camera);
-
-  animate();
 }
-function animate() {
-  requestAnimationFrame(animate);
+function animate(): void {
+  frameId = requestAnimationFrame(animate);
   if (ready) {
     animationAction.play();
     mixer.update(clock.getDelta());
   }
   renderer.render(scene, camera);
+}
+function stopAnimate(): void {
+  cancelAnimationFrame(frameId);
 }
 //#endregion
 
@@ -84,6 +91,10 @@ function onResize() {
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.render(scene, camera);
 }
+//#endregion
+
+//#region define exposed
+defineExpose({ animate, stopAnimate });
 //#endregion
 
 //#region hooks

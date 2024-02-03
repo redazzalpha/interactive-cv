@@ -5,7 +5,6 @@ declare module "luxon";
 
 //#region types
 declare type HtmlItem = HTMLElement | null | Element;
-declare type Locations = "left" | "end" | "start" | "top" | "bottom" | "right" | undefined;
 declare type State = {
   drawer: boolean;
   links: Link[];

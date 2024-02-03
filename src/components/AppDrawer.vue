@@ -21,6 +21,17 @@
 <script setup lang="ts">
 import vuetify from "@/plugins/vuetify";
 
+//#region export interfaces
+export type Locations =
+  | "left"
+  | "end"
+  | "start"
+  | "top"
+  | "bottom"
+  | "right"
+  | undefined;
+//#endregion
+
 //#region props
 interface Props {
   location?: Locations;

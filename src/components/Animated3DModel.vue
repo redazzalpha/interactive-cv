@@ -3,12 +3,16 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import * as THREE from "three";
 import { GLTF, GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 //#region export interfaces
 export interface Model3DExposed {
+  model3D: GLTF;
+  camera: THREE.PerspectiveCamera;
+  renderer: THREE.WebGLRenderer;
+  scene: THREE.Scene;
   animate: () => void;
   stopAnimate: () => void;
 }
@@ -41,6 +45,7 @@ let mixer: THREE.AnimationMixer;
 let animationAction: THREE.AnimationAction;
 let ready = false;
 let frameId = 0;
+let model3D = ref<GLTF>();
 //#endregion
 
 //#region functions
@@ -61,6 +66,7 @@ function load3DModel(): HTMLCanvasElement {
   return renderer.domElement;
 }
 function initGltfScene(gltf: GLTF): void {
+  model3D.value = gltf;
   mixer = new THREE.AnimationMixer(gltf.scene);
   animationAction = mixer.clipAction(gltf.animations[0]);
   scene.add(gltf.scene);
@@ -94,7 +100,7 @@ function onResize() {
 //#endregion
 
 //#region define exposed
-defineExpose({ animate, stopAnimate });
+defineExpose({ animate, stopAnimate, model3D, scene, camera, renderer });
 //#endregion
 
 //#region hooks

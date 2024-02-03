@@ -24,13 +24,15 @@
         </v-col>
       </v-row>
 
+      <!-- 3D model computer -->
       <v-row>
-        <v-col>
+        <v-col :style="`height: ${modelHeight}px;`">
           <Animated3DModel
-            ref="model"
+            ref="modelExposed"
             :id="id"
+            class="model"
             :model3d="model3D"
-            :is-animate="animate"
+            :is-animate="isAnimate"
           />
         </v-col>
       </v-row>
@@ -58,12 +60,17 @@
             :image-spinner="ImgSpinner"
             :image-appear="ImgGiphy"
             :image-glow="ImgGlow"
+            :animate-scroll-limite="scrollLimit"
           />
         </v-col>
 
         <!-- skills -->
         <v-col v-bind="colBindings">
-          <AnimatedSkills id="home-skills" :image="ImgSkills" />
+          <AnimatedSkills
+            id="home-skills"
+            :image="ImgSkills"
+            :animate-scroll-limit="scrollLimit"
+          />
         </v-col>
       </v-row>
     </v-container>
@@ -78,13 +85,15 @@ import AnimatedSkills from "@/components/AnimatedSkills.vue";
 import AnimatedAvatar from "@/components/AnimatedAvatar.vue";
 import Animated3DModel from "@/components/Animated3DModel.vue";
 import type { Model3DExposed } from "@/components/Animated3DModel.vue";
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { useAppStore } from "@/store/app";
 import vuetify from "@/plugins/vuetify";
 import ImgSpinner from "@/assets/spinner.png";
 import ImgGiphy from "@/assets/giphy.gif";
 import ImgGlow from "@/assets/glow.png";
 import ImgSkills from "@/assets/skills.png";
+import { Object3D, Object3DEventMap } from "three";
+import * as dynamics from "dynamics.js";
 const store = useAppStore();
 
 //#region computed
@@ -97,14 +106,20 @@ const rowMargin = computed<string>(() => {
 //#endregion
 
 //#region refs
-const model = ref<null | Model3DExposed>(null);
-const animate = ref<boolean>(true);
+const modelExposed = ref<null | Model3DExposed>(null);
+const isAnimate = ref<boolean>(true);
 //#endregion
 
 //#region variables
-const id = "test-3D-computer";
+const id = "computer-3D";
 const model3D = "/3D/laptop.glb";
 const title: string = "Concepteur développeur d'applications";
+const modelHeight = 1000;
+const offset = 1000;
+const scrollOffset = 350;
+const scrollLimit = modelHeight + offset;
+let scrolling = true;
+let frameId = 0;
 //#endregion
 
 //#region bindings
@@ -115,6 +130,76 @@ const colBindings: Binding = {
 };
 //#endregion
 
+//#region event handlers
+function onScroll(): void {
+  if (scrolling && scrollY >= scrollOffset) {
+    moonwalk();
+    scrolling = false;
+  }
+}
+//#endregion
+
+//#region animate functions
+// low level animation
+function place(element: HtmlItem): void {
+  const init = { top: -150, left: 1000, opacity: 0 };
+  const move = { top: 0, left: 0, opacity: 1 };
+  const type = dynamics.spring;
+  const duration = 7000;
+  const delay = 0;
+  const friction = 1000;
+
+  // initialize element's css
+  dynamics.css(element, init);
+
+  // animate element
+  dynamics.animate(element, move, { type, friction, delay, duration });
+}
+function spin(): void {
+  if (modelExposed.value!.model3D.scene.rotation.y < 6.386)
+    modelExposed.value!.model3D.scene.rotation.y += 0.1;
+  else {
+    cancelAnimationFrame(frameId);
+    modelExposed.value?.animate();
+    setTimeout(() => {
+      modelExposed.value?.stopAnimate();
+    }, 1500);
+  }
+}
+function render(): void {
+  modelExposed.value!.renderer.render(
+    modelExposed.value?.scene as Object3D<Object3DEventMap>,
+    modelExposed.value?.camera as THREE.Camera
+  );
+}
+function animate(): void {
+  frameId = requestAnimationFrame(animate);
+  spin();
+  render();
+}
+
+// top level animation
+function moonwalk(): void {
+  const model: HtmlItem = document.getElementById(id);
+  modelExposed.value!.model3D.scene.rotation.y = 0;
+  animate();
+  place(model);
+}
+//#endregion
+
 //#region hooks
+onMounted(() => {
+  setTimeout(() => {
+    moonwalk();
+  }, 1000);
+});
 //#endregion
 </script>
+
+<style lang="scss" scoped>
+.model {
+  position: relative;
+  left: 1000px;
+  opacity: 0;
+}
+</style>

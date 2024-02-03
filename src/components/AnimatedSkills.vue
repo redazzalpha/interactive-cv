@@ -16,8 +16,12 @@ interface Props {
   id: string;
   disabled?: boolean;
   image: string;
+  animateScrollLimit?: number;
 }
-const props = withDefaults(defineProps<Props>(), { disabled: false });
+const props = withDefaults(defineProps<Props>(), {
+  disabled: false,
+  animateScrollLimit: 0,
+});
 //#endregion
 
 //#region variables
@@ -26,7 +30,7 @@ let scrolling: boolean = true;
 
 //#region event handlers
 function onScroll(): void {
-  if (scrolling && scrollY >= 720) {
+  if (scrolling && scrollY >= props.animateScrollLimit) {
     sideways();
     scrolling = false;
   }

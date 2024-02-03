@@ -41,8 +41,10 @@
       <v-row :style="titleMargin">
         <v-col>
           <AnimatedTheCodeLines
+            class="codelines"
             id-sheet="home-codelines-sheet"
             class-code="home-code-element"
+            :scroll-limit="modelHeight - 200"
           />
         </v-col>
       </v-row>
@@ -114,7 +116,7 @@ const isAnimate = ref<boolean>(true);
 const id = "computer-3D";
 const model3D = "/3D/laptop.glb";
 const title: string = "Concepteur développeur d'applications";
-const modelHeight = 1000;
+const modelHeight = 600;
 const offset = 1000;
 const scrollOffset = 350;
 const scrollLimit = modelHeight + offset;
@@ -142,8 +144,8 @@ function onScroll(): void {
 //#region animate functions
 // low level animation
 function place(element: HtmlItem): void {
-  const init = { top: -150, left: 1000, opacity: 0 };
-  const move = { top: 0, left: 0, opacity: 1 };
+  const init = { top: -600, left: 1000, opacity: 0 };
+  const move = { top: -150, left: 0, opacity: 1 };
   const type = dynamics.spring;
   const duration = 7000;
   const delay = 0;
@@ -197,6 +199,9 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+.codelines {
+  transform: scale(0);
+}
 .model {
   position: relative;
   left: 1000px;

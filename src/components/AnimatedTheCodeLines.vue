@@ -174,6 +174,7 @@ interface Props {
   idSheet: string;
   classCode: string;
   disabled?: boolean;
+  scrollLimit: number;
 }
 const props = withDefaults(defineProps<Props>(), { disabled: false });
 //#endregion
@@ -215,6 +216,8 @@ const activityH2_1 = "développeur";
 const activityH2_2 = "d'applications";
 const activityH3 = "Développeur";
 const activityH3_1 = "web";
+
+let scrolling = true;
 //#endregion
 
 //#region bindings
@@ -264,6 +267,15 @@ const ml15: Binding = {
 };
 //#endregion
 
+//#region event handlers
+function onScroll(): void {
+  if (scrolling && scrollY >= props.scrollLimit) {
+    handWrite();
+    scrolling = false;
+  }
+}
+//#endregion
+
 //#region animation functions
 // low leveal animations
 function writeCode(sheet: HtmlItem, codeElements: NodeListOf<Element>) {
@@ -271,7 +283,6 @@ function writeCode(sheet: HtmlItem, codeElements: NodeListOf<Element>) {
   const appear = { scale: 1 };
   const type = dynamics.spring;
   const friction = 420;
-  const delay = 1500;
 
   // initialize elements's css
   dynamics.css(sheet, init);
@@ -281,7 +292,6 @@ function writeCode(sheet: HtmlItem, codeElements: NodeListOf<Element>) {
   dynamics.animate(sheet, appear, {
     type,
     friction,
-    delay,
     complete: () => {
       const appear = { scale: 1 };
       const type = dynamics.spring;
@@ -318,7 +328,7 @@ function handWrite(): void {
 
 //#region hooks
 onMounted(() => {
-  handWrite();
+  addEventListener("scroll", onScroll);
 });
 //#endregion
 </script>

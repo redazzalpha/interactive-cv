@@ -72,8 +72,9 @@ function initGltfScene(gltf: GLTF): void {
   scene.add(gltf.scene);
   gltf.scene.rotation.x = 0.5;
   camera.position.z = 5;
-  ready = true;
   animationAction.play();
+  animationAction.paused = true;
+  ready = true;
 
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(window.devicePixelRatio);
@@ -82,6 +83,7 @@ function initGltfScene(gltf: GLTF): void {
 function animate(): void {
   frameId = requestAnimationFrame(animate);
   if (ready) {
+    console.log("ready");
     mixer.update(clock.getDelta());
     animationAction.paused = false;
   }

@@ -121,6 +121,7 @@ const modelHeight = 600;
 const offset = 600;
 const scrollOffset = modelHeight - modelHeight / 2 - 200;
 const scrollLimit = modelHeight + offset;
+const timeout = 1500;
 let scrollingDown = false;
 let scrollingUp = false;
 let frameId = 0;
@@ -138,18 +139,16 @@ const colBindings: Binding = {
 //#region event handlers
 function onScroll(): void {
   if (scrollingDown && scrollDirection() == "down" && scrollY >= scrollOffset) {
-    scrollingDown = false;
-    moonwalkBack();
+    spin(() => {
+      scrollingDown = false;
+      scrollingUp = true;
+    });
   }
   if (scrollingUp && scrollDirection() == "up" && scrollY < scrollOffset) {
-    scrollingUp = false;
-    // animate();
-    cancelAnimationFrame(frameId);
-    modelExposed.value?.animate();
-    setTimeout(() => {
-      modelExposed.value?.stopAnimate();
+    spin(() => {
+      scrollingUp = false;
       scrollingDown = true;
-    }, 1500);
+    });
   }
 }
 //#endregion
@@ -173,8 +172,8 @@ function scrollDirection(): ScrollDir {
 function place(element: HtmlItem): void {
   const init = { top: -600, left: 1000, opacity: 0 };
   const move = { top: -150, left: 0, opacity: 1 };
-  const type = dynamics.spring;
-  const duration = 7000;
+  const type = dynamics.linear;
+  const duration = 1000;
   const delay = 0;
   const friction = 1000;
 
@@ -186,7 +185,15 @@ function place(element: HtmlItem): void {
 }
 
 // treejs animations
-function spin(): void {
+function spin(callback?: () => void | undefined): void {
+  if (callback) callback();
+  cancelAnimationFrame(frameId);
+  modelExposed.value?.animate();
+  setTimeout(() => {
+    modelExposed.value?.stopAnimate();
+  }, timeout);
+}
+function standFront(): void {
   if (modelExposed.value!.model3D.scene.rotation.y < 6.386)
     modelExposed.value!.model3D.scene.rotation.y += 0.1;
   else {
@@ -198,13 +205,10 @@ function spin(): void {
     }, 1500);
   }
 }
-function spinBack(): void {
-  cancelAnimationFrame(frameId);
-  modelExposed.value?.animate();
-  setTimeout(() => {
-    modelExposed.value?.stopAnimate();
-    scrollingUp = true;
-  }, 1500);
+function circling(): void {
+  frameId = requestAnimationFrame(circling);
+  standFront();
+  render();
 }
 function render(): void {
   modelExposed.value?.renderer.render(
@@ -212,27 +216,13 @@ function render(): void {
     modelExposed.value?.camera as THREE.Camera
   );
 }
-function animate(): void {
-  frameId = requestAnimationFrame(animate);
-  spin();
-  render();
-}
-function animateBack(): void {
-  frameId = requestAnimationFrame(animateBack);
-  spinBack();
-  render();
-}
 
 // top level animation
 function moonwalk(): void {
   const model: HtmlItem = document.getElementById(id);
   cancelAnimationFrame(frameId);
-  animate();
+  circling();
   place(model);
-}
-function moonwalkBack(): void {
-  cancelAnimationFrame(frameId);
-  animateBack();
 }
 //#endregion
 

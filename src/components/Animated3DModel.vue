@@ -76,6 +76,7 @@ function initGltfScene(gltf: GLTF): void {
   animationAction.play();
 
   renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(window.devicePixelRatio);
   renderer.render(scene, camera);
 }
 function animate(): void {
@@ -98,6 +99,7 @@ function onResize() {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(window.devicePixelRatio);
   renderer.render(scene, camera);
 }
 //#endregion

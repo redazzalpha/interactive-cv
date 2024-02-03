@@ -5,13 +5,19 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 import * as THREE from "three";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { GLTF, GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 //#region props
 interface Props {
   id: string;
+  model3d: string;
+  width?: number;
+  height?: number;
 }
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+  width: window.innerWidth,
+  height: window.innerHeight,
+});
 //#endregion
 
 //#region variables
@@ -32,35 +38,34 @@ let ready = false;
 //#endregion
 
 //#region functions
-function foo(): HTMLCanvasElement {
-  const container = document.getElementById(props.id);
-
+function load3DModel(): HTMLCanvasElement {
   // load 3D model
   loader.load(
-    "/3D/laptop.glb",
-    (glb) => {
-      mixer = new THREE.AnimationMixer(glb.scene);
-      animationAction = mixer.clipAction(glb.animations[0]);
-      scene.add(glb.scene);
-      glb.scene.rotation.x = 0.5;
-      camera.position.z = 5;
-      ready = true;
-
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.render(scene, camera);
-      container?.appendChild(renderer.domElement);
-
-      animate();
+    // model path
+    props.model3d,
+    // onload
+    (gltf) => initGltfScene(gltf),
+    // onprogress
+    (/*xhr*/) => {
+      /**console.log((xhr.loaded / xhr.loaded) * 100 + "% loaded") */
     },
-    (xhr) => {
-      console.log((xhr.loaded / xhr.loaded) * 100 + "% loaded");
-    },
-    (error) => {
-      console.log(`An error happened: ${error}`);
-    }
+    // onerror
+    (error) => console.error(`An error happened: ${error}`)
   );
-
   return renderer.domElement;
+}
+function initGltfScene(gltf: GLTF): void {
+  mixer = new THREE.AnimationMixer(gltf.scene);
+  animationAction = mixer.clipAction(gltf.animations[0]);
+  scene.add(gltf.scene);
+  gltf.scene.rotation.x = 0.5;
+  camera.position.z = 5;
+  ready = true;
+
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.render(scene, camera);
+
+  animate();
 }
 function animate() {
   requestAnimationFrame(animate);
@@ -68,23 +73,25 @@ function animate() {
     animationAction.play();
     mixer.update(clock.getDelta());
   }
-
   renderer.render(scene, camera);
 }
+//#endregion
+
+//#region event handlers
 function onResize() {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.render(scene, camera);
 }
-
 //#endregion
 
 //#region hooks
 onMounted(() => {
   addEventListener("resize", onResize, false);
 
-  foo();
+  const container = document.getElementById(props.id);
+  container?.appendChild(load3DModel());
 });
 //#endregion
 </script>

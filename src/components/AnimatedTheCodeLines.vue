@@ -174,7 +174,7 @@ interface Props {
   idSheet: string;
   classCode: string;
   disabled?: boolean;
-  scrollLimit: number;
+  animateScrollLimit: number;
 }
 const props = withDefaults(defineProps<Props>(), { disabled: false });
 //#endregion
@@ -269,7 +269,7 @@ const ml15: Binding = {
 
 //#region event handlers
 function onScroll(): void {
-  if (scrolling && scrollY >= props.scrollLimit) {
+  if (scrolling && scrollY >= props.animateScrollLimit) {
     handWrite();
     scrolling = false;
   }

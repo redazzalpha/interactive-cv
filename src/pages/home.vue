@@ -44,7 +44,7 @@
             class="codelines"
             id-sheet="home-codelines-sheet"
             class-code="home-code-element"
-            :scroll-limit="modelHeight - 400"
+            :animate-scroll-limit="modelHeight - 400"
           />
         </v-col>
       </v-row>
@@ -119,7 +119,7 @@ const model3D = "/3D/laptop.glb";
 const title: string = "Concepteur développeur d'applications";
 const modelHeight = window.innerHeight;
 const offset = 600;
-const scrollOffset = modelHeight / 2 - offset;
+const scrollOffset = modelHeight / 2 - 300;
 const timeoutSpin = 1500;
 const timeout = 1000;
 let scrollingDown = false;

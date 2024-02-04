@@ -43,11 +43,11 @@ interface Props {
   imageSpinner: string;
   imageAppear: string;
   imageGlow: string;
-  animateScrollLimite: number;
+  animateScrollLimit: number;
 }
 const props = withDefaults(defineProps<Props>(), {
   disabled: false,
-  animateScrollLimite: 0,
+  animateScrollLimit: 0,
 });
 //#endregion
 
@@ -75,7 +75,7 @@ const imgBindings: Ref<Binding> = ref({
 
 //#region event handlers
 function onScroll(): void {
-  if (scrolling && scrollY >= props.animateScrollLimite) {
+  if (scrolling && scrollY >= props.animateScrollLimit) {
     imgSpin();
     scrolling = false;
   }

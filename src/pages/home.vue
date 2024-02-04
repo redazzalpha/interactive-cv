@@ -44,7 +44,7 @@
             class="codelines"
             id-sheet="home-codelines-sheet"
             class-code="home-code-element"
-            :scroll-limit="modelHeight - 200"
+            :scroll-limit="modelHeight - 400"
           />
         </v-col>
       </v-row>
@@ -62,7 +62,7 @@
             :image-spinner="ImgSpinner"
             :image-appear="ImgGiphy"
             :image-glow="ImgGlow"
-            :animate-scroll-limite="scrollLimit"
+            :animate-scroll-limit="modelHeight + 400"
           />
         </v-col>
 
@@ -71,7 +71,7 @@
           <AnimatedSkills
             id="home-skills"
             :image="ImgSkills"
-            :animate-scroll-limit="scrollLimit"
+            :animate-scroll-limit="modelHeight + 400"
           />
         </v-col>
       </v-row>
@@ -119,8 +119,7 @@ const model3D = "/3D/laptop.glb";
 const title: string = "Concepteur développeur d'applications";
 const modelHeight = window.innerHeight;
 const offset = 600;
-const scrollOffset = modelHeight - modelHeight / 2 - 300;
-const scrollLimit = modelHeight + offset;
+const scrollOffset = modelHeight / 2 - offset;
 const timeoutSpin = 1500;
 const timeout = 1000;
 let scrollingDown = false;

@@ -148,8 +148,11 @@ function onScroll(): void {
         scrollingUp = true;
       }
     );
-  }
-  if (scrollingUp && scrollDirection() == "up" && scrollY < scrollOffset) {
+  } else if (
+    scrollingUp &&
+    scrollDirection() == "up" &&
+    scrollY < scrollOffset
+  ) {
     spin(
       () => {
         scrollingUp = false;

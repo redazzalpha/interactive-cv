@@ -1,5 +1,8 @@
 <template>
-  <div :id="props.id"></div>
+  <div
+    :id="props.id"
+    style="position: relative; top: 30px; height: 615px"
+  ></div>
 </template>
 
 <script setup lang="ts">
@@ -71,6 +74,8 @@ function initGltfScene(gltf: GLTF): void {
   animationAction = mixer.clipAction(gltf.animations[0]);
   scene.add(gltf.scene);
   gltf.scene.rotation.x = 0.5;
+  camera.position.x = 0;
+  camera.position.y = -1;
   camera.position.z = 5;
   animationAction.play();
   animationAction.paused = true;
@@ -121,3 +126,9 @@ onBeforeUnmount(() => {
 });
 //#endregion
 </script>
+
+<style lang="scss" scoped>
+canvas {
+  border: solid blue 3px;
+}
+</style>

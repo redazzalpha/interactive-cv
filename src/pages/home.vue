@@ -26,7 +26,7 @@
 
       <!-- 3D model computer -->
       <v-row>
-        <v-col :style="`height: ${modelHeight}px;`">
+        <v-col>
           <Animated3DModel
             ref="modelExposed"
             :id="id"
@@ -117,9 +117,9 @@ const isAnimate = ref<boolean>(true);
 const id = "computer-3D";
 const model3D = "/3D/laptop.glb";
 const title: string = "Concepteur développeur d'applications";
-const modelHeight = 600;
+const modelHeight = window.innerHeight;
 const offset = 600;
-const scrollOffset = modelHeight - modelHeight / 2 - 200;
+const scrollOffset = modelHeight - modelHeight / 2 - 300;
 const scrollLimit = modelHeight + offset;
 const timeoutSpin = 1500;
 const timeout = 1000;
@@ -183,7 +183,7 @@ function scrollDirection(): ScrollDir {
 // dynamics.js animations
 function place(element: HtmlItem): void {
   const init = { top: -600, left: 1000, opacity: 0 };
-  const move = { top: -150, left: 0, opacity: 1 };
+  const move = { top: -15, left: 0, opacity: 1 };
   const type = dynamics.linear;
   const duration = 500;
   const delay = 0;
@@ -197,10 +197,10 @@ function place(element: HtmlItem): void {
 }
 
 // treejs animations
-function spin(
+async function spin(
   callfront?: () => void | undefined,
   callback?: () => void | undefined
-): void {
+): Promise<void> {
   if (callfront) callfront();
   if (modelExposed.value && modelExposed.value.model3D.scene.rotation.y < 6.386)
     modelExposed.value.model3D.scene.rotation.y += 0.1;

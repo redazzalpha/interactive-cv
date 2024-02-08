@@ -36,15 +36,20 @@
             </span>
           </div>
 
-          <v-btn
-            v-show="props.data?.homepage"
-            rounded
-            variant="tonal"
-            flat
-            style="text-transform: unset"
-            :href="props.data?.homepage"
-            >homepage</v-btn
+          <v-card-actions
+            v-if="props.data?.homepage"
+            class="d-flex justify-center justify-md-start"
           >
+            <v-btn
+              class="px-5"
+              rounded
+              variant="tonal"
+              flat
+              style="text-transform: unset"
+              :href="props.data?.homepage"
+              >homepage</v-btn
+            >
+          </v-card-actions>
         </v-card>
       </div>
     </template>

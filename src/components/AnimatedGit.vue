@@ -39,11 +39,11 @@
           <v-btn
             v-show="props.data?.homepage"
             rounded
-            variant="text"
+            variant="tonal"
             flat
             style="text-transform: unset"
             :href="props.data?.homepage"
-            >homepage: {{ props.data?.homepage }}</v-btn
+            >homepage</v-btn
           >
         </v-card>
       </div>

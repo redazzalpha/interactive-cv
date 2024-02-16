@@ -115,7 +115,7 @@ const isAnimate = ref<boolean>(true);
 
 //#region variables
 const id = "computer-3D";
-const model3D = "/3D/laptop.glb";
+const model3D = "/3D/laptop1.glb";
 const title: string = "Concepteur développeur d'applications";
 const modelHeight = window.innerHeight;
 const offset = 600;
@@ -137,31 +137,6 @@ const colBindings: Binding = {
 //#endregion
 
 //#region event handlers
-function onScroll(): void {
-  if (scrollingDown && scrollDirection() == "down" && scrollY >= scrollOffset) {
-    spin(
-      () => {
-        scrollingDown = false;
-      },
-      () => {
-        scrollingUp = true;
-      }
-    );
-  } else if (
-    scrollingUp &&
-    scrollDirection() == "up" &&
-    scrollY < scrollOffset
-  ) {
-    spin(
-      () => {
-        scrollingUp = false;
-      },
-      () => {
-        scrollingDown = true;
-      }
-    );
-  }
-}
 //#endregion
 
 //#region functions
@@ -180,69 +155,14 @@ function scrollDirection(): ScrollDir {
 //#region animate functions
 // low level animation
 // dynamics.js animations
-function place(element: HtmlItem): void {
-  const init = { top: -600, left: 1000, opacity: 0 };
-  const move = { top: -15, left: 0, opacity: 1 };
-  const type = dynamics.linear;
-  const duration = 500;
-  const delay = 0;
-  const friction = 1000;
-
-  // initialize element's css
-  dynamics.css(element, init);
-
-  // animate element
-  dynamics.animate(element, move, { type, friction, delay, duration });
-}
 
 // treejs animations
-async function spin(
-  callfront?: () => void | undefined,
-  callback?: () => void | undefined
-): Promise<void> {
-  if (callfront) callfront();
-  if (modelExposed.value && modelExposed.value.model3D.scene.rotation.y < 6.386)
-    modelExposed.value.model3D.scene.rotation.y += 0.1;
-  else {
-    cancelAnimationFrame(frameId);
-    modelExposed.value?.animate();
-    setTimeout(() => {
-      modelExposed.value?.stopAnimate();
-      if (callback) callback();
-    }, timeoutSpin);
-  }
-}
-function circling(): void {
-  frameId = requestAnimationFrame(circling);
-  spin(undefined, () => {
-    scrollingDown = true;
-  });
-  render();
-}
-function render(): void {
-  modelExposed.value?.renderer.render(
-    modelExposed.value?.scene as Object3D<Object3DEventMap>,
-    modelExposed.value?.camera as THREE.Camera
-  );
-}
 
 // top level animation
-function moonwalk(): void {
-  const model: HtmlItem = document.getElementById(id);
-  cancelAnimationFrame(frameId);
-  circling();
-  place(model);
-}
 //#endregion
 
 //#region hooks
-onMounted(() => {
-  addEventListener("scroll", onScroll);
-
-  setTimeout(() => {
-    moonwalk();
-  }, timeout);
-});
+onMounted(() => {});
 onBeforeUnmount(() => {
   cancelAnimationFrame(frameId);
 });
@@ -250,13 +170,6 @@ onBeforeUnmount(() => {
 </script>
 
 <style lang="scss" scoped>
-.model {
-  position: relative;
-  left: 0px;
-  opacity: 0;
-  left: 1000px;
-  opacity: 0;
-}
 .codelines {
   transform: scale(0);
 }

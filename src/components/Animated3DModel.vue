@@ -39,11 +39,16 @@ const near = 0.1;
 const far = 1000;
 
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
 const clock = new THREE.Clock();
 const loader = new GLTFLoader();
 
+let camera: THREE.PerspectiveCamera = new THREE.PerspectiveCamera(
+  fov,
+  aspect,
+  near,
+  far
+);
 let mixer: THREE.AnimationMixer;
 let animationAction: THREE.AnimationAction;
 let ready = false;
@@ -52,6 +57,17 @@ let model3D = ref<GLTF>();
 //#endregion
 
 //#region functions
+function setCamera() {
+  camera.position.z += 5;
+}
+function setAnimation(gltf: GLTF) {
+  mixer = new THREE.AnimationMixer(gltf.scene);
+  animationAction = mixer.clipAction(gltf.animations[0]);
+
+  animationAction.play();
+  animationAction.paused = true;
+  ready = true;
+}
 function load3DModel(): HTMLCanvasElement {
   // load 3D model
   loader.load(
@@ -68,22 +84,22 @@ function load3DModel(): HTMLCanvasElement {
   );
   return renderer.domElement;
 }
-function initGltfScene(gltf: GLTF): void {
-  model3D.value = gltf;
-  mixer = new THREE.AnimationMixer(gltf.scene);
-  animationAction = mixer.clipAction(gltf.animations[0]);
-  scene.add(gltf.scene);
-  gltf.scene.rotation.x = 0.5;
-  camera.position.x = 0;
-  camera.position.y = -1;
-  camera.position.z = 5;
-  animationAction.play();
-  animationAction.paused = true;
-  ready = true;
-
+function render(): void {
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.render(scene, camera);
+}
+function initGltfScene(gltf: GLTF): void {
+  model3D.value = gltf;
+  gltf.scene.rotateX(0.35);
+
+  setCamera();
+  setAnimation(gltf);
+
+  scene.add(gltf.scene);
+
+  render();
+  animate();
 }
 function animate(): void {
   frameId = requestAnimationFrame(animate);
@@ -92,7 +108,8 @@ function animate(): void {
     mixer.update(clock.getDelta());
     animationAction.paused = false;
   }
-  renderer.render(scene, camera);
+  render();
+  // renderer.render(scene, camera);
 }
 function stopAnimate(): void {
   cancelAnimationFrame(frameId);
@@ -104,9 +121,7 @@ function stopAnimate(): void {
 function onResize() {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.render(scene, camera);
+  render();
 }
 //#endregion
 

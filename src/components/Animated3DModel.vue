@@ -33,22 +33,12 @@ const props = withDefaults(defineProps<Props>(), {
 //#endregion
 
 //#region variables
-const fov = 75;
-const aspect = window.innerWidth / window.innerHeight;
-const near = 0.1;
-const far = 1000;
-
 const scene = new THREE.Scene();
 const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
 const clock = new THREE.Clock();
 const loader = new GLTFLoader();
 
-let camera: THREE.PerspectiveCamera = new THREE.PerspectiveCamera(
-  fov,
-  aspect,
-  near,
-  far
-);
+let camera: THREE.PerspectiveCamera;
 let mixer: THREE.AnimationMixer;
 let animationAction: THREE.AnimationAction;
 let ready = false;
@@ -57,8 +47,12 @@ let model3D = ref<GLTF>();
 //#endregion
 
 //#region functions
-function setCamera() {
-  camera.position.z += 5;
+function setCamera(gltf: GLTF) {
+  camera = gltf.cameras[0] as THREE.PerspectiveCamera;
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+
+  // camera.position.z += 5;
 }
 function setAnimation(gltf: GLTF) {
   mixer = new THREE.AnimationMixer(gltf.scene);
@@ -93,8 +87,8 @@ function initGltfScene(gltf: GLTF): void {
   model3D.value = gltf;
   gltf.scene.rotateX(0.35);
 
-  setCamera();
   setAnimation(gltf);
+  setCamera(gltf);
 
   scene.add(gltf.scene);
 
@@ -126,7 +120,7 @@ function onResize() {
 //#endregion
 
 //#region define exposed
-defineExpose({ animate, stopAnimate, model3D, scene, camera, renderer });
+defineExpose({ animate, stopAnimate, model3D, scene, renderer });
 //#endregion
 
 //#region hooks

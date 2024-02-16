@@ -115,7 +115,7 @@ const isAnimate = ref<boolean>(true);
 
 //#region variables
 const id = "computer-3D";
-const model3D = "/3D/laptop1.glb";
+const model3D = "/3D/laptop.glb";
 const title: string = "Concepteur développeur d'applications";
 const modelHeight = window.innerHeight;
 const offset = 600;

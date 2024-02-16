@@ -62,22 +62,6 @@ function setAnimation(gltf: GLTF) {
   animationAction.paused = true;
   ready = true;
 }
-function load3DModel(): HTMLCanvasElement {
-  // load 3D model
-  loader.load(
-    // model path
-    props.model3d,
-    // onload
-    (gltf) => initGltfScene(gltf),
-    // onprogress
-    (/*xhr*/) => {
-      /**console.log((xhr.loaded / xhr.loaded) * 100 + "% loaded") */
-    },
-    // onerror
-    (error) => console.error(`An error happened: ${error}`)
-  );
-  return renderer.domElement;
-}
 function render(): void {
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(window.devicePixelRatio);
@@ -94,6 +78,22 @@ function initGltfScene(gltf: GLTF): void {
 
   render();
   animate();
+}
+function load3DModel(): HTMLCanvasElement {
+  // load 3D model
+  loader.load(
+    // model path
+    props.model3d,
+    // onload
+    (gltf) => initGltfScene(gltf),
+    // onprogress
+    (/*xhr*/) => {
+      /**console.log((xhr.loaded / xhr.loaded) * 100 + "% loaded") */
+    },
+    // onerror
+    (error) => console.error(`An error happened: ${error}`)
+  );
+  return renderer.domElement;
 }
 function animate(): void {
   frameId = requestAnimationFrame(animate);

@@ -85,10 +85,10 @@ function render(): void {
 }
 function initGltfScene(gltf: GLTF): void {
   model3D.value = gltf;
-  gltf.scene.rotateX(0.35);
+  // gltf.scene.rotateX(0.35);
 
-  setAnimation(gltf);
   setCamera(gltf);
+  setAnimation(gltf);
 
   scene.add(gltf.scene);
 
@@ -102,8 +102,8 @@ function animate(): void {
     mixer.update(clock.getDelta());
     animationAction.paused = false;
   }
-  render();
-  // renderer.render(scene, camera);
+  // render();
+  renderer.render(scene, camera);
 }
 function stopAnimate(): void {
   cancelAnimationFrame(frameId);

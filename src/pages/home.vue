@@ -32,6 +32,7 @@
             :id="id"
             class="model"
             :model3d="model3D"
+            :animation-index="animationIndex"
             :is-animate="isAnimate"
           />
         </v-col>
@@ -87,15 +88,13 @@ import AnimatedSkills from "@/components/AnimatedSkills.vue";
 import AnimatedAvatar from "@/components/AnimatedAvatar.vue";
 import Animated3DModel from "@/components/Animated3DModel.vue";
 import type { Model3DExposed } from "@/components/Animated3DModel.vue";
-import { ref, computed, onMounted, onBeforeUnmount } from "vue";
+import { ref, computed } from "vue";
 import { useAppStore } from "@/store/app";
 import vuetify from "@/plugins/vuetify";
 import ImgSpinner from "@/assets/spinner.png";
 import ImgGiphy from "@/assets/giphy.gif";
 import ImgGlow from "@/assets/glow.png";
 import ImgSkills from "@/assets/skills.png";
-import { Object3D, Object3DEventMap } from "three";
-import * as dynamics from "dynamics.js";
 import {} from "vue";
 const store = useAppStore();
 
@@ -110,6 +109,7 @@ const rowMargin = computed<string>(() => {
 
 //#region refs
 const modelExposed = ref<null | Model3DExposed>(null);
+const animationIndex = ref<number>(1);
 const isAnimate = ref<boolean>(true);
 //#endregion
 
@@ -118,14 +118,6 @@ const id = "computer-3D";
 const model3D = "/3D/laptop.glb";
 const title: string = "Concepteur développeur d'applications";
 const modelHeight = window.innerHeight;
-const offset = 600;
-const scrollOffset = modelHeight / 2 - 300;
-const timeoutSpin = 1500;
-const timeout = 1000;
-let scrollingDown = false;
-let scrollingUp = false;
-let frameId = 0;
-let scrollBase = 0;
 //#endregion
 
 //#region bindings
@@ -134,38 +126,6 @@ const colBindings: Binding = {
   cols: "12",
   sm: "7",
 };
-//#endregion
-
-//#region event handlers
-//#endregion
-
-//#region functions
-function scrollDirection(): ScrollDir {
-  let current = scrollBase;
-  let dir: ScrollDir;
-
-  if (scrollY > current) {
-    dir = "down";
-  } else dir = "up";
-  scrollBase = scrollY;
-  return dir;
-}
-//#endregion
-
-//#region animate functions
-// low level animation
-// dynamics.js animations
-
-// treejs animations
-
-// top level animation
-//#endregion
-
-//#region hooks
-onMounted(() => {});
-onBeforeUnmount(() => {
-  cancelAnimationFrame(frameId);
-});
 //#endregion
 </script>
 

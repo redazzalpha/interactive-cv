@@ -41,6 +41,8 @@ const loader = new GLTFLoader();
 let camera: THREE.PerspectiveCamera;
 let mixer: THREE.AnimationMixer;
 let animationAction: THREE.AnimationAction;
+let animationAction1: THREE.AnimationAction;
+let animationAction2: THREE.AnimationAction;
 let ready = false;
 let frameId = 0;
 let model3D = ref<GLTF>();
@@ -57,8 +59,12 @@ function setCamera(gltf: GLTF) {
 function setAnimation(gltf: GLTF) {
   mixer = new THREE.AnimationMixer(gltf.scene);
   animationAction = mixer.clipAction(gltf.animations[0]);
+  // animationAction1 = mixer.clipAction(gltf.animations[1]);
+  // animationAction2 = mixer.clipAction(gltf.animations[2]);
 
   animationAction.play();
+  // animationAction1.play();
+  // animationAction2.play();
   animationAction.paused = true;
   ready = true;
 }
@@ -68,8 +74,9 @@ function render(): void {
   renderer.render(scene, camera);
 }
 function initGltfScene(gltf: GLTF): void {
+  console.log(gltf);
+
   model3D.value = gltf;
-  // gltf.scene.rotateX(0.35);
 
   setCamera(gltf);
   setAnimation(gltf);

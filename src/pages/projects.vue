@@ -22,7 +22,7 @@
         :key="(item as GitData).name"
         class="justify-center"
       >
-        <v-col class="d-flex justify-centers" cols="11" md="7">
+        <v-col class="d-flex justify-center" cols="11" md="7">
           <AnimatedGit
             :id-wrapper="`projects-git-wrapper-${index}`"
             :id="`projects-git-${index}`"

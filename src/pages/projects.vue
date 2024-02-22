@@ -81,15 +81,13 @@ const title: string = "Mes Projets";
 async function getData(): Promise<void> {
   const response: Response = await fetch(store.githubDataUrl);
   data.value = await response.json();
+  if (!response.ok) isError.value = true;
 }
 //#endregion
 
 //#region hooks
 onMounted(() => {
-  getData().catch((error) => {
-    isError.value = true;
-    console.log(`this is error here: ${error}`);
-  });
+  getData().catch(() => (isError.value = true));
 });
 //#endregion
 </script>

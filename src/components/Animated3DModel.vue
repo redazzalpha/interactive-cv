@@ -1,6 +1,8 @@
 <template>
+  <!-- main model container -->
   <div>
-    <v-card-actions v-show="isReady" style="position: absolute">
+    <!-- buttons actions -->
+    <v-card-actions v-show="isReady" :style="computedActionStyle">
       <v-btn
         variant="outlined"
         class="text-lowercase px-8"
@@ -16,6 +18,8 @@
         >open</v-btn
       >
     </v-card-actions>
+
+    <!-- 3D model container -->
     <div
       :id="props.id"
       style="position: relative; top: 30px; height: 615px"
@@ -24,9 +28,10 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, onBeforeUnmount } from "vue";
+import { onMounted, ref, onBeforeUnmount, computed } from "vue";
 import * as THREE from "three";
 import { GLTF, GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import vuetify from "@/plugins/vuetify";
 
 //#region export interfaces
 export interface Model3DExposed {
@@ -53,6 +58,38 @@ const props = withDefaults(defineProps<Props>(), {
 
 //#region refs
 const isReady = ref<boolean>(false);
+//#endregion
+
+//#regsion computed
+const computedActionStyle = computed<string>(() => {
+  let leftValue: number = 0;
+
+  switch (vuetify.display.name.value) {
+    case "xs":
+      leftValue = 0;
+      break;
+    case "sm":
+      leftValue = 0;
+      break;
+    case "md":
+      leftValue = 0;
+      break;
+    case "lg":
+      leftValue = 350;
+      break;
+    case "xl":
+      leftValue = 350;
+      break;
+    case "xxl":
+      leftValue = 0;
+      break;
+    default:
+      leftValue = 0;
+      break;
+  }
+
+  return `position: absolute; left: ${leftValue}px`;
+});
 //#endregion
 
 //#region variables

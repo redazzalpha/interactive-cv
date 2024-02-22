@@ -84,7 +84,7 @@
             <div class="cert_container">
               <a href="@/assets/certification_integrateur_developpeur_web.png">
                 <figure>
-                  <img class="medal" src="./assets/medal.png" width="100" />
+                  <img class="medal" src="@/assets/medal.png" width="100" />
                   <img
                     src="@/assets/certification_integrateur_developpeur_web_small.png"
                     alt="une certification intégrateur développeur web au format miniature"
@@ -96,7 +96,7 @@
                 href="@/assets/certification_concepteur_developpeur_application.png"
               >
                 <figure>
-                  <img class="medal" src="./assets/medal.png" width="100" />
+                  <img class="medal" src="@/assets/medal.png" width="100" />
                   <img
                     src="@/assets/certification_concepteur_developpeur_application_small.png"
                     alt="une certification concepteur développeur d'applications au format miniature"
@@ -106,7 +106,7 @@
               </a>
               <a href="@/assets/attestation_diplome_bep.png">
                 <figure>
-                  <img class="medal" src="./assets/medal.png" width="100" />
+                  <img class="medal" src="@/assets/medal.png" width="100" />
                   <img
                     src="@/assets/attestation_diplome_bep_small.png"
                     alt="une attestation de diplome bep electrotechnique au format miniature"
@@ -160,11 +160,11 @@
               Le développement est pour moi une passion et apporter ma pierre à
               l’édifice serait une grande satisfaction.
             </p>
-            <a href="./assets/lettre_de_recommandation_kertel.png">
+            <a href="@/assets/lettre_de_recommandation_kertel.png">
               <figure>
-                <img class="letter" src="./assets/letter.png" width="100" />
+                <img class="letter" src="@/assets/letter.png" width="100" />
                 <img
-                  src="./assets/lettre_de_recommandation_kertel_small.png"
+                  src="@/assets/lettre_de_recommandation_kertel_small.png"
                   alt="une lettre de recommandation au format miniature"
                   width="350"
                 />

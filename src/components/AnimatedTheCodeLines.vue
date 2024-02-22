@@ -1,5 +1,10 @@
 <template>
-  <v-sheet :id="props.idSheet" v-bind="sheetBindings" :style="computedSize">
+  <v-sheet
+    :id="props.idSheet"
+    v-bind="sheetBindings"
+    :style="computedFontSize"
+    :width="1000"
+  >
     <!-- line numbers container-->
     <div v-bind="lineNumbersContainerBindings">
       <!-- line numbers -->
@@ -180,7 +185,7 @@ const props = withDefaults(defineProps<Props>(), { disabled: false });
 //#endregion
 
 //#region computed
-const computedSize = computed<string>(() => {
+const computedFontSize = computed<string>(() => {
   if (vuetify.display.xs.value) return "font-size: 100%";
   if (vuetify.display.sm.value) return "font-size: 110%";
   if (vuetify.display.md.value) return "font-size: 130%";
@@ -225,8 +230,6 @@ const sheetBindings: Binding = {
   class: "pa-0 py-5 pa-sm-5 pa-md-8 d-flex flex-row rounded-lg",
   style: "line-height: 130%;",
   color: "primary",
-  "max-width": 1000,
-  "min-width": 300,
 };
 const lineNumbersContainerBindings: Binding = {
   class: "d-flex flex-row",

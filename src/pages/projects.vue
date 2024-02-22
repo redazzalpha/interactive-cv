@@ -1,10 +1,10 @@
 <template>
+  <!-- TODO write error message from github when server is unavailable  and try to redirect to github-->
   <article>
     <v-container grid-list-xs fluid class="pa-0">
-      <!-- title row -->
+      <!-- animated title -->
       <v-row>
         <v-col>
-          <!-- animated title -->
           <AnimatedTitle
             v-show="!$vuetify.display.mobile"
             id="title-projects"

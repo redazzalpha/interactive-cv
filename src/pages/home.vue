@@ -1,10 +1,9 @@
 <template>
   <article>
     <v-container grid-list-xs fluid class="pa-0">
-      <!-- title row -->
-      <v-row :style="rowMargin" style="margin: 0">
+      <!-- animated title -->
+      <v-row style="margin: 0">
         <v-col>
-          <!-- animated title -->
           <AnimatedTitle
             v-show="!$vuetify.display.mobile"
             id="title-home"
@@ -25,8 +24,8 @@
       </v-row>
 
       <!-- 3D model computer -->
-      <v-row>
-        <v-col>
+      <v-row class="justify-center">
+        <v-col class="d-flex justify-center" cols="11" md="7">
           <Animated3DModel
             ref="modelExposed"
             :id="id"
@@ -39,7 +38,7 @@
       </v-row>
 
       <!-- code lines row -->
-      <v-row :style="titleMargin">
+      <v-row :style="codelinesMargin">
         <v-col>
           <AnimatedTheCodeLines
             class="codelines"
@@ -99,7 +98,7 @@ import {} from "vue";
 const store = useAppStore();
 
 //#region computed
-const titleMargin = computed<string>(() => {
+const codelinesMargin = computed<string>(() => {
   return `margin: ${vuetify.display.mobile.value ? 40 : 100}px 0px`;
 });
 const rowMargin = computed<string>(() => {

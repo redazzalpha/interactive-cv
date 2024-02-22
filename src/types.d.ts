@@ -29,10 +29,15 @@ declare interface Binding {
   "max-width"?: string | number;
   "min-width"?: string | number;
   width?: string | number;
+  xs?: string;
   sm?: string;
   md?: string;
   lg?: string;
+  xl?: string;
+  xxl?: string;
   cols?: string;
+  "grid-list-xs"?: boolean;
+  fluid?: boolean;
 }
 declare interface GitData {
   name: string;

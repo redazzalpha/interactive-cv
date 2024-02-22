@@ -3,18 +3,18 @@
     <v-list>
       <!-- avatar  -->
       <AnimatedAvatar
-        id="avatar-nav"
         :image="store.avatar"
-        mail="willness@outlook.fr"
         :size="170"
+        id="avatar-nav"
+        mail="willness@outlook.fr"
       />
       <!-- nav links -->
       <v-list-item v-for="link in store.links" :key="link.label">
         <AppTag
-          class="d-flex justify-left"
           :icon="link.icon"
           :href="link.href"
           :on-click="router.push"
+          class="d-flex justify-left"
           >{{ link.label }}</AppTag
         >
       </v-list-item>

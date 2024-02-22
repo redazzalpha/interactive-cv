@@ -20,6 +20,7 @@ declare module 'vue' {
     AppCard: typeof import('./src/components/AppCard.vue')['default']
     AppCode: typeof import('./src/components/AppCode.vue')['default']
     AppDrawer: typeof import('./src/components/AppDrawer.vue')['default']
+    AppFooter: typeof import('./src/components/AppFooter.vue')['default']
     AppGit: typeof import('./src/components/AppGit.vue')['default']
     AppGlow: typeof import('./src/components/AppGlow.vue')['default']
     AppSkills: typeof import('./src/components/AppSkills.vue')['default']

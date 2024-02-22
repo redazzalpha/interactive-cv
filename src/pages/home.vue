@@ -1,77 +1,77 @@
 <template>
   <article>
-    <v-container grid-list-xs fluid class="pa-0">
+    <v-container v-bind="containerBindings">
       <!-- animated title -->
-      <v-row style="margin: 0">
+      <v-row>
         <v-col>
           <AnimatedTitle
             v-show="!$vuetify.display.mobile"
+            v-bind="animatedTitleBindings"
+            :text="title"
             id="title-home"
             tag="h1"
-            :text="title"
-            class="text-center text-lg-left"
           />
 
           <!-- avatar mobile -->
           <AnimatedAvatar
-            id="avatar-mobile"
+            v-show="$vuetify.display.mobile"
             :image="store.avatar"
             :size="170"
+            id="avatar-mobile"
             mail="willness@outlook.fr"
-            v-show="$vuetify.display.mobile"
           />
         </v-col>
       </v-row>
 
       <!-- 3D model computer -->
-      <v-row class="justify-center">
-        <v-col class="d-flex justify-center" cols="11" md="7">
+      <v-row v-bind="rowBindings">
+        <v-col v-bind="colBindings">
           <Animated3DModel
-            ref="modelExposed"
             :id="id"
-            class="model"
             :model3d="model3D"
             :animation-index="animationIndex"
             :is-animate="isAnimate"
+            ref="modelExposed"
+            class="model"
           />
         </v-col>
       </v-row>
 
       <!-- code lines row -->
-      <v-row :style="codelinesMargin">
+      <v-row :style="codelinesMarginStyle">
         <v-col>
           <AnimatedTheCodeLines
-            class="codelines"
-            id-sheet="home-codelines-sheet"
-            class-code="home-code-element"
             :animate-scroll-limit="modelHeight - 400"
+            id-sheet="home-codelines-sheet"
+            class="codelines"
+            class-code="home-code-element"
           />
         </v-col>
       </v-row>
 
       <!-- technical stack row -->
-      <v-row :style="rowMargin">
+      <v-row :style="rowMarginStyle">
         <!-- image spin -->
         <v-col class="d-flex justify-center align-center pa-lg-12">
           <AnimatedImageSpin
+            :image-spinner="ImgSpinner"
+            :image-appear="ImgGiphy"
+            :image-glow="ImgGlow"
+            :animate-scroll-limit="modelHeight + 400"
             id-sheet="home-image-spin-sheet"
             id-spinner="home-image-spin-spinner"
             id-image="home-image-spin-image"
             id-container="home-image-spin-container"
             id-glow="home-image-spin-glow"
-            :image-spinner="ImgSpinner"
-            :image-appear="ImgGiphy"
-            :image-glow="ImgGlow"
-            :animate-scroll-limit="modelHeight + 400"
           />
         </v-col>
 
         <!-- skills -->
-        <v-col v-bind="colBindings">
+        <v-col v-bind="colBindings" class="align-center" cols="12" sm="7">
           <AnimatedSkills
-            id="home-skills"
             :image="ImgSkills"
             :animate-scroll-limit="modelHeight + 400"
+            id="home-skills"
           />
         </v-col>
       </v-row>
@@ -94,14 +94,19 @@ import ImgSpinner from "@/assets/spinner.png";
 import ImgGiphy from "@/assets/giphy.gif";
 import ImgGlow from "@/assets/glow.png";
 import ImgSkills from "@/assets/skills.png";
-import {} from "vue";
+import {
+  containerBindings,
+  animatedTitleBindings,
+  rowBindings,
+  colBindings,
+} from "@/utils/objectBindings";
 const store = useAppStore();
 
 //#region computed
-const codelinesMargin = computed<string>(() => {
+const codelinesMarginStyle = computed<string>(() => {
   return `margin: ${vuetify.display.mobile.value ? 40 : 100}px 0px`;
 });
-const rowMargin = computed<string>(() => {
+const rowMarginStyle = computed<string>(() => {
   return `margin: ${vuetify.display.mobile.value ? 40 : 300}px 0px`;
 });
 //#endregion
@@ -117,14 +122,6 @@ const id = "computer-3D";
 const model3D = "/3D/laptop.glb";
 const title: string = "Concepteur développeur d'applications";
 const modelHeight = window.innerHeight;
-//#endregion
-
-//#region bindings
-const colBindings: Binding = {
-  class: "d-flex justify-center align-center",
-  cols: "12",
-  sm: "7",
-};
 //#endregion
 </script>
 

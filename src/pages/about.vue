@@ -1,6 +1,6 @@
 <template>
   <article>
-    <v-container grid-list-xs class="pa-0">
+    <v-container v-bind="containerBindings">
       <!-- animated title -->
       <v-row>
         <v-col>
@@ -9,15 +9,15 @@
             id="title-about"
             tag="h1"
             :text="title"
-            class="text-center text-lg-left"
+            v-bind="animatedTitleBindings"
             style="position: fixed"
           />
         </v-col>
       </v-row>
 
       <!-- section introduce -->
-      <v-row>
-        <v-col class="d-flex justify-center mt-10 mx-auto" cols="11" md="7">
+      <v-row v-bind="rowBindings">
+        <v-col v-bind="colBindings">
           <section>
             <h2>Introduction</h2>
             <p>
@@ -59,7 +59,7 @@
 
       <!-- section cv -->
       <v-row>
-        <v-col class="d-flex justify-center mt-10 mx-auto" cols="11" md="7">
+        <v-col v-bind="colBindings">
           <section id="cv">
             <h2>Mon CV</h2>
             <a href="@/assets/cv.png">
@@ -78,7 +78,7 @@
 
       <!-- section certification -->
       <v-row>
-        <v-col class="d-flex justify-center mt-10 mx-auto" cols="11" md="7">
+        <v-col v-bind="colBindings">
           <section id="cert">
             <h3>Diplômes et Certifications</h3>
             <div class="cert_container">
@@ -121,7 +121,7 @@
 
       <!-- section experience -->
       <v-row>
-        <v-col class="d-flex justify-center mt-10 mx-auto" cols="11" md="7">
+        <v-col v-bind="colBindings">
           <section id="exp">
             <h3>Mon expérience en bref</h3>
             <p style="margin-bottom: 50px">
@@ -180,7 +180,7 @@
 
       <!-- section vision -->
       <v-row>
-        <v-col class="d-flex justify-center mt-10 mx-auto" cols="11" md="7">
+        <v-col v-bind="colBindings">
           <section id="vision">
             <h3 class="vision_title">Vision de développeur et développement</h3>
             <div class="vision_content">
@@ -220,6 +220,12 @@
 
 <script setup lang="ts">
 import AnimatedTitle from "@/components/AnimatedTitle.vue";
+import {
+  containerBindings,
+  animatedTitleBindings,
+  rowBindings,
+  colBindings,
+} from "@/utils/objectBindings";
 
 //#region variables
 const title: string = "Qui suis-je ?";

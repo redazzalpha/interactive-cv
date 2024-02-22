@@ -1,5 +1,7 @@
 <template>
-  <v-footer class="d-flex justify-center" style="min-height: 300px">
-    <p>&copy; redazzalpha {{ new Date().getFullYear() }}</p>
-  </v-footer>
+  <AppFooter />
 </template>
+
+<script setup lang="ts">
+import AppFooter from "@/components/AppFooter.vue";
+</script>

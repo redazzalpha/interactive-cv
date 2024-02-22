@@ -1,5 +1,4 @@
 <template>
-  <!-- TODO write error message from github when server is unavailable  and try to redirect to github-->
   <article>
     <v-container v-bind="containerBindings">
       <!-- animated title -->

@@ -10,6 +10,8 @@ declare type State = {
   links: Link[];
   avatar: string;
   appbarTitle: Ref<string>;
+  githubHomepage: string,
+  githubDataUrl: string,
 }
 declare type ScrollDir = "up" | "down";
 //#endregion

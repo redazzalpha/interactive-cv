@@ -29,7 +29,7 @@
     <!-- links slot -->
     <template v-slot:links>
       <div class="text-center mt-5">
-        <v-btn icon variant="plain" href="https://github.com/redazzalpha">
+        <v-btn icon variant="plain" :href="store.githubDataUrl">
           <v-icon icon="mdi-github" size="50"></v-icon
         ></v-btn>
       </div>

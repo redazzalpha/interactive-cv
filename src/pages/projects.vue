@@ -17,19 +17,40 @@
       </v-row>
 
       <!-- projects row -->
-      <v-row
-        v-for="(item, index) in data"
-        :key="(item as GitData).name"
-        v-bind="rowBindings"
-      >
-        <v-col v-bind="colBindings">
-          <AnimatedGit
-            :id-wrapper="`projects-git-wrapper-${index}`"
-            :id="`projects-git-${index}`"
-            :data="item"
-          />
-        </v-col>
-      </v-row>
+      <template v-if="!isError">
+        <v-row
+          v-for="(item, index) in data"
+          :key="(item as GitData).name"
+          v-bind="rowBindings"
+        >
+          <v-col v-bind="colBindings">
+            <AnimatedGit
+              :id-wrapper="`projects-git-wrapper-${index}`"
+              :id="`projects-git-${index}`"
+              :data="item"
+            />
+          </v-col>
+        </v-row>
+      </template>
+      <template v-else>
+        <v-row style="height: 50vh">
+          <v-col class="d-flex flex-column justify-center align-center">
+            <p>Sorry an error has happend on github server.</p>
+            <p>
+              Try to visit github homepage
+              <v-btn
+                :href="store.githubHomepage"
+                variant="plain"
+                color="blue"
+                icon="mdi-github"
+                size="large"
+                :ripple="false"
+                style="font-size: 30px"
+              ></v-btn>
+            </p>
+          </v-col>
+        </v-row>
+      </template>
     </v-container>
   </article>
 </template>
@@ -39,33 +60,37 @@ import AnimatedTitle from "@/components/AnimatedTitle.vue";
 import AnimatedGit from "@/components/AnimatedGit.vue";
 import { ref } from "vue";
 import { onMounted } from "vue";
+import { useAppStore } from "../store/app";
 import {
   containerBindings,
   animatedTitleBindings,
   rowBindings,
   colBindings,
 } from "@/utils/objectBindings";
+const store = useAppStore();
 
 //#region refs
 const data = ref<GitData[] | undefined>();
+const isError = ref<boolean>(false);
 //#endregion
 
 //#region variables
 const title: string = "Mes Projets";
-const dataUrl: string =
-  "https://api.github.com/users/redazzalpha/repos?sort=updated";
 //#endregion
 
 //#region functions
 async function getData(): Promise<void> {
-  const response: Response = await fetch(dataUrl);
+  const response: Response = await fetch(store.githubDataUrl);
   data.value = await response.json();
 }
 //#endregion
 
 //#region hooks
 onMounted(() => {
-  getData();
+  getData().catch((error) => {
+    isError.value = true;
+    console.log(`this is error here: ${error}`);
+  });
 });
 //#endregion
 </script>

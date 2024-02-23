@@ -1,6 +1,8 @@
 // Utilities
 import { defineStore } from 'pinia';
+
 import AvatarImg from "@/assets/wolf.png";
+import * as Assets from "@/utils/assetImports";
 import { ref } from 'vue';
 
 export const useAppStore = defineStore('app', {
@@ -16,9 +18,15 @@ export const useAppStore = defineStore('app', {
     ],
     githubHomepage: "https://github.com/redazzalpha",
     githubDataUrl: "https://api.github.com/users/redazzalpha/repos?sort=updated",
+    assets: [
+      {label: "cv", image: Assets.ImageCv, imageSmall: Assets.ImageSmallCv, icon: Assets.IconCv, caption: "Cv de Nessoumou Wilfried", alt: "", width: 100  },
+      {label: "webdev", image: Assets.ImageWebDev, imageSmall: Assets.ImageSmallWebDev, icon: Assets.IconWebDev, caption: "Cert. WebDev", alt: "", width: 100  },
+      {label: "cda", image: Assets.ImageCDA, imageSmall: Assets.ImageSmallCDA, icon: Assets.IconCDA, caption: "Cert. CDA", alt: "", width: 100  },
+      {label: "bep", image: Assets.ImageBEP, imageSmall: Assets.ImageSmallBep, icon: Assets.IconBEP, caption: "Cert. Bep", alt: "", width: 100  },
+      {label: "letter", image: Assets.ImageLetter, imageSmall: Assets.ImageSmallLetter, icon: Assets.IconLetter, caption: "Lettre de recommandation", alt: "", width: 100  },
+    ],
   }),
   getters: {
-
   },
   actions: {
     setDrawer(value: boolean): void {

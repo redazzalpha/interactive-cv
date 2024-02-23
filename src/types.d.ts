@@ -12,6 +12,7 @@ declare type State = {
   appbarTitle: Ref<string>;
   githubHomepage: string,
   githubDataUrl: string,
+  assets: Asset[],
 }
 declare type ScrollDir = "up" | "down";
 //#endregion
@@ -66,6 +67,15 @@ declare interface LocalStorage {
   key: (index: number) => string | null;
   removeItem: (key: string) => void;
   setItem: (key: string, value: string) => void;
+}
+declare interface Asset {
+  label: string;
+  image: string;
+  imageSmall: string;
+  icon: string;
+  caption: string;
+  alt?: string;
+  width?: number;
 }
 //#endregion
 

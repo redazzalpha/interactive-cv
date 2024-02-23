@@ -74,7 +74,7 @@ const isError = ref<boolean>(false);
 //#endregion
 
 //#region variables
-const title: string = "Mes Projets";
+const title: string = "Quelques projets";
 //#endregion
 
 //#region functions

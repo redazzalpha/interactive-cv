@@ -24,3 +24,6 @@ export const sectionBindings: Binding = {
   class: "text-left text-h6 py-10 d-flex flex-column justify-center",
   style: "width: 100%"
 }
+export const bodyFontBinding: Binding = {
+  class: "text-subtitle-1",
+}

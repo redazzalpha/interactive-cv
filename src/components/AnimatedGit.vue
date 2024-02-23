@@ -152,7 +152,7 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.app-git {
+/* .app-git {
   opacity: 0;
-}
+} */
 </style>

@@ -26,7 +26,6 @@ let isScrolling: boolean = true;
 
 //#region event handlers
 function onScroll(): void {
-  console.log(scrollY);
   if (isScrolling && scrollY >= props.scrollLimit) {
     bounce();
     isScrolling = false;

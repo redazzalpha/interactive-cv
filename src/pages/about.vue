@@ -82,12 +82,12 @@
         <!-- section certification -->
         <v-row v-bind="rowBindings">
           <v-col v-bind="colBindings">
-            <AnimatedBlock id="about-cert" :scroll-limit="scrollLimit + 900">
+            <AnimatedBlock id="about-cert" :scroll-limit="scrollLimit + 600">
               <template v-slot:content>
                 <section v-bind="sectionBindings">
                   <h2 v-bind="subtitleBindings">Diplômes et Certifications</h2>
                   <div
-                    class="cert_container d-flex flex-column flex-lg-row jusitfy-center align-center"
+                    class="cert_container d-flex flex-column flex-xl-row jusitfy-center align-center"
                   >
                     <template
                       v-for="(asset, index) in store.assets"
@@ -108,7 +108,7 @@
         <!-- section vision -->
         <v-row v-bind="rowBindings">
           <v-col v-bind="colBindings">
-            <AnimatedBlock id="about-vision" :scroll-limit="scrollLimit + 1500">
+            <AnimatedBlock id="about-vision" :scroll-limit="scrollLimit + 1000">
               <template v-slot:content>
                 <section v-bind="sectionBindings">
                   <h2 v-bind="subtitleBindings" class="vision_title">
@@ -182,16 +182,16 @@ const scrollLimit = computed<number>(() => {
   console.log(vuetify.display.name.value);
   switch (vuetify.display.name.value) {
     case "xs":
-      limit = 100;
+      limit = 700;
       break;
     case "sm":
-      limit = 100;
+      limit = 380;
       break;
     case "md":
-      limit = 100;
+      limit = 200;
       break;
     case "lg":
-      limit = 480;
+      limit = 250;
       break;
     case "xl":
       limit = 100;

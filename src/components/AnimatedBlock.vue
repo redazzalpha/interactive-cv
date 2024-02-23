@@ -1,5 +1,5 @@
 <template>
-  <v-sheet :id="props.id" style="transform: scale(0)">
+  <v-sheet :id="props.id" class="animated-block-sheet">
     <slot name="content"></slot>
   </v-sheet>
 </template>
@@ -74,3 +74,9 @@ onMounted(() => {
 });
 //#endregion
 </script>
+
+<style lang="scss" scoped>
+.animated-block-sheet {
+  transform: scale(0);
+}
+</style>

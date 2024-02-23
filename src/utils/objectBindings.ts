@@ -12,7 +12,6 @@ export const colBindings: Binding = {
   class: "d-flex justify-center",
   cols: "11",
   md: "7",
-
 }
 export const animatedTitleBindings: Binding = {
   class: "text-center text-lg-left",

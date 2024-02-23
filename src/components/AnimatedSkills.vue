@@ -3,7 +3,7 @@
     :id="props.id"
     :src="props.image"
     max-width="700"
-    style="opacity: 0"
+    class="animated-skills-img"
   ></v-img>
 </template>
 
@@ -68,3 +68,9 @@ onMounted(() => {
 });
 //#endregion
 </script>
+
+<style lang="scss" scoped>
+.animated-skills-img {
+  opacity: 0;
+}
+</style>

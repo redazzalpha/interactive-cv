@@ -179,7 +179,6 @@ const store = useAppStore();
 
 const scrollLimit = computed<number>(() => {
   let limit = 0;
-  console.log(vuetify.display.name.value);
   switch (vuetify.display.name.value) {
     case "xs":
       limit = 700;

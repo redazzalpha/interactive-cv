@@ -66,7 +66,7 @@
       <!-- section cv -->
       <v-row v-bind="rowBindings">
         <v-col v-bind="colBindings">
-          <AnimatedBlock id="about-cv" :scroll-limit="100">
+          <AnimatedBlock id="about-cv" :scroll-limit="scrollLimit">
             <template v-slot:content>
               <section v-bind="sectionBindings">
                 <h2 v-bind="subtitleBindings">Mon CV</h2>
@@ -80,7 +80,7 @@
       <!-- section certification -->
       <v-row v-bind="rowBindings">
         <v-col v-bind="colBindings">
-          <AnimatedBlock id="about-cert" :scroll-limit="800">
+          <AnimatedBlock id="about-cert" :scroll-limit="scrollLimit + 900">
             <template v-slot:content>
               <section v-bind="sectionBindings">
                 <h2 v-bind="subtitleBindings">Diplômes et Certifications</h2>
@@ -106,7 +106,7 @@
       <!-- section vision -->
       <v-row v-bind="rowBindings">
         <v-col v-bind="colBindings">
-          <AnimatedBlock id="about-vision" :scroll-limit="1500">
+          <AnimatedBlock id="about-vision" :scroll-limit="scrollLimit + 1500">
             <template v-slot:content>
               <section v-bind="sectionBindings">
                 <h2 v-bind="subtitleBindings" class="vision_title">
@@ -168,8 +168,38 @@ import {
   sectionBindings,
 } from "@/utils/objectBindings";
 import { useAppStore } from "@/store/app";
+import { computed } from "vue";
+import vuetify from "@/plugins/vuetify";
 const store = useAppStore();
 
+const scrollLimit = computed<number>(() => {
+  let limit = 0;
+  console.log(vuetify.display.name.value);
+  switch (vuetify.display.name.value) {
+    case "xs":
+      limit = 100;
+      break;
+    case "sm":
+      limit = 100;
+      break;
+    case "md":
+      limit = 100;
+      break;
+    case "lg":
+      limit = 480;
+      break;
+    case "xl":
+      limit = 100;
+      break;
+    case "xxl":
+      limit = 100;
+      break;
+    default:
+      limit = 0;
+      break;
+  }
+  return limit;
+});
 //#region variables
 const title: string = "Qui suis-je ?";
 //#endregion

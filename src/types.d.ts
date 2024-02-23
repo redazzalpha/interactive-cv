@@ -29,8 +29,8 @@ declare interface Binding {
   class?: string;
   style?: string;
   color?: string;
-  "max-width"?: string | number;
-  "min-width"?: string | number;
+  maxWidth?: string | number;
+  minWidth?: string | number;
   width?: string | number;
   xs?: string;
   sm?: string;
@@ -39,8 +39,10 @@ declare interface Binding {
   xl?: string;
   xxl?: string;
   cols?: string;
-  "grid-list-xs"?: boolean;
+  gridListXs?: boolean;
   fluid?: boolean;
+  fontFamily?: string;
+  fontSize?: string;
 }
 declare interface GitData {
   name: string;

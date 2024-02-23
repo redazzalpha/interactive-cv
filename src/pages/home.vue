@@ -130,3 +130,12 @@ const modelHeight = window.innerHeight;
   transform: scale(0);
 }
 </style>
+
+<style lang="scss" scoped>
+@import url("https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap");
+
+.codelines {
+  font-family: "Kode Mono", monospace;
+  font-weight: 400;
+}
+</style>

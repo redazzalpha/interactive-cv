@@ -181,13 +181,9 @@ function render(): void {
 }
 function animate(): void {
   frameId = requestAnimationFrame(animate);
-  if (animationAction.isRunning()) {
-    // mixer.update(clock.getDelta());
-    // renderer.render(scene, camera);
-  } else {
+  if (!animationAction.isRunning()) {
     isReady.value = true;
     isOpen = true;
-    // cancelAnimationFrame(frameId);
   }
 
   mixer.update(clock.getDelta());

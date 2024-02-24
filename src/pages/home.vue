@@ -41,7 +41,7 @@
       <v-row :style="codelinesMarginStyle">
         <v-col>
           <AnimatedTheCodeLines
-            :animate-scroll-limit="modelHeight - 400"
+            :animate-scroll-limit="scrollLimit"
             id-sheet="home-codelines-sheet"
             class="codelines"
             class-code="home-code-element"
@@ -57,7 +57,7 @@
             :image-spinner="ImgSpinner"
             :image-appear="ImgGiphy"
             :image-glow="ImgGlow"
-            :animate-scroll-limit="modelHeight + 400"
+            :animate-scroll-limit="scrollLimit + 480"
             id-sheet="home-image-spin-sheet"
             id-spinner="home-image-spin-spinner"
             id-image="home-image-spin-image"
@@ -70,7 +70,7 @@
         <v-col v-bind="colBindings" class="align-center" cols="12" sm="7">
           <AnimatedSkills
             :image="ImgSkills"
-            :animate-scroll-limit="modelHeight + 400"
+            :animate-scroll-limit="scrollLimit + 480"
             id="home-skills"
           />
         </v-col>
@@ -79,6 +79,7 @@
   </article>
 </template>
 
+<!-- TODO try to fix blank 3D model canvas on reload page by hidding this with opacity -->
 <script setup lang="ts">
 import AnimatedTitle from "@/components/AnimatedTitle.vue";
 import AnimatedTheCodeLines from "@/components/AnimatedTheCodeLines.vue";
@@ -109,7 +110,27 @@ const codelinesMarginStyle = computed<string>(() => {
 const rowMarginStyle = computed<string>(() => {
   return `margin: ${vuetify.display.mobile.value ? 40 : 300}px 0px`;
 });
+const scrollLimit = computed<number>(() => {
+  switch (vuetify.display.name.value) {
+    case "xs":
+      return 720;
+    case "sm":
+      return 720;
+    case "md":
+      return 720;
+    case "lg":
+      return 600;
+    case "xl":
+      return 480;
+    case "xxl":
+      return 600;
+    default:
+      return 500;
+  }
+});
 //#endregion
+
+addEventListener("scroll", () => console.log(scrollY));
 
 //#region refs
 const modelExposed = ref<null | Model3DExposed>(null);

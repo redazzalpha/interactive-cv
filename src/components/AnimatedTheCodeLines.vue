@@ -3,7 +3,8 @@
     :id="props.idSheet"
     v-bind="sheetBindings"
     :style="computedFontSize"
-    :width="1000"
+    :max-width="900"
+    :min-width="300"
   >
     <!-- line numbers container-->
     <div v-bind="lineNumbersContainerBindings">
@@ -168,7 +169,6 @@
     </div>
   </v-sheet>
 </template>
-
 <script setup lang="ts">
 import { computed, onMounted } from "vue";
 import * as dynamics from "dynamics.js";
@@ -186,12 +186,22 @@ const props = withDefaults(defineProps<Props>(), { disabled: false });
 
 //#region computed
 const computedFontSize = computed<string>(() => {
-  if (vuetify.display.xs.value) return "font-size: 100%";
-  if (vuetify.display.sm.value) return "font-size: 110%";
-  if (vuetify.display.md.value) return "font-size: 130%";
-  if (vuetify.display.lg.value) return "font-size: 130%";
-  if (vuetify.display.xl.value) return "font-size: 130%";
-  return "font-size: 90%";
+  switch (vuetify.display.name.value) {
+    case "xs":
+      return "font-size: 90%";
+    case "sm":
+      return "font-size: 100%";
+    case "md":
+      return "font-size: 100%";
+    case "lg":
+      return "font-size: 100%";
+    case "xl":
+      return "font-size: 100%";
+    case "xxl":
+      return "font-size: 100%";
+    default:
+      return "font-size: 100%";
+  }
 });
 //#endregion
 

@@ -112,7 +112,7 @@ const rowMarginStyle = computed<string>(() => {
 const scrollLimit = computed<number>(() => {
   switch (vuetify.display.name.value) {
     case "xs":
-      return 720;
+      return 700;
     case "sm":
       return 720;
     case "md":

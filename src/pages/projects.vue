@@ -1,5 +1,18 @@
 <template>
-  <article>
+  <article style="min-height: 1000px">
+    <div class="div" ref="div">
+      <Animated3DModel
+        :id="id"
+        :model3d="model3D"
+        :animation-index="animationIndex"
+        :is-animate="isAnimate"
+        :show-action="false"
+        ref="modelExposed"
+        class="model"
+        style="position: fixed"
+      />
+    </div>
+
     <v-container v-bind="containerBindings">
       <!-- animated title -->
       <v-row>
@@ -57,6 +70,7 @@
 <script setup lang="ts">
 import AnimatedTitle from "@/components/AnimatedTitle.vue";
 import AnimatedGit from "@/components/AnimatedGit.vue";
+import Animated3DModel from "@/components/Animated3DModel.vue";
 import { ref } from "vue";
 import { onMounted } from "vue";
 import { useAppStore } from "../store/app";
@@ -71,10 +85,16 @@ const store = useAppStore();
 //#region refs
 const data = ref<GitData[] | undefined>();
 const isError = ref<boolean>(false);
+const animationIndex = ref<number>(1);
+const isAnimate = ref<boolean>(true);
+const div = ref(null);
 //#endregion
 
 //#region variables
 const title: string = "Quelques projets";
+const id = "moon-3D";
+const model3D = "/3D/moon.glb";
+
 //#endregion
 
 //#region functions
@@ -87,7 +107,17 @@ async function getData(): Promise<void> {
 
 //#region hooks
 onMounted(() => {
+  setTimeout(() => {
+    if (div.value) (div.value as HTMLElement).style.opacity = "1";
+  }, 1500);
   getData().catch(() => (isError.value = true));
 });
 //#endregion
 </script>
+
+<style lang="scss" scoped>
+.div {
+  opacity: 0;
+  transition: opacity 1s ease-in;
+}
+</style>

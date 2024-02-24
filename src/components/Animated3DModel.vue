@@ -2,7 +2,7 @@
   <!-- main model container -->
   <div>
     <!-- buttons actions -->
-    <v-card-actions v-show="isReady" :style="computedActionStyle">
+    <v-card-actions v-show="showAction && isReady" :style="computedActionStyle">
       <v-btn
         variant="outlined"
         class="text-lowercase px-8"
@@ -50,9 +50,11 @@ interface Props {
   model3d: string;
   animationIndex: number;
   isAnimate?: boolean;
+  showAction?: boolean;
 }
 const props = withDefaults(defineProps<Props>(), {
   isAnimate: true,
+  showAction: true,
 });
 //#endregion
 

@@ -60,7 +60,7 @@ const props = withDefaults(defineProps<Props>(), {
 const isReady = ref<boolean>(false);
 //#endregion
 
-//#regsion computed
+//#region computed
 const computedActionStyle = computed<string>(() => {
   let leftValue: number = 0;
 

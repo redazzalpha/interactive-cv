@@ -79,7 +79,6 @@
   </article>
 </template>
 
-<!-- TODO try to fix blank 3D model canvas on reload page by hidding this with opacity -->
 <script setup lang="ts">
 import AnimatedTitle from "@/components/AnimatedTitle.vue";
 import AnimatedTheCodeLines from "@/components/AnimatedTheCodeLines.vue";
@@ -142,7 +141,6 @@ const isAnimate = ref<boolean>(true);
 const id = "computer-3D";
 const model3D = "/3D/laptop.glb";
 const title: string = "Concepteur développeur d'applications";
-const modelHeight = window.innerHeight;
 //#endregion
 </script>
 

@@ -29,7 +29,6 @@
           <Animated3DModel
             :id="id"
             :model3d="model3D"
-            :animation-index="animationIndex"
             :is-animate="isAnimate"
             ref="modelExposed"
             class="model"
@@ -86,7 +85,6 @@ import AnimatedImageSpin from "@/components/AnimatedImageSpin.vue";
 import AnimatedSkills from "@/components/AnimatedSkills.vue";
 import AnimatedAvatar from "@/components/AnimatedAvatar.vue";
 import Animated3DModel from "@/components/Animated3DModel.vue";
-import type { Model3DExposed } from "@/components/Animated3DModel.vue";
 import { ref, computed } from "vue";
 import { useAppStore } from "@/store/app";
 import vuetify from "@/plugins/vuetify";
@@ -132,8 +130,6 @@ const scrollLimit = computed<number>(() => {
 addEventListener("scroll", () => console.log(scrollY));
 
 //#region refs
-const modelExposed = ref<null | Model3DExposed>(null);
-const animationIndex = ref<number>(1);
 const isAnimate = ref<boolean>(true);
 //#endregion
 

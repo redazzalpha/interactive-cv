@@ -4,11 +4,8 @@
       <Animated3DModel
         :id="id"
         :model3d="model3D"
-        :animation-index="animationIndex"
         :is-animate="isAnimate"
         :show-action="false"
-        ref="modelExposed"
-        class="model"
         style="position: fixed"
       />
     </div>

@@ -33,14 +33,9 @@ import * as THREE from "three";
 import { GLTF, GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import vuetify from "@/plugins/vuetify";
 
-//#region export interfaces
-export interface Model3DExposed {
-  model3D: GLTF;
-  camera: THREE.PerspectiveCamera;
-  renderer: THREE.WebGLRenderer;
-  scene: THREE.Scene;
-  animate: () => void;
-  stopAnimate: () => void;
+//#region exported types
+export interface Animations {
+  [index: string]: THREE.AnimationAction;
 }
 //#endregion
 
@@ -48,13 +43,14 @@ export interface Model3DExposed {
 interface Props {
   id: string;
   model3d: string;
-  animationIndex: number;
-  isAnimate?: boolean;
+  isstart?: boolean;
   showAction?: boolean;
+  scrollLimit?: number;
 }
 const props = withDefaults(defineProps<Props>(), {
-  isAnimate: true,
+  isstart: true,
   showAction: true,
+  scrollLimit: 0,
 });
 //#endregion
 
@@ -97,18 +93,17 @@ const computedActionStyle = computed<string>(() => {
 //#region variables
 const scene = new THREE.Scene();
 const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-const clock = new THREE.Clock();
 const loader = new GLTFLoader();
+const clock = new THREE.Clock();
+const animations: Animations = {};
 
+let model3D = ref<GLTF>();
 let camera: THREE.PerspectiveCamera;
 let mixer: THREE.AnimationMixer;
-let animationAction: THREE.AnimationAction;
-let animationAction1: THREE.AnimationAction;
-let animationAction2: THREE.AnimationAction;
 let frameId = 0;
-let model3D = ref<GLTF>();
 let isOpen = false;
 let isClosed = false;
+let isScrolling = true;
 //#endregion
 
 //#region functions
@@ -137,7 +132,8 @@ function initGltfScene(gltf: GLTF): void {
   scene.add(gltf.scene);
 
   render();
-  animate();
+  if (props.scrollLimit > 0) addEventListener("scroll", onScroll);
+  else start();
 }
 function setCamera() {
   camera = model3D.value!.cameras[0] as THREE.PerspectiveCamera;
@@ -145,12 +141,14 @@ function setCamera() {
   camera.updateProjectionMatrix();
 }
 function setAnimations() {
+  let i = 0;
   mixer = new THREE.AnimationMixer(model3D.value!.scene);
-  animationAction = initAnimation(0);
-  animationAction1 = initAnimation(1);
-  animationAction2 = initAnimation(2);
+  model3D.value!.animations.forEach((item: THREE.AnimationClip) => {
+    item.name;
+    animations[item.name] = initAnimation(i++);
+  });
 
-  animationAction.play();
+  animations["entrance"].play();
 }
 function initAnimation(index: number): THREE.AnimationAction {
   const animation = mixer.clipAction(model3D.value!.animations[index]);
@@ -158,32 +156,32 @@ function initAnimation(index: number): THREE.AnimationAction {
   animation.repetitions = 1;
   return animation;
 }
+function render(): void {
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.render(scene, camera);
+}
 function close() {
   if (isReady.value && isOpen) {
-    animationAction.stop();
-    animationAction2.stop();
-    animationAction1.play();
+    animations["entrance"].stop();
+    animations["open"].stop();
+    animations["close"].play();
     isOpen = false;
     isClosed = true;
   }
 }
 function open() {
   if (isReady.value && isClosed) {
-    animationAction.stop();
-    animationAction1.stop();
-    animationAction2.play();
+    animations["entrance"].stop();
+    animations["close"].stop();
+    animations["open"].play();
     isClosed = false;
     isOpen = true;
   }
 }
-function render(): void {
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.render(scene, camera);
-}
-function animate(): void {
-  frameId = requestAnimationFrame(animate);
-  if (!animationAction.isRunning()) {
+function start(): void {
+  frameId = requestAnimationFrame(start);
+  if (!animations["entrance"].isRunning()) {
     isReady.value = true;
     isOpen = true;
   }
@@ -194,23 +192,25 @@ function animate(): void {
 //#endregion
 
 //#region event handlers
-function onResize() {
+function onResize(): void {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   render();
 }
-//#endregion
-
-//#region define exposed
-defineExpose({ animate, model3D, scene, renderer });
+function onScroll(): void {
+  if (isScrolling && scrollY >= props.scrollLimit) {
+    start();
+    isScrolling = false;
+  }
+}
 //#endregion
 
 //#region hooks
 onMounted(() => {
-  addEventListener("resize", onResize, false);
-
   const container = document.getElementById(props.id);
   container?.appendChild(load3DModel());
+
+  addEventListener("resize", onResize, false);
 });
 onBeforeUnmount(() => {
   cancelAnimationFrame(frameId);

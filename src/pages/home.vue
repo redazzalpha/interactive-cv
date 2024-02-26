@@ -185,9 +185,9 @@ const model3D = "/3D/laptop.glb";
 
 let frameId = 0;
 let computerAnimations: AnimationsModel;
+let mixer: THREE.AnimationMixer;
 let isOpen = true;
 let isClose = false;
-let mixer: THREE.AnimationMixer;
 //#endregion
 
 //#region animation functions

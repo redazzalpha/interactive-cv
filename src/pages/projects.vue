@@ -1,14 +1,14 @@
 <template>
   <article style="min-height: 1000px">
-    <div class="div" ref="div">
-      <Animated3DModel
-        :id="id"
-        :model3d="model3D"
-        :is-animate="isAnimate"
-        :show-action="false"
-        style="position: fixed"
-      />
-    </div>
+    <!-- Animated moon background -->
+    <AnimatedGLTF
+      :id="id"
+      :gltf="model3D"
+      @ready="onGLTFReady"
+      @finish-action="onGLTFFinish"
+      @error="onGLTFError"
+      style="position: fixed"
+    />
 
     <v-container v-bind="containerBindings">
       <!-- animated title -->
@@ -65,11 +65,10 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted } from "vue";
 import AnimatedTitle from "@/components/AnimatedTitle.vue";
 import AnimatedGit from "@/components/AnimatedGit.vue";
-import Animated3DModel from "@/components/Animated3DModel.vue";
-import { ref } from "vue";
-import { onMounted } from "vue";
+import AnimatedGLTF, { AnimationsModel } from "../components/AnimatedGLTF.vue";
 import { useAppStore } from "../store/app";
 import {
   containerBindings,
@@ -82,16 +81,17 @@ const store = useAppStore();
 //#region refs
 const data = ref<GitData[] | undefined>();
 const isError = ref<boolean>(false);
-const animationIndex = ref<number>(1);
-const isAnimate = ref<boolean>(true);
 const div = ref(null);
 //#endregion
 
 //#region variables
 const title: string = "Quelques projets";
-const id = "moon-3D";
+const id = "projects-moon-3D";
 const model3D = "/3D/moon.glb";
 
+let frameId = 0;
+let moonAnimations: AnimationsModel;
+let mixer: THREE.AnimationMixer;
 //#endregion
 
 //#region functions
@@ -100,6 +100,27 @@ async function getData(): Promise<void> {
   data.value = await response.json();
   if (!response.ok) isError.value = true;
 }
+//#endregion
+
+//#region animation functions
+function animate(): void {
+  frameId = requestAnimationFrame(animate);
+  moonAnimations.update();
+  console.log(`animated here mixer time: ${mixer.time}`);
+}
+//#endregion
+
+//#region event handlers
+function onGLTFReady(animations: AnimationsModel): void {
+  moonAnimations = animations;
+  mixer = moonAnimations.animations["spin"].getMixer();
+  moonAnimations.animations["spin"].play();
+  frameId = requestAnimationFrame(animate);
+}
+function onGLTFFinish(action: string): void {
+  cancelAnimationFrame(frameId);
+}
+function onGLTFError(): void {}
 //#endregion
 
 //#region hooks
@@ -114,6 +135,7 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .div {
+  position: fixed;
   opacity: 0;
   transition: opacity 1s ease-in;
 }

@@ -117,7 +117,7 @@ function onGLTFReady(animations: AnimationsModel): void {
   moonAnimations.animations["spin"].play();
   frameId = requestAnimationFrame(animate);
 }
-function onGLTFFinish(action: string): void {
+function onGLTFFinish(): void {
   cancelAnimationFrame(frameId);
 }
 function onGLTFError(): void {}

@@ -1,12 +1,11 @@
 <template>
-  <div :id="props.id"></div>
+  <div :id="props.id" style="height: 500px"></div>
 </template>
 
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import * as THREE from "three";
 import { GLTF, GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import vuetify from "@/plugins/vuetify";
 
 //#region interfaces
 export interface Animations {
@@ -138,3 +137,5 @@ onMounted(() => {
 });
 //#endregion
 </script>
+
+<style lang="scss" scoped></style>

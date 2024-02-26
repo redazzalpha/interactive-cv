@@ -3,7 +3,7 @@
     <v-container v-bind="containerBindings">
       <!-- animated title -->
       <v-row>
-        <v-col>
+        <v-col class="pa-0">
           <AnimatedTitle
             v-show="!$vuetify.display.mobile"
             v-bind="animatedTitleBindings"
@@ -25,7 +25,7 @@
 
       <!-- computer 3D model -->
       <v-row v-bind="rowBindings">
-        <v-col v-bind="colBindings">
+        <v-col v-bind="colBindings" class="pa-0">
           <v-card-actions v-show="showActions" :style="computedActionStyle">
             <v-btn
               variant="outlined"

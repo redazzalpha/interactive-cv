@@ -15,10 +15,12 @@
           <v-card-title :class="`text-${hover ? 'hover' : 'active'}`"
             >{{ props.data?.name }}
           </v-card-title>
+
+          <!-- subtitle -->
           <v-card-subtitle>{{ props.data?.description }}</v-card-subtitle>
 
           <!-- container -->
-          <div class="d-flex flex-column flex-md-row justify-start align-start">
+          <div>
             <!-- creation & update dates -->
             <v-card-text
               class="d-inline-block text-truncate flex-grow-0 w-100 text-body"
@@ -30,27 +32,28 @@
             <!-- languages  -->
             <span
               v-if="props.data?.language"
-              class="py-1 px-5"
+              class="py-1 px-5 ml-6"
               style="border: solid grey 1px; border-radius: 5px"
             >
               {{ props.data?.language }}
             </span>
-          </div>
 
-          <v-card-actions
-            v-if="props.data?.homepage"
-            class="d-flex justify-center justify-md-start"
-          >
-            <v-btn
-              class="px-5"
-              rounded
-              variant="tonal"
-              flat
-              style="text-transform: unset"
-              :href="props.data?.homepage"
-              >homepage</v-btn
+            <!-- home page button -->
+            <v-card-actions
+              v-if="props.data?.homepage"
+              class="d-flex justify-center justify-md-start"
             >
-          </v-card-actions>
+              <v-btn
+                class="px-5"
+                rounded
+                variant="tonal"
+                flat
+                style="text-transform: unset"
+                :href="props.data?.homepage"
+                >homepage</v-btn
+              >
+            </v-card-actions>
+          </div>
         </v-card>
       </div>
     </template>
@@ -59,7 +62,7 @@
 
 <script setup lang="ts">
 import { DateTime } from "luxon";
-import { onMounted, computed, ref, onBeforeUnmount } from "vue";
+import { onMounted, computed, ref } from "vue";
 import * as dynamics from "dynamics.js";
 
 //#region refs

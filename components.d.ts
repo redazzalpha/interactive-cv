@@ -12,6 +12,7 @@ declare module 'vue' {
     AnimatedAvatar: typeof import('./src/components/AnimatedAvatar.vue')['default']
     AnimatedBlock: typeof import('./src/components/AnimatedBlock.vue')['default']
     AnimatedGit: typeof import('./src/components/AnimatedGit.vue')['default']
+    AnimatedGLTF: typeof import('./src/components/AnimatedGLTF.vue')['default']
     AnimatedImageSpin: typeof import('./src/components/AnimatedImageSpin.vue')['default']
     AnimatedParagraph: typeof import('./src/components/AnimatedParagraph.vue')['default']
     AnimatedSkills: typeof import('./src/components/AnimatedSkills.vue')['default']

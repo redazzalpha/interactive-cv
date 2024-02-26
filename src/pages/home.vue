@@ -23,15 +23,32 @@
         </v-col>
       </v-row>
 
-      <!-- 3D model computer -->
+      <!-- computer 3D model -->
       <v-row v-bind="rowBindings">
         <v-col v-bind="colBindings">
-          <Animated3DModel
+          <v-card-actions v-show="showActions" :style="computedActionStyle">
+            <v-btn
+              variant="outlined"
+              class="text-lowercase px-8"
+              rounded="xl"
+              @click="computerClose"
+              >close</v-btn
+            >
+            <v-btn
+              variant="outlined"
+              class="text-lowercase px-8"
+              rounded="xl"
+              @click="computerOpen"
+              >open</v-btn
+            >
+          </v-card-actions>
+
+          <AnimatedGLTF
             :id="id"
-            :model3d="model3D"
-            :is-animate="isAnimate"
-            ref="modelExposed"
-            class="model"
+            :gltf="model3D"
+            @ready="onGLTFReady"
+            @finish-action="onGLTFFinish"
+            @error="onGLTFError"
           />
         </v-col>
       </v-row>
@@ -79,25 +96,26 @@
 </template>
 
 <script setup lang="ts">
+import { computed, ref, onBeforeUnmount } from "vue";
 import AnimatedTitle from "@/components/AnimatedTitle.vue";
 import AnimatedTheCodeLines from "@/components/AnimatedTheCodeLines.vue";
 import AnimatedImageSpin from "@/components/AnimatedImageSpin.vue";
 import AnimatedSkills from "@/components/AnimatedSkills.vue";
 import AnimatedAvatar from "@/components/AnimatedAvatar.vue";
-import Animated3DModel from "@/components/Animated3DModel.vue";
-import { ref, computed } from "vue";
 import { useAppStore } from "@/store/app";
 import vuetify from "@/plugins/vuetify";
 import ImgSpinner from "@/assets/spinner.png";
 import ImgGiphy from "@/assets/giphy.gif";
 import ImgGlow from "@/assets/glow.png";
 import ImgSkills from "@/assets/skills.png";
+import AnimatedGLTF, { AnimationsModel } from "../components/AnimatedGLTF.vue";
 import {
   containerBindings,
   animatedTitleBindings,
   rowBindings,
   colBindings,
 } from "@/utils/objectBindings";
+import {} from "vue";
 const store = useAppStore();
 
 //#region computed
@@ -125,18 +143,110 @@ const scrollLimit = computed<number>(() => {
       return 500;
   }
 });
+const computedActionStyle = computed<string>(() => {
+  let leftValue: number = 0;
+
+  switch (vuetify.display.name.value) {
+    case "xs":
+      leftValue = 0;
+      break;
+    case "sm":
+      leftValue = 0;
+      break;
+    case "md":
+      leftValue = 0;
+      break;
+    case "lg":
+      leftValue = 350;
+      break;
+    case "xl":
+      leftValue = 350;
+      break;
+    case "xxl":
+      leftValue = 0;
+      break;
+    default:
+      leftValue = 0;
+      break;
+  }
+
+  return `position: absolute; left: ${leftValue}px`;
+});
 //#endregion
 
-addEventListener("scroll", () => console.log(scrollY));
-
 //#region refs
-const isAnimate = ref<boolean>(true);
+const showActions = ref<boolean>(false);
 //#endregion
 
 //#region variables
+const title: string = "Concepteur développeur d'applications";
 const id = "computer-3D";
 const model3D = "/3D/laptop.glb";
-const title: string = "Concepteur développeur d'applications";
+
+let frameId = 0;
+let computerAnimations: AnimationsModel;
+let isOpen = true;
+let isClose = false;
+let mixer: THREE.AnimationMixer;
+//#endregion
+
+//#region animation functions
+function computerEntrance(): void {
+  computerAnimations.animations["entrance"].play();
+}
+function computerOpen(): void {
+  if (!isRunning() && isClose) {
+    animate();
+    setTimeout(() => {
+      computerAnimations.stopAll();
+      computerAnimations.animations["open"].play();
+      isOpen = true;
+      isClose = false;
+    }, 1);
+  }
+}
+function computerClose(): void {
+  if (!isRunning() && isOpen) {
+    animate();
+    setTimeout(() => {
+      computerAnimations.stopAll();
+      computerAnimations.animations["close"].play();
+      isOpen = false;
+      isClose = true;
+    }, 1);
+  }
+}
+function animate(): void {
+  frameId = requestAnimationFrame(animate);
+  computerAnimations.update();
+  console.log(`animated here mixer time: ${mixer.time}`);
+}
+function isRunning(): boolean {
+  for (const [key] of Object.entries(computerAnimations.animations))
+    if (computerAnimations.animations[key].isRunning()) return true;
+  return false;
+}
+//#endregion
+
+//#region event handlers
+function onGLTFReady(animations: AnimationsModel): void {
+  computerAnimations = animations;
+  mixer = computerAnimations.animations["entrance"].getMixer();
+  computerEntrance();
+  frameId = requestAnimationFrame(animate);
+}
+function onGLTFFinish(action: string): void {
+  cancelAnimationFrame(frameId);
+  if (action == "entrance") showActions.value = true;
+  // mixer.setTime(0);
+}
+function onGLTFError(): void {}
+//#endregion
+
+//#region hooks
+onBeforeUnmount(() => {
+  cancelAnimationFrame(frameId);
+});
 //#endregion
 </script>
 

@@ -1,14 +1,12 @@
 <template>
-  <div
-    :id="props.id"
-    style="position: relative; top: 30px; height: 615px"
-  ></div>
+  <div :id="props.id"></div>
 </template>
 
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import * as THREE from "three";
 import { GLTF, GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import vuetify from "@/plugins/vuetify";
 
 //#region interfaces
 export interface Animations {
@@ -49,6 +47,8 @@ const animationModel: AnimationsModel = {
 let model3D = ref<GLTF>();
 let camera: THREE.PerspectiveCamera;
 let mixer: THREE.AnimationMixer;
+let width = 0;
+let height = 0;
 //#endregion
 
 //#region functions
@@ -104,6 +104,9 @@ function initAnimation(index: number): THREE.AnimationAction {
   return animation;
 }
 function render(): void {
+  // if (vuetify.display.name.value == "xs")
+  //   renderer.setSize(window.innerWidth / 1.25, window.innerHeight / 1.25);
+  // else renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.render(scene, camera);

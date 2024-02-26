@@ -65,7 +65,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, onBeforeUnmount } from "vue";
 import AnimatedTitle from "@/components/AnimatedTitle.vue";
 import AnimatedGit from "@/components/AnimatedGit.vue";
 import AnimatedGLTF, { AnimationsModel } from "../components/AnimatedGLTF.vue";
@@ -81,7 +81,6 @@ const store = useAppStore();
 //#region refs
 const data = ref<GitData[] | undefined>();
 const isError = ref<boolean>(false);
-const div = ref(null);
 //#endregion
 
 //#region variables
@@ -125,11 +124,12 @@ function onGLTFError(): void {}
 
 //#region hooks
 onMounted(() => {
-  setTimeout(() => {
-    if (div.value) (div.value as HTMLElement).style.opacity = "1";
-  }, 1500);
   getData().catch(() => (isError.value = true));
 });
+onBeforeUnmount(() => {
+  cancelAnimationFrame(frameId);
+});
+
 //#endregion
 </script>
 

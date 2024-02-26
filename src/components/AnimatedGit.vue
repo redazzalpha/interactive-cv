@@ -9,6 +9,7 @@
           :href="props.data?.html_url"
           v-bind="hoverProp"
           color="active"
+          style="border: solid transparent 0px"
         >
           <!-- title -->
           <v-card-title :class="`text-${hover ? 'hover' : 'active'}`"
@@ -58,7 +59,7 @@
 
 <script setup lang="ts">
 import { DateTime } from "luxon";
-import { onMounted, computed, ref } from "vue";
+import { onMounted, computed, ref, onBeforeUnmount } from "vue";
 import * as dynamics from "dynamics.js";
 
 //#region refs

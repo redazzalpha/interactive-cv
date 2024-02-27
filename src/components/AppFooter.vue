@@ -1,6 +1,8 @@
 <template>
-  <v-footer class="d-flex justify-center" style="min-height: 300px">
-    <p>&copy; redazzalpha {{ new Date().getFullYear() }}</p>
+  <v-footer class="d-flex justify-end" style="min-height: 300px">
+    <p>
+      &copy; redazzalpha {{ new Date().getFullYear() }}. All rights reserved
+    </p>
   </v-footer>
 </template>
 

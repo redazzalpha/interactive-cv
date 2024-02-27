@@ -73,7 +73,7 @@
             :image-spinner="ImgSpinner"
             :image-appear="ImgGiphy"
             :image-glow="ImgGlow"
-            :animate-scroll-limit="scrollLimit + 480"
+            :animate-scroll-limit="scrollLimit + 780"
             id-sheet="home-image-spin-sheet"
             id-spinner="home-image-spin-spinner"
             id-image="home-image-spin-image"
@@ -86,7 +86,7 @@
         <v-col v-bind="colBindings" class="align-center" cols="12" sm="7">
           <AnimatedSkills
             :image="ImgSkills"
-            :animate-scroll-limit="scrollLimit + 480"
+            :animate-scroll-limit="scrollLimit + 780"
             id="home-skills"
           />
         </v-col>
@@ -128,7 +128,7 @@ const rowMarginStyle = computed<string>(() => {
 const scrollLimit = computed<number>(() => {
   switch (vuetify.display.name.value) {
     case "xs":
-      return 700;
+      return 300;
     case "sm":
       return 720;
     case "md":

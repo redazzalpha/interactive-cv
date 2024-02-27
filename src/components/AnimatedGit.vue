@@ -4,7 +4,7 @@
       <div :id="props.idWrapper" class="w-100">
         <v-card
           :id="props.id"
-          class="app-git w-100 pa-5"
+          class="app-git w-100 pa-5 text-center"
           variant="outlined"
           :href="props.data?.html_url"
           v-bind="hoverProp"
@@ -32,7 +32,7 @@
             <!-- languages  -->
             <span
               v-if="props.data?.language"
-              class="py-1 px-5 ml-6"
+              class="py-1 px-5"
               style="border: solid grey 1px; border-radius: 5px"
             >
               {{ props.data?.language }}
@@ -41,7 +41,7 @@
             <!-- home page button -->
             <v-card-actions
               v-if="props.data?.homepage"
-              class="d-flex justify-center justify-md-start"
+              class="d-flex justify-center"
             >
               <v-btn
                 class="px-5"

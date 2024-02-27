@@ -7,7 +7,7 @@
       @ready="onGLTFReady"
       @finish-action="onGLTFFinish"
       @error="onGLTFError"
-      style="position: fixed"
+      class="projects-moon"
     />
 
     <v-container v-bind="containerBindings">
@@ -112,7 +112,11 @@ function animate(): void {
 //#region event handlers
 function onGLTFReady(animations: AnimationsModel): void {
   moonAnimations = animations;
-  mixer = moonAnimations.animations["spin"].getMixer();
+  const animationSpin = moonAnimations.animations["spin"];
+  mixer = animationSpin.getMixer();
+  animationSpin.clampWhenFinished = false;
+  animationSpin.repetitions = Infinity;
+
   moonAnimations.animations["spin"].play();
   frameId = requestAnimationFrame(animate);
 }
@@ -124,6 +128,9 @@ function onGLTFError(): void {}
 
 //#region hooks
 onMounted(() => {
+  setTimeout(() => {
+    document.getElementById(id)!.style.opacity = "1";
+  }, 1500);
   getData().catch(() => (isError.value = true));
 });
 onBeforeUnmount(() => {
@@ -134,7 +141,7 @@ onBeforeUnmount(() => {
 </script>
 
 <style lang="scss" scoped>
-.div {
+.projects-moon {
   position: fixed;
   opacity: 0;
   transition: opacity 1s ease-in;

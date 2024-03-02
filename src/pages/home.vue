@@ -23,7 +23,7 @@
         </v-col>
       </v-row>
 
-      <!-- computer 3D model -->
+      <!-- laptop 3D model -->
       <v-row v-bind="rowBindings">
         <v-col v-bind="colBindings" class="pa-0">
           <v-card-actions v-show="showActions" :style="computedActionStyle">
@@ -31,14 +31,14 @@
               variant="outlined"
               class="text-lowercase px-8"
               rounded="xl"
-              @click="computerClose"
+              @click="laptopClose"
               >close</v-btn
             >
             <v-btn
               variant="outlined"
               class="text-lowercase px-8"
               rounded="xl"
-              @click="computerOpen"
+              @click="laptopOpen"
               >open</v-btn
             >
           </v-card-actions>
@@ -180,37 +180,37 @@ const showActions = ref<boolean>(false);
 
 //#region variables
 const title: string = "Concepteur développeur d'applications";
-const id = "computer-3D";
-const model3D = "/3D/laptop.glb";
+const id = "home-laptop-3D";
+const model3D = "/3D/laptop/laptop.glb";
 
 let frameId = 0;
-let computerAnimations: AnimationsModel;
+let laptopAnimations: AnimationsModel;
 let mixer: THREE.AnimationMixer;
 let isOpen = true;
 let isClose = false;
 //#endregion
 
 //#region animation functions
-function computerEntrance(): void {
-  computerAnimations.animations["entrance"].play();
+function laptopEntrance(): void {
+  laptopAnimations.animations["entrance"].play();
 }
-function computerOpen(): void {
+function laptopOpen(): void {
   if (!isRunning() && isClose) {
     animate();
     setTimeout(() => {
-      computerAnimations.stopAll();
-      computerAnimations.animations["open"].play();
+      laptopAnimations.stopAll();
+      laptopAnimations.animations["open"].play();
       isOpen = true;
       isClose = false;
     }, 1);
   }
 }
-function computerClose(): void {
+function laptopClose(): void {
   if (!isRunning() && isOpen) {
     animate();
     setTimeout(() => {
-      computerAnimations.stopAll();
-      computerAnimations.animations["close"].play();
+      laptopAnimations.stopAll();
+      laptopAnimations.animations["close"].play();
       isOpen = false;
       isClose = true;
     }, 1);
@@ -218,21 +218,21 @@ function computerClose(): void {
 }
 function animate(): void {
   frameId = requestAnimationFrame(animate);
-  computerAnimations.update();
+  laptopAnimations.update();
   console.log(`animated here mixer time: ${mixer.time}`);
 }
 function isRunning(): boolean {
-  for (const [key] of Object.entries(computerAnimations.animations))
-    if (computerAnimations.animations[key].isRunning()) return true;
+  for (const [key] of Object.entries(laptopAnimations.animations))
+    if (laptopAnimations.animations[key].isRunning()) return true;
   return false;
 }
 //#endregion
 
 //#region event handlers
 function onGLTFReady(animations: AnimationsModel): void {
-  computerAnimations = animations;
-  mixer = computerAnimations.animations["entrance"].getMixer();
-  computerEntrance();
+  laptopAnimations = animations;
+  mixer = laptopAnimations.animations["entrance"].getMixer();
+  laptopEntrance();
   frameId = requestAnimationFrame(animate);
 }
 function onGLTFFinish(action: string): void {

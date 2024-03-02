@@ -1,6 +1,6 @@
 <template>
   <article style="min-height: 1000px">
-    <!-- Animated moon background -->
+    <!-- Animated moon -->
     <AnimatedGLTF
       :id="id"
       :gltf="model3D"
@@ -86,7 +86,7 @@ const isError = ref<boolean>(false);
 //#region variables
 const title: string = "Quelques projets";
 const id = "projects-moon-3D";
-const model3D = "/3D/moon.glb";
+const model3D = "/3D/moon/moon.glb";
 
 let frameId = 0;
 let moonAnimations: AnimationsModel;

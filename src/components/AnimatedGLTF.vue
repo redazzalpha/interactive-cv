@@ -70,6 +70,8 @@ function load3DModel(): HTMLCanvasElement {
 function initGltfScene(gltf: GLTF): void {
   model3D.value = gltf;
 
+  console.log(gltf);
+
   setCamera();
   setAnimations();
 

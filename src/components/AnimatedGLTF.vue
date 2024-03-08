@@ -80,6 +80,7 @@ function setEnvironment(): void {
   // this code sets environment which
   // provides baselight
 
+  // TODO: add a props to get images from client to decouple component
   new THREE.CubeTextureLoader().load(
     [
       "3D/gold/images/px.png",

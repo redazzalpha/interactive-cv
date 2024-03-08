@@ -70,14 +70,17 @@ function load3DModel(): HTMLCanvasElement {
 }
 function initGltfScene(gltf: GLTF): void {
   model3D.value = gltf;
-
   setCamera();
   setAnimations();
-
+  setEnvironment();
   scene.add(gltf.scene);
+}
+function setEnvironment(): void {
+  // important part of the threejs scene
+  // this code sets environment which
+  // provides baselight
 
-  const cubeTextureLoader = new THREE.CubeTextureLoader();
-  const environmentMap = cubeTextureLoader.load(
+  new THREE.CubeTextureLoader().load(
     [
       "3D/gold/images/px.png",
       "3D/gold/images/px.png",
@@ -86,15 +89,14 @@ function initGltfScene(gltf: GLTF): void {
       "3D/gold/images/px.png",
       "3D/gold/images/px.png",
     ],
-    () => {
-      //
+    (environmentMap: THREE.CubeTexture) => {
       scene.environment = environmentMap;
-
       render();
       emit("ready", animationModel);
     }
   );
 }
+
 function setCamera() {
   camera = model3D.value!.cameras[0] as THREE.PerspectiveCamera;
   camera.aspect = window.innerWidth / window.innerHeight;

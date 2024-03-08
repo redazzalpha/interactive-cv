@@ -1,5 +1,6 @@
 <template>
   <article style="min-height: 1000px">
+    <AnimatedGLTF id="test-model" gltf="/3D/gold/gold.glb" />
     <!-- Animated moon -->
     <AnimatedGLTF
       :id="id"
@@ -90,7 +91,6 @@ const model3D = "/3D/moon/moon.glb";
 
 let frameId = 0;
 let moonAnimations: AnimationsModel;
-let mixer: THREE.AnimationMixer;
 //#endregion
 
 //#region functions
@@ -105,7 +105,6 @@ async function getData(): Promise<void> {
 function animate(): void {
   frameId = requestAnimationFrame(animate);
   moonAnimations.update();
-  console.log(`animated here mixer time: ${mixer.time}`);
 }
 //#endregion
 
@@ -113,7 +112,6 @@ function animate(): void {
 function onGLTFReady(animations: AnimationsModel): void {
   moonAnimations = animations;
   const animationSpin = moonAnimations.animations["spin"];
-  mixer = animationSpin.getMixer();
   animationSpin.clampWhenFinished = false;
   animationSpin.repetitions = Infinity;
 

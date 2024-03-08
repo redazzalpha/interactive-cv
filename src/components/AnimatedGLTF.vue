@@ -34,7 +34,10 @@ const props = defineProps<Props>();
 
 //#region variables
 const scene = new THREE.Scene();
-const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+const renderer = new THREE.WebGLRenderer({
+  alpha: true,
+  antialias: true,
+});
 const loader = new GLTFLoader();
 const clock = new THREE.Clock();
 const animationModel: AnimationsModel = {
@@ -46,8 +49,6 @@ const animationModel: AnimationsModel = {
 let model3D = ref<GLTF>();
 let camera: THREE.PerspectiveCamera;
 let mixer: THREE.AnimationMixer;
-let width = 0;
-let height = 0;
 //#endregion
 
 //#region functions
@@ -70,15 +71,29 @@ function load3DModel(): HTMLCanvasElement {
 function initGltfScene(gltf: GLTF): void {
   model3D.value = gltf;
 
-  console.log(gltf);
-
   setCamera();
   setAnimations();
 
   scene.add(gltf.scene);
 
-  render();
-  emit("ready", animationModel);
+  const cubeTextureLoader = new THREE.CubeTextureLoader();
+  const environmentMap = cubeTextureLoader.load(
+    [
+      "3D/gold/images/px.png",
+      "3D/gold/images/px.png",
+      "3D/gold/images/px.png",
+      "3D/gold/images/px.png",
+      "3D/gold/images/px.png",
+      "3D/gold/images/px.png",
+    ],
+    () => {
+      //
+      scene.environment = environmentMap;
+
+      render();
+      emit("ready", animationModel);
+    }
+  );
 }
 function setCamera() {
   camera = model3D.value!.cameras[0] as THREE.PerspectiveCamera;

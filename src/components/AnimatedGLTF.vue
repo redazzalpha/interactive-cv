@@ -83,12 +83,12 @@ function setEnvironment(): void {
   // TODO: add a props to get images from client to decouple component
   new THREE.CubeTextureLoader().load(
     [
-      "3D/gold/images/px.png",
-      "3D/gold/images/px.png",
-      "3D/gold/images/px.png",
-      "3D/gold/images/px.png",
-      "3D/gold/images/px.png",
-      "3D/gold/images/px.png",
+      "3D/environnement/px.png",
+      "3D/environnement/px.png",
+      "3D/environnement/px.png",
+      "3D/environnement/px.png",
+      "3D/environnement/px.png",
+      "3D/environnement/px.png",
     ],
     (environmentMap: THREE.CubeTexture) => {
       scene.environment = environmentMap;

@@ -1,16 +1,5 @@
 <template>
   <article style="min-height: 1000px">
-    <AnimatedGLTF id="test-model" gltf="/3D/gold/gold.glb" />
-    <!-- Animated moon -->
-    <AnimatedGLTF
-      :id="id"
-      :gltf="model3D"
-      @ready="onGLTFReady"
-      @finish-action="onGLTFFinish"
-      @error="onGLTFError"
-      class="projects-moon"
-    />
-
     <v-container v-bind="containerBindings">
       <!-- animated title -->
       <v-row>
@@ -69,7 +58,7 @@
 import { ref, onMounted, onBeforeUnmount } from "vue";
 import AnimatedTitle from "@/components/AnimatedTitle.vue";
 import AnimatedGit from "@/components/AnimatedGit.vue";
-import AnimatedGLTF, { AnimationsModel } from "../components/AnimatedGLTF.vue";
+import type { AnimationsModel } from "../components/AnimatedGLTF.vue";
 import { useAppStore } from "../store/app";
 import {
   containerBindings,
@@ -87,7 +76,6 @@ const isError = ref<boolean>(false);
 //#region variables
 const title: string = "Quelques projets";
 const id = "projects-moon-3D";
-const model3D = "/3D/moon/moon.glb";
 
 let frameId = 0;
 let moonAnimations: AnimationsModel;

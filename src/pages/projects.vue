@@ -18,6 +18,7 @@
       <!-- projects row -->
       <template v-if="!isError">
         <v-row
+          tag="article"
           v-for="(item, index) in data"
           :key="(item as GitData).name"
           v-bind="rowBindings"
@@ -27,6 +28,7 @@
               :id-wrapper="`projects-git-wrapper-${index}`"
               :id="`projects-git-${index}`"
               :data="item"
+              title-tag="h2"
             />
           </v-col>
         </v-row>

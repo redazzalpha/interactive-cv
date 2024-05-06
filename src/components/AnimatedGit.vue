@@ -12,7 +12,9 @@
           style="border: solid transparent 0px"
         >
           <!-- title -->
-          <v-card-title :class="`text-${hover ? 'hover' : 'active'}`"
+          <v-card-title
+            :tag="props.titleTag"
+            :class="`text-${hover ? 'hover' : 'active'}`"
             >{{ props.data?.name }}
           </v-card-title>
 
@@ -75,6 +77,7 @@ interface Props {
   idWrapper: string;
   disabled?: boolean;
   data: GitData | undefined;
+  titleTag: string;
 }
 const props = withDefaults(defineProps<Props>(), { disabled: false });
 //#endregion

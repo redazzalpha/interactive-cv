@@ -12,9 +12,9 @@ export const useAppStore = defineStore('app', {
     appbarTitle: ref(""),
     links: [
       { label: "Accueil", href: "/home", icon: "mdi-home", appbartTitle: "Concepteur développeur" },
-      { label: "Test", href: "/test", icon: "mdi-folder", appbartTitle: "Test" },
       { label: "Projets", href: "/projects", icon: "mdi-semantic-web", appbartTitle: "Mes Projets" },
       { label: "Qui suis-je ?", href: "/about", icon: "mdi-information-outline", appbartTitle: "Qui suis-je ?" },
+      { label: "Fun art", href: "/test", icon: "mdi-palette", appbartTitle: "Fun art" },
     ],
     githubHomepage: "https://github.com/redazzalpha",
     githubDataUrl: "https://api.github.com/users/redazzalpha/repos?sort=updated",

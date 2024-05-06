@@ -1,11 +1,30 @@
 <template>
-  <article>
-    <v-container grid-list-xs class="pa-0">
+  <v-card>
+    <v-container v-bind="containerBindings">
+      <!-- animated title -->
       <v-row>
         <v-col>
-          <h1>Page test in construction</h1>
+          <AnimatedTitle
+            v-show="!$vuetify.display.mobile"
+            id="title-about"
+            tag="h1"
+            :text="title"
+            v-bind="animatedTitleBindings"
+            style="position: fixed"
+          />
         </v-col>
       </v-row>
     </v-container>
-  </article>
+  </v-card>
 </template>
+
+<script lang="ts" setup>
+import {
+  animatedTitleBindings,
+  containerBindings,
+} from "@/utils/objectBindings";
+
+//#region
+const title: string = "Fun art";
+//#endregioin
+</script>

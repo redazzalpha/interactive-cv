@@ -1,53 +1,51 @@
 <template>
   <article>
-    <v-card>
-      <v-container v-bind="containerBindings">
-        <!-- animated title -->
-        <v-row>
-          <v-col>
-            <AnimatedTitle
-              v-show="!$vuetify.display.mobile"
-              id="title-about"
-              tag="h1"
-              :text="title"
-              v-bind="animatedTitleBindings"
-              style="position: fixed"
-            />
-          </v-col>
-        </v-row>
+    <v-container v-bind="containerBindings">
+      <!-- animated title -->
+      <v-row>
+        <v-col>
+          <AnimatedTitle
+            v-show="!$vuetify.display.mobile"
+            id="title-about"
+            tag="h1"
+            :text="title"
+            v-bind="animatedTitleBindings"
+            style="position: fixed"
+          />
+        </v-col>
+      </v-row>
 
-        <!-- animated 3d scene -->
-        <!-- laptop 3D model -->
-        <v-row v-bind="rowBindings">
-          <v-col v-bind="colBindings" class="pa-0">
-            <v-card-actions v-show="showActions" :style="computedActionStyle">
-              <v-btn
-                variant="outlined"
-                class="text-lowercase px-8"
-                rounded="xl"
-                @click="laptopClose"
-                >close</v-btn
-              >
-              <v-btn
-                variant="outlined"
-                class="text-lowercase px-8"
-                rounded="xl"
-                @click="laptopOpen"
-                >open</v-btn
-              >
-            </v-card-actions>
+      <!-- computer 3D model -->
+      <v-row v-bind="rowBindings">
+        <v-col v-bind="colBindings" class="pa-0">
+          <v-card-actions v-show="showActions" :style="computedActionStyle">
+            <v-btn
+              variant="outlined"
+              class="text-lowercase px-8"
+              rounded="xl"
+              @click="laptopClose"
+              >close</v-btn
+            >
+            <v-btn
+              variant="outlined"
+              class="text-lowercase px-8"
+              rounded="xl"
+              @click="laptopOpen"
+              >open</v-btn
+            >
+          </v-card-actions>
 
-            <AnimatedGLTF
-              :id="id"
-              :gltf="model3D"
-              @ready="onGLTFReady"
-              @finish-action="onGLTFFinish"
-              @error="onGLTFError"
-            />
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-card>
+          <AnimatedGLTF
+            :id="id"
+            :gltf="model3D"
+            @ready="onGLTFReady"
+            @finish-action="onGLTFFinish"
+            @error="onGLTFError"
+            :height="900"
+          />
+        </v-col>
+      </v-row>
+    </v-container>
   </article>
 </template>
 
@@ -59,7 +57,7 @@ import {
   rowBindings,
 } from "@/utils/objectBindings";
 import { ref, computed, onBeforeUnmount } from "vue";
-import { AnimationsModel } from "../components/AnimatedGLTF.vue";
+import AnimatedGLTF, { AnimationsModel } from "../components/AnimatedGLTF.vue";
 import vuetify from "@/plugins/vuetify";
 
 // #region computed

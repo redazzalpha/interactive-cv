@@ -1,5 +1,5 @@
 <template>
-  <div :id="props.id" style="height: 500px"></div>
+  <div :id="props.id" :style="`height: ${props.height}px`"></div>
 </template>
 
 <script setup lang="ts">
@@ -28,8 +28,11 @@ const emit = defineEmits<Emits>();
 interface Props {
   id: string;
   gltf: string;
+  height?: number;
 }
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+  height: 500,
+});
 //#endregion
 
 //#region variables

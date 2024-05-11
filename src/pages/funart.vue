@@ -38,7 +38,7 @@
           <AnimatedGLTF
             :id="id"
             :gltf="model3D"
-            env-image-path="3D/images/environnement/light.png"
+            :env-image-path="envImagePath"
             @ready="onGLTFReady"
             @finish-action="onGLTFFinish"
             @error="onGLTFError"
@@ -100,7 +100,8 @@ const showActions = ref<boolean>(false);
 //#region variables
 const title: string = "Fun art";
 const id = "fun-art-computer-3D";
-const model3D = "/3D/models/space_world/space_world.glb";
+const model3D = "/3D/models/universe/universe.glb";
+const envImagePath = "3D/images/environnement/light.png";
 
 let frameId = 0;
 let computerAnimations: AnimationsModel;

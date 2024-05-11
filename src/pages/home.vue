@@ -46,7 +46,7 @@
           <AnimatedGLTF
             :id="id"
             :gltf="model3D"
-            env-image-path="3D/images/environnement/px.png"
+            env-image-path="3D/images/environnement/home.png"
             @ready="onGLTFReady"
             @finish-action="onGLTFFinish"
             @error="onGLTFError"

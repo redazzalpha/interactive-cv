@@ -38,6 +38,7 @@
           <AnimatedGLTF
             :id="id"
             :gltf="model3D"
+            env-image-path="3D/images/environnement/px.png"
             @ready="onGLTFReady"
             @finish-action="onGLTFFinish"
             @error="onGLTFError"
@@ -99,25 +100,25 @@ const showActions = ref<boolean>(false);
 //#region variables
 const title: string = "Fun art";
 const id = "fun-art-computer-3D";
-const model3D = "/3D/computer/computer_screens.glb";
+const model3D = "/3D/models/space_world/space_world.glb";
 
 let frameId = 0;
-let laptopAnimations: AnimationsModel;
+let computerAnimations: AnimationsModel;
 let mixer: THREE.AnimationMixer;
 let isOpen = true;
 let isClose = false;
-//#endregioin
+//#endregion
 
 //#region animation functions
-function laptopEntrance(): void {
-  laptopAnimations.animations["entrance"].play();
+function computerEntrance(): void {
+  computerAnimations.animations["entrance"].play();
 }
 function laptopOpen(): void {
   if (!isRunning() && isClose) {
     animate();
     setTimeout(() => {
-      laptopAnimations.stopAll();
-      laptopAnimations.animations["open"].play();
+      computerAnimations.stopAll();
+      computerAnimations.animations["open"].play();
       isOpen = true;
       isClose = false;
     }, 1);
@@ -127,8 +128,8 @@ function laptopClose(): void {
   if (!isRunning() && isOpen) {
     animate();
     setTimeout(() => {
-      laptopAnimations.stopAll();
-      laptopAnimations.animations["close"].play();
+      computerAnimations.stopAll();
+      computerAnimations.animations["close"].play();
       isOpen = false;
       isClose = true;
     }, 1);
@@ -136,21 +137,21 @@ function laptopClose(): void {
 }
 function animate(): void {
   frameId = requestAnimationFrame(animate);
-  laptopAnimations.update();
+  computerAnimations.update();
   console.log(`animated here mixer time: ${mixer.time}`);
 }
 function isRunning(): boolean {
-  for (const [key] of Object.entries(laptopAnimations.animations))
-    if (laptopAnimations.animations[key].isRunning()) return true;
+  for (const [key] of Object.entries(computerAnimations.animations))
+    if (computerAnimations.animations[key].isRunning()) return true;
   return false;
 }
 //#endregion
 
 //#region event handlers
 function onGLTFReady(animations: AnimationsModel): void {
-  laptopAnimations = animations;
-  mixer = laptopAnimations.animations["entrance"].getMixer();
-  laptopEntrance();
+  computerAnimations = animations;
+  mixer = computerAnimations.animations["entrance"].getMixer();
+  computerEntrance();
   frameId = requestAnimationFrame(animate);
 }
 function onGLTFFinish(action: string): void {

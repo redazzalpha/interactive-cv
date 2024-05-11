@@ -46,6 +46,7 @@
           <AnimatedGLTF
             :id="id"
             :gltf="model3D"
+            env-image-path="3D/images/environnement/px.png"
             @ready="onGLTFReady"
             @finish-action="onGLTFFinish"
             @error="onGLTFError"
@@ -181,7 +182,7 @@ const showActions = ref<boolean>(false);
 //#region variables
 const title: string = "Concepteur développeur d'applications";
 const id = "home-laptop-3D";
-const model3D = "/3D/laptop/laptop.glb";
+const model3D = "/3D/models/laptop/laptop.glb";
 
 let frameId = 0;
 let laptopAnimations: AnimationsModel;

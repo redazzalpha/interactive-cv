@@ -29,6 +29,7 @@ interface Props {
   id: string;
   gltf: string;
   height?: number;
+  envImagePath: string;
 }
 const props = withDefaults(defineProps<Props>(), {
   height: 500,
@@ -52,6 +53,7 @@ const animationModel: AnimationsModel = {
 let model3D = ref<GLTF>();
 let camera: THREE.PerspectiveCamera;
 let mixer: THREE.AnimationMixer;
+
 //#endregion
 
 //#region functions
@@ -83,15 +85,14 @@ function setEnvironment(): void {
   // this code sets environment which
   // provides baselight
 
-  // TODO: add a props to get images from client to decouple component
   new THREE.CubeTextureLoader().load(
     [
-      "3D/environnement/px.png",
-      "3D/environnement/px.png",
-      "3D/environnement/px.png",
-      "3D/environnement/px.png",
-      "3D/environnement/px.png",
-      "3D/environnement/px.png",
+      props.envImagePath,
+      props.envImagePath,
+      props.envImagePath,
+      props.envImagePath,
+      props.envImagePath,
+      props.envImagePath,
     ],
     (environmentMap: THREE.CubeTexture) => {
       scene.environment = environmentMap;
@@ -100,7 +101,6 @@ function setEnvironment(): void {
     }
   );
 }
-
 function setCamera() {
   camera = model3D.value!.cameras[0] as THREE.PerspectiveCamera;
   camera.aspect = window.innerWidth / window.innerHeight;
@@ -160,5 +160,3 @@ onMounted(() => {
 });
 //#endregion
 </script>
-
-<style lang="scss" scoped></style>

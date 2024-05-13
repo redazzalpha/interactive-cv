@@ -3,29 +3,29 @@
     <v-container v-bind="containerBindings">
       <!-- animated title -->
       <v-row>
-        <v-col>
+        <v-col class="pa-0">
           <AnimatedTitle
             v-show="!$vuetify.display.mobile"
-            id="title-about"
-            tag="h1"
-            :text="title"
             v-bind="animatedTitleBindings"
+            :text="title"
+            id="fun-art"
+            tag="h1"
             style="position: fixed"
           />
         </v-col>
       </v-row>
 
-      <!-- computer 3D model -->
+      <!-- universe 3D model -->
       <v-row v-bind="rowBindings">
         <v-col v-bind="colBindings" class="pa-0">
           <AnimatedGLTF
             :id="id"
             :gltf="model3D"
             :env-image-path="envImagePath"
+            :height="900"
             @ready="onGLTFReady"
             @finish-action="onGLTFFinish"
             @error="onGLTFError"
-            :height="900"
           />
         </v-col>
       </v-row>
@@ -33,21 +33,23 @@
   </article>
 </template>
 
-<script lang="ts" setup>
-import {
-  animatedTitleBindings,
-  colBindings,
-  containerBindings,
-  rowBindings,
-} from "@/utils/objectBindings";
+<script setup lang="ts">
 import { onBeforeUnmount } from "vue";
+import AnimatedTitle from "@/components/AnimatedTitle.vue";
 import AnimatedGLTF, { AnimationsModel } from "../components/AnimatedGLTF.vue";
+import {
+  containerBindings,
+  animatedTitleBindings,
+  rowBindings,
+  colBindings,
+} from "@/utils/objectBindings";
+import {} from "vue";
 
 //#region variables
 const title: string = "Fun art";
-const id = "fun-art-3D";
+const id = "fun-art-universe";
 const model3D = "/3D/models/universe/universe.glb";
-const envImagePath = "3D/images/environnement/light.png";
+const envImagePath = "3D/images/environment/light.png";
 
 let frameId = 0;
 let universeAnimations: AnimationsModel;
@@ -74,10 +76,6 @@ function onGLTFReady(animations: AnimationsModel): void {
 }
 function onGLTFFinish(action: string): void {
   cancelAnimationFrame(frameId);
-  // example on gltf finish actions
-  if (action == "entrance") {
-    // code here
-  }
   // mixer.setTime(0);
 }
 function onGLTFError(): void {}

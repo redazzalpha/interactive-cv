@@ -18,23 +18,6 @@
       <!-- computer 3D model -->
       <v-row v-bind="rowBindings">
         <v-col v-bind="colBindings" class="pa-0">
-          <v-card-actions v-show="showActions" :style="computedActionStyle">
-            <v-btn
-              variant="outlined"
-              class="text-lowercase px-8"
-              rounded="xl"
-              @click="laptopClose"
-              >close</v-btn
-            >
-            <v-btn
-              variant="outlined"
-              class="text-lowercase px-8"
-              rounded="xl"
-              @click="laptopOpen"
-              >open</v-btn
-            >
-          </v-card-actions>
-
           <AnimatedGLTF
             :id="id"
             :gltf="model3D"
@@ -57,107 +40,44 @@ import {
   containerBindings,
   rowBindings,
 } from "@/utils/objectBindings";
-import { ref, computed, onBeforeUnmount } from "vue";
+import { onBeforeUnmount } from "vue";
 import AnimatedGLTF, { AnimationsModel } from "../components/AnimatedGLTF.vue";
-import vuetify from "@/plugins/vuetify";
-
-// #region computed
-const computedActionStyle = computed<string>(() => {
-  let leftValue: number = 0;
-
-  switch (vuetify.display.name.value) {
-    case "xs":
-      leftValue = 0;
-      break;
-    case "sm":
-      leftValue = 0;
-      break;
-    case "md":
-      leftValue = 0;
-      break;
-    case "lg":
-      leftValue = 350;
-      break;
-    case "xl":
-      leftValue = 350;
-      break;
-    case "xxl":
-      leftValue = 0;
-      break;
-    default:
-      leftValue = 0;
-      break;
-  }
-
-  return `position: absolute; left: ${leftValue}px`;
-});
-// #endregion
-
-//#region refs
-const showActions = ref<boolean>(false);
-//#endregion
 
 //#region variables
 const title: string = "Fun art";
-const id = "fun-art-computer-3D";
+const id = "fun-art-3D";
 const model3D = "/3D/models/universe/universe.glb";
 const envImagePath = "3D/images/environnement/light.png";
 
 let frameId = 0;
-let computerAnimations: AnimationsModel;
+let universeAnimations: AnimationsModel;
 let mixer: THREE.AnimationMixer;
-let isOpen = true;
-let isClose = false;
 //#endregion
 
 //#region animation functions
-function computerEntrance(): void {
-  computerAnimations.animations["entrance"].play();
-}
-function laptopOpen(): void {
-  if (!isRunning() && isClose) {
-    animate();
-    setTimeout(() => {
-      computerAnimations.stopAll();
-      computerAnimations.animations["open"].play();
-      isOpen = true;
-      isClose = false;
-    }, 1);
-  }
-}
-function laptopClose(): void {
-  if (!isRunning() && isOpen) {
-    animate();
-    setTimeout(() => {
-      computerAnimations.stopAll();
-      computerAnimations.animations["close"].play();
-      isOpen = false;
-      isClose = true;
-    }, 1);
-  }
+function universeEntrance(): void {
+  universeAnimations.animations["entrance"].play();
 }
 function animate(): void {
   frameId = requestAnimationFrame(animate);
-  computerAnimations.update();
+  universeAnimations.update();
   console.log(`animated here mixer time: ${mixer.time}`);
-}
-function isRunning(): boolean {
-  for (const [key] of Object.entries(computerAnimations.animations))
-    if (computerAnimations.animations[key].isRunning()) return true;
-  return false;
 }
 //#endregion
 
 //#region event handlers
 function onGLTFReady(animations: AnimationsModel): void {
-  computerAnimations = animations;
-  mixer = computerAnimations.animations["entrance"].getMixer();
-  computerEntrance();
+  universeAnimations = animations;
+  mixer = universeAnimations.animations["entrance"].getMixer();
+  universeEntrance();
   frameId = requestAnimationFrame(animate);
 }
 function onGLTFFinish(action: string): void {
   cancelAnimationFrame(frameId);
-  if (action == "entrance") showActions.value = true;
+  // example on gltf finish actions
+  if (action == "entrance") {
+    // code here
+  }
   // mixer.setTime(0);
 }
 function onGLTFError(): void {}

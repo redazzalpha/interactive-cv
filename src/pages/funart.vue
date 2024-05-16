@@ -18,6 +18,7 @@
       <!-- universe 3D model -->
       <v-row v-bind="rowBindings">
         <v-col v-bind="colBindings" class="pa-0">
+          <!-- <AppLoader :show="true" style="position: absolute; top: 50vh" /> -->
           <AnimatedGLTF
             :id="id"
             :gltf="model3D"
@@ -37,6 +38,7 @@
 import { onBeforeUnmount } from "vue";
 import AnimatedTitle from "@/components/AnimatedTitle.vue";
 import AnimatedGLTF, { AnimationsModel } from "../components/AnimatedGLTF.vue";
+import AppLoader from "@/components/AppLoader.vue";
 import {
   containerBindings,
   animatedTitleBindings,
@@ -46,7 +48,7 @@ import {
 import {} from "vue";
 
 //#region variables
-const title: string = "Fun art";
+const title: string = "Fun art 3D";
 const id = "fun-art-universe";
 const model3D = "/3D/models/universe/universe.glb";
 const envImagePath = "3D/images/environment/light.png";

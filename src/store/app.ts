@@ -14,7 +14,7 @@ export const useAppStore = defineStore('app', {
       { label: "Accueil", href: "/home", icon: "mdi-home", appbartTitle: "Concepteur développeur" },
       { label: "Projets", href: "/projects", icon: "mdi-semantic-web", appbartTitle: "Mes Projets" },
       { label: "Qui suis-je ?", href: "/about", icon: "mdi-information-outline", appbartTitle: "Qui suis-je ?" },
-      { label: "Fun art", href: "/art", icon: "mdi-palette", appbartTitle: "Fun art" },
+      { label: "Fun art 3D", href: "/art", icon: "mdi-palette", appbartTitle: "Fun art 3D" },
     ],
     githubHomepage: "https://github.com/redazzalpha",
     githubDataUrl: "https://api.github.com/users/redazzalpha/repos?sort=updated",

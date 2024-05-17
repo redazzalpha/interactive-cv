@@ -38,7 +38,7 @@
 import { onBeforeUnmount } from "vue";
 import AnimatedTitle from "@/components/AnimatedTitle.vue";
 import AnimatedGLTF, { AnimationsModel } from "../components/AnimatedGLTF.vue";
-import AppLoader from "@/components/AppLoader.vue";
+// import AppLoader from "@/components/AppLoader.vue";
 import {
   containerBindings,
   animatedTitleBindings,

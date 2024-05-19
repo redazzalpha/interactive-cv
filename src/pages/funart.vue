@@ -2,7 +2,7 @@
   <article>
     <v-container v-bind="containerBindings">
       <!-- animated title -->
-      <v-row>
+      <!-- <v-row>
         <v-col class="pa-0">
           <AnimatedTitle
             v-show="!$vuetify.display.mobile"
@@ -13,7 +13,7 @@
             style="position: fixed"
           />
         </v-col>
-      </v-row>
+      </v-row> -->
 
       <!-- universe 3D model -->
       <v-row v-bind="rowBindings">
@@ -36,7 +36,7 @@
 
 <script setup lang="ts">
 import { onBeforeUnmount } from "vue";
-import AnimatedTitle from "@/components/AnimatedTitle.vue";
+// import AnimatedTitle from "@/components/AnimatedTitle.vue";
 import AnimatedGLTF, { AnimationsModel } from "../components/AnimatedGLTF.vue";
 // import AppLoader from "@/components/AppLoader.vue";
 import {

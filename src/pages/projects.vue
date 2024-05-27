@@ -15,6 +15,11 @@
         </v-col>
       </v-row>
 
+      <p class="pa-5 pt-12">
+        Sur cette page vous trouverez quelques projets,<br />
+        conçus et développés seul à titre d'exempes.
+      </p>
+
       <!-- projects row -->
       <template v-if="!isError">
         <v-row

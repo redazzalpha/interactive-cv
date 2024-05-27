@@ -136,9 +136,9 @@
                       Une application ou un site se doit aussi d'être sécurisé
                       au vu des informations partagées.
                       <br />
-                      C'est à ce moment que les patrons de conceptions entre en
-                      jeux afin de concevoir le type d'application précédemment
-                      d'écrit.
+                      Les design patterns doivent être utilisés au mieux afin de
+                      concevoir des applications faciles à maintenir ou à
+                      étendre.
                       <br />
                       Le développeur doit être en mesure de s'informer des
                       nouvelles technologies qui s'offrent à lui ou des normes

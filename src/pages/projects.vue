@@ -42,6 +42,7 @@
         <v-row style="height: 50vh">
           <v-col class="d-flex flex-column justify-center align-center">
             <p>Une erreur s'est produite sur le serveur de github.</p>
+            <p>Veuillez réessayer plus tard.</p>
             <p>
               Cliquez
               <v-btn

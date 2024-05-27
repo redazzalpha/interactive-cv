@@ -137,8 +137,9 @@
                       au vu des informations partagées.
                       <br />
                       Les design patterns ont été conçus et élaborés afin
-                      d'apporter une certaine souplesse au code et le
-                      développeur se doit de les utiliser au mieux.
+                      d'apporter une certaine cohérence et une certaine
+                      souplesse au code, et le développeur se doit de les
+                      utiliser au mieux.
                       <br />
                       Le développeur doit être en mesure de s'informer des
                       nouvelles technologies qui s'offrent à lui ou des normes

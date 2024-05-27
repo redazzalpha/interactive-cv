@@ -129,16 +129,16 @@
                       Il doit se soucier de l'utilisateur et/ou du client.
                       <br />
                       Un site ou une application se doit d'être ergonomique,
-                      effiente, exacte, robuste et autant que faire se peut doit
-                      être facilement extensible, maintenable et/ou
+                      efficient, exact, robuste et autant que faire se peut, se
+                      doit d'être facilement extensible, maintenable et/ou
                       interoperable.
                       <br />
                       Une application ou un site se doit aussi d'être sécurisé
                       au vu des informations partagées.
                       <br />
-                      Les design patterns doivent être utilisés au mieux afin de
-                      concevoir des applications faciles à maintenir ou à
-                      étendre.
+                      Les design patterns ont été conçus et élaborés afin
+                      d'apporter une certaine souplesse au code et le
+                      développeur se doit de les utiliser au mieux.
                       <br />
                       Le développeur doit être en mesure de s'informer des
                       nouvelles technologies qui s'offrent à lui ou des normes

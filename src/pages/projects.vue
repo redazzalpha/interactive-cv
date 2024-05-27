@@ -41,9 +41,9 @@
       <template v-else>
         <v-row style="height: 50vh">
           <v-col class="d-flex flex-column justify-center align-center">
-            <p>Sorry an error has happend on github server.</p>
+            <p>Une erreur s'est produite sur le serveur de github.</p>
             <p>
-              Try to visit github homepage
+              Cliquez
               <v-btn
                 :href="store.githubHomepage"
                 variant="plain"
@@ -53,6 +53,7 @@
                 :ripple="false"
                 style="font-size: 30px"
               ></v-btn>
+              pour accéder à mon github.
             </p>
           </v-col>
         </v-row>
